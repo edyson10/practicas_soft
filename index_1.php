@@ -59,10 +59,10 @@ if (isset($_SESSION["Usuario"])) {
                                     </div>
                                     <form class="user" id="FormLogin" method="POST">
                                         <div class="form-group">
-                                            <input name="ingresarUsuario" type="email" class="form-control form-control-user" id="ingresarUsuario" aria-describedby="emailHelp" placeholder="Ingrese su correo electrónico" required>
+                                            <input name="ingresarUsuario" type="email" class="form-control form-control-user" id="ingresarUsuario" aria-describedby="emailHelp" placeholder="Ingrese su correo electrónico" >
                                         </div>
                                         <div class="form-group">
-                                            <input name="ingresarContraseña" type="password" class="form-control form-control-user" id="ingresarContraseña" placeholder="Contraseña" required>
+                                            <input name="ingresarContraseña" type="password" class="form-control form-control-user" id="ingresarContraseña" placeholder="Contraseña" >
                                         </div>
                                         <div class="form-group">
                                             <div class="custom-control custom-checkbox small">
@@ -70,7 +70,7 @@ if (isset($_SESSION["Usuario"])) {
                                                 <label class="custom-control-label" for="customCheck">Recu&eacute;rdame</label>
                                             </div>
                                         </div>
-                                        <button class="btn btn-primary btn-user btn-block" type="submit">Iniciar Sesi&oacute;n</button>
+                                        <button href="/vista/inicio.php" class="btn btn-primary btn-user btn-block" type="submit">Iniciar Sesi&oacute;n</button>
                                         <!--
                                           <hr>
                                          <a href="index.html" class="btn btn-google btn-user btn-block">
