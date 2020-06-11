@@ -1,40 +1,30 @@
 <?php
-if (isset($_SESSION["Usuario"])) {
-    header("Location:Inicio");
-}
+
+require_once 'controlador/conexion.php';
+
 ?>
 
-<!DOCTYPE html>
-<html lang="es">
-
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Página web de las practicas de los estudiantes de la Universidad Francisco de Paula Santander.">
-    <meta name="author" content="edyson leal">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-    <title>Practic</title>
+    <title>Pr&aacute;ctic</title>
 
     <link rel="icon" type="image/png" href="vista/img/logo.ico" />
 
     <!-- Custom fonts for this template-->
     <link href="vista/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet">
 
     <!-- Custom styles for this template-->
     <link href="vista/css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="vista/css/sweetalert2.min.css" rel="stylesheet">
 
-    <style>
-        html {
-            min-height: 100%;
-            position: relative;
-        }
-
-    </style>        
-
+    <!-- Custom styles for this page -->
+    <link href="vista/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 </head>
 
 <body style="background-color: #aa1916;">
@@ -57,20 +47,25 @@ if (isset($_SESSION["Usuario"])) {
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Bienvenido</h1>
                                     </div>
-                                    <form class="user" id="FormLogin" method="POST">
+                                    <form class="user" id="FormLogin" method="POST" name="FormLogin" action="modelo/login.php">
                                         <div class="form-group">
-                                            <input name="ingresarUsuario" type="email" class="form-control form-control-user" id="ingresarUsuario" aria-describedby="emailHelp" placeholder="Ingrese su correo electrónico" >
+                                            <input type="text" class="form-control form-control-user" name="ingresarUsuario" id="ingresarUsuario" aria-describedby="emailHelp" placeholder="Ingrese su correo electrónico" required>
                                         </div>
                                         <div class="form-group">
-                                            <input name="ingresarContraseña" type="password" class="form-control form-control-user" id="ingresarContraseña" placeholder="Contraseña" >
+                                            <input type="password" class="form-control form-control-user" name="ingresarContrasena" id="ingresarContrasena" placeholder="Contraseña" required>
                                         </div>
-                                        <div class="form-group">
-                                            <div class="custom-control custom-checkbox small">
-                                                <input type="checkbox" class="custom-control-input" id="customCheck">
-                                                <label class="custom-control-label" for="customCheck">Recu&eacute;rdame</label>
+                                        <div class="form-group row">
+                                            <div class="col-lg-8 col-md-6">
+                                                <select class="dropdown" style="border-radius: 20px !important;" id="ingresarTipo" name="ingresarTipo">
+                                                    <option value="">Seleccione el rol &nbsp;&nbsp;&nbsp;</option>
+                                                    <option value="Administrador">Administrador</option>
+                                                    <option value="Empresa">Empresa</option>
+                                                    <option value="Estudiante">Estudiante</option>
+                                                    <option value="Profesor">Profesor</option>
+                                                </select>
                                             </div>
                                         </div>
-                                        <button href="/vista/inicio.php" class="btn btn-primary btn-user btn-block" type="submit">Iniciar Sesi&oacute;n</button>
+                                        <button type="submit" name="enviar" class="btn btn-primary btn-user btn-block">Iniciar Sesi&oacute;n</button>
                                         <!--
                                           <hr>
                                          <a href="index.html" class="btn btn-google btn-user btn-block">
@@ -81,9 +76,10 @@ if (isset($_SESSION["Usuario"])) {
                                         </a> -->
                                     </form>
                                     <hr>
+                                    <!--
                                     <div class="text-center">
                                         <a class="small" href="recuperar">¿Olvidaste tu contraseña?</a>
-                                    </div>
+                                    </div>-->
                                 </div>
                             </div>
                         </div>
@@ -103,7 +99,7 @@ if (isset($_SESSION["Usuario"])) {
                 <hr class="clearfix w-100 d-md-none">
                 <!-- Grid column -->
                 <div class="col-md-3 mx-auto">
-                <a href="index.html"><img id="logo-footer" class="img-responsive" src="https://ww2.ufps.edu.co/public/imagenes/template/footer/logoufpsvertical.png" alt="Logo Pie de Página UFPS"></a>
+                    <a href="https://ww2.ufps.edu.co/" target="_blank"><img id="logo-footer" class="img-responsive" src="https://ww2.ufps.edu.co/public/imagenes/template/footer/logoufpsvertical.png" alt="Logo Pie de Página UFPS"></a>
                 </div>
                 <!-- Grid column -->
                 <hr class="clearfix w-100 d-md-none">
@@ -114,16 +110,16 @@ if (isset($_SESSION["Usuario"])) {
                     <ul class="list-unstyled">
                         <li>Avenida Gran Colombia No. 12E-96 Barrio Colsag</li>
                         <li>
-                        San José de Cúcuta - Colombia
+                            San José de Cúcuta - Colombia
                         </li>
                         <li>
-                        Teléfono (057)(7) 5776655
+                            Teléfono (057)(7) 5776655
                         </li>
                         <li>
-                        Correos: <a href="mailto:oficinadeprensa@ufps.edu.co" class="">oficinadeprensa@ufps.edu.co</a>
+                            Correos: <a href="mailto:oficinadeprensa@ufps.edu.co" class="">oficinadeprensa@ufps.edu.co</a>
                         </li>
                         <li>
-                        <a href="mailto:oficinajuridica@ufps.edu.co" class="">oficinajuridica@ufps.edu.co</a>
+                            <a href="mailto:oficinajuridica@ufps.edu.co" class="">oficinajuridica@ufps.edu.co</a>
                         </li>
                     </ul>
                 </div>
@@ -135,8 +131,10 @@ if (isset($_SESSION["Usuario"])) {
         </div>
         <!-- Footer Links -->
         <!-- Copyright -->
-        <div class="footer-copyright text-center py-3" style="background: black"> 
-        <script> document.write(new Date().getFullYear());</script> © Copyright
+        <div class="footer-copyright text-center py-3" style="background: black">
+            <script>
+                document.write(new Date().getFullYear());
+            </script> © Copyright
             <a href="https://ww2.ufps.edu.co/"> UFPS</a>
         </div>
         <!-- Copyright -->
@@ -153,9 +151,27 @@ if (isset($_SESSION["Usuario"])) {
     <!-- Custom scripts for all pages-->
     <script src="vista/js/sb-admin-2.min.js"></script>
 
-    <!-- Archivos personales -->
-    <script type="text/javascript" src="vista/js/alertas.js"></script>
-    <script type="text/javascript" src="vista/js/inicio.js"></script>
-    <script type="text/javascript" src="vista/js/salir.js"></script>
+    <script src="vista/js/sweetalert2.min.js"></script>
+
+    <script src="vista/js/registro.js"></script>
+
+    <script src="vista/js/alertas.js"></script>
+
+    <script src="vista/js/inicio.js"></script>
+
+    <!-- Page level plugins -->
+    <script src="vista/vendor/chart.js/Chart.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="vista/js/demo/chart-area-demo.js"></script>
+    <script src="vista/js/demo/chart-pie-demo.js"></script>
+
+    <!-- Page level plugins -->
+    <script src="vista/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="vista/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="vista/js/demo/datatables-demo.js"></script>
 </body>
+
 </html>

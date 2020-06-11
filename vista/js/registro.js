@@ -12,20 +12,22 @@ $(document).ready(function() {
             type: $(this).attr("method"),
             success: function(data) {
                 console.log(data);
-                if (data == 'exito') {
+                var resultado = JSON.parse(data);
+                console.log('->' + resultado.respuesta);
+                if (resultado.respuesta == 'exito') {
                     Swal.fire(
                         'Correcto!',
                         'Se ha registrado correctamente el profesor',
                         'success'
                     )
                     document.getElementById("FormRegistroProfesor").reset();
-                } else if (data == 'error') {
+                } else if (resultado.respuesta == 'error') {
                     Swal.fire({
                         icon: 'error',
-                        title: 'Error',
+                        title: 'Error al registrar',
                         text: '¡Profesor ya existente!'
                     })
-                } else if (data == 'mal') {
+                } else if (resultado.respuesta == 'mal') {
                     Swal.fire({
                         icon: 'error',
                         title: 'Error',
@@ -51,18 +53,26 @@ $(document).ready(function() {
             type: $(this).attr("method"),
             success: function(data) {
                 console.log(data);
-                if (data == 'exito') {
+                var resultado = JSON.parse(data);
+                console.log('->' + resultado.respuesta);
+                if (resultado.respuesta == 'exito') {
                     Swal.fire(
                         'Correcto!',
                         'Se ha registrado correctamente el estudiante',
                         'success'
                     )
-                    document.getElementById("FormRegistroProfesor").reset();
-                } else if (data == 'error') {
+                    document.getElementById("FormRegistroEstudiante").reset();
+                } else if (resultado.respuesta == 'error') {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error al registrar',
+                        text: 'Estudiante ya existente!'
+                    })
+                } else if (resultado.respuesta == 'mal') {
                     Swal.fire({
                         icon: 'error',
                         title: 'Error',
-                        text: 'Estudiante ya existente!'
+                        text: 'Las contraseñas no coinciden'
                     })
                 }
             }
@@ -84,18 +94,61 @@ $(document).ready(function() {
             type: $(this).attr("method"),
             success: function(data) {
                 console.log(data);
-                if (data == 'exito') {
+                var resultado = JSON.parse(data);
+                console.log('->' + resultado.respuesta);
+                if (resultado.respuesta == 'exito') {
                     Swal.fire(
                         'Correcto!',
                         'Se ha registrado correctamente la empresa',
                         'success'
                     )
-                    document.getElementById("FormRegistroProfesor").reset();
-                } else if (data == 'error') {
+                    document.getElementById("FormRegistrompresa").reset();
+                } else if (resultado.respuesta == 'error') {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error al registrar',
+                        text: 'Empresa ya existente!'
+                    })
+                } else if (resultado.respuesta == 'mal') {
                     Swal.fire({
                         icon: 'error',
                         title: 'Error',
-                        text: 'Empresa ya existente!'
+                        text: 'Las contraseñas no coinciden'
+                    })
+                }
+            }
+        });
+    });
+});
+
+/*
+Método para crear el convenio entre el estudiante y la empresa
+*/
+$(document).ready(function() {
+    $("#FormCrearConvenio").on('submit', function(e) {
+        e.preventDefault();
+        var datos = $(this).serializeArray();
+        console.log(datos);
+        $.ajax({
+            url: $(this).attr("action"),
+            data: datos,
+            type: $(this).attr("method"),
+            success: function(data) {
+                console.log(data);
+                var resultado = JSON.parse(data);
+                console.log('->' + resultado.respuesta);
+                if (resultado.respuesta == 'exito') {
+                    Swal.fire(
+                        'Correcto!',
+                        'Se ha registrado correctamente el convenio',
+                        'success'
+                    )
+                    document.getElementById("FormCrearConvenio").reset();
+                } else if (resultado.respuesta == 'error') {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error al registrar',
+                        text: 'Convenio ya existente!'
                     })
                 }
             }

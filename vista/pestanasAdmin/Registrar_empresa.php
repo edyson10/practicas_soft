@@ -1,7 +1,12 @@
 <?php
 
-include_once 'template/header.php';
-require_once 'funciones/conexion.php';
+require_once '../../controlador/sesiones.php';
+include_once '../header.php';
+require_once '../../controlador/conexion.php';
+
+if (isset($_SESSION["usuario"])) {
+    $nombre = $_SESSION['usuario'];
+}
 
 ?>
 
@@ -9,101 +14,7 @@ require_once 'funciones/conexion.php';
     <!-- Page Wrapper -->
     <div id="wrapper">
         <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-danger sidebar sidebar-dark accordion" id="accordionSidebar">
-            <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
-                <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
-                </div>
-                <div class="sidebar-brand-text mx-3">Administrador</div>
-            </a>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider my-0">
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Usuarios
-            </div>
-
-            <!-- Nav Item - Teacher Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-user-circle"></i>
-                    <span>Profesor</span>
-                </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="Registrar_profesor.php">Registrar profesor</a>
-                        <a class="collapse-item" href="">Visualizar profesor</a>
-                    </div>
-                </div>
-            </li>
-
-            <!-- Nav Item - Student Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
-                    <i class="fas fa-fw fa-user-graduate"></i>
-                    <span>Estudiante</span>
-                </a>
-                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="">Registrar estudiante</a>
-                        <a class="collapse-item" href="">Visualizar estudiante</a>
-                    </div>
-                </div>
-            </li>
-
-            <!-- Nav Item - Student Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsCompany" aria-expanded="true" aria-controls="collapsCompany">
-                    <i class="fas fa-fw fa-building"></i>
-                    <span>Empresa</span>
-                </a>
-                <div id="collapsCompany" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="">Registrar empresa</a>
-                        <a class="collapse-item" href="">Visualizar empresa</a>
-                    </div>
-                </div>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Acciones
-            </div>
-
-            <!-- Nav Item - History -->
-            <li class="nav-item">
-                <a class="nav-link" href="charts.html">
-                    <i class="fas fa-fw fa-chart-line"></i>
-                    <span>Historial</span>
-                </a>
-            </li>
-
-            <!-- Nav Item - Configure -->
-            <li class="nav-item">
-                <a class="nav-link" href="tables.html">
-                    <i class="fas fa-fw fa-cog"></i>
-                    <span>Configuraci&oacute;n</span>
-                </a>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">
-
-            <!-- Sidebar Toggler (Sidebar) -->
-            <div class="text-center d-none d-md-inline">
-                <button class="rounded-circle border-0" id="sidebarToggle"></button>
-            </div>
-
-        </ul>
+        <?php require_once 'menuAdministrador.php'; ?>
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
@@ -171,7 +82,7 @@ require_once 'funciones/conexion.php';
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Hola Edyson Leal</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Hola <?php echo $nombre;?></span>
                                 <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
                             </a>
                             <!-- Dropdown - User Information -->
@@ -188,13 +99,14 @@ require_once 'funciones/conexion.php';
                     </ul>
                 </nav>
                 <!-- End of Topbar -->
+                <!-- START CONTENIDO DE LA PAGINA -->
                 <div class="container-fluid">
                     <!-- Page Heading -->
                     <div class="row">
                         <div class="col-lg-2 mb-2"></div>
                         <div class="col-lg-8 mb-8">
                             <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                                <h1 class="h3 mb-0 text-gray-900"><strong>Profesor</strong></h1>
+                                <h1 class="h3 mb-0 text-gray-900"><strong>Empresa</strong></h1>
                             </div>
                         </div>
                         <div class="col-lg-2 mb-2"></div>
@@ -207,42 +119,45 @@ require_once 'funciones/conexion.php';
                             <!-- Approach -->
                             <div class="card shadow mb-4">
                                 <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-danger">Registrar profesor</h6>
+                                    <h6 class="m-0 font-weight-bold text-danger">Registrar empresa</h6>
                                 </div>
                                 <div class="card-body">
-                                    <form class="user" role="form" id="FormRegistroProfesor" name="FormRegistroProfesor" method="POST" action="modulos/registoProfesor.php" required>
-                                        <div class=" form-group ">
-                                            <input name="nombreProfesor" type="text" class="form-control form-control-user " id="nombreProfesor" placeholder="Nombre completo" required>
-                                        </div>
-                                        <div class="form-group">
-                                            <input name="cedulaProfesor" type="number" class="form-control form-control-user" id="cedulaProfesor" placeholder="Documento de identidad" required>
+                                    <form class="user" role="form" id="FormRegistrompresa" name="FormRegistrompresa" method="POST" action="../../modelo/registroEmpresa.php">
+                                    <div class="form-group">
+                                            <input type="text" class="form-control form-control-user" name="nombreEmpresa" id="nombreEmpresa" placeholder="Nombre de la empresa" required>
                                         </div>
                                         <div class="form-group row">
                                             <div class="col-sm-6 mb-3 mb-sm-0">
-                                                <input name="direccionProfesor" type="text" class="form-control form-control-user" id="direccionProfesor" placeholder="Direcci&oacute;n" required>
+                                                <input type="text" class="form-control form-control-user" name="nit" id="nit" placeholder="Nit de la empresa" required>
                                             </div>
                                             <div class="col-sm-6">
-                                                <input name="telefonoProfesor" type="number" class="form-control form-control-user" id="telefonoProfesor" placeholder="Tel&eacute;fono" required>
+                                                <input type="text" class="form-control form-control-user" name="representante" id="representante" placeholder="Representante legal" required>
                                             </div>
                                         </div>
-                                        <div class=" form-group">
-                                            <input type="date" class="form-control form-control-user " id="fechaProfesor" name="fechaProfesor" placeholder="Correo institucional" required>
+                                        <div class="form-group row">
+                                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                                <input type="text" class="form-control form-control-user" name="direccionEmpresa" id="direccionEmpresa" placeholder="Direcci&oacute;n" required>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <input type="number" class="form-control form-control-user" name="telefonoEmpresa" id="telefonoEmpresa" placeholder="Tel&eacute;fono" required>
+                                            </div>
                                         </div>
-                                        <div class=" form-group">
-                                            <input name="emailProfesor" type="email" class="form-control form-control-user " id="emailProfesor" placeholder="Correo institucional" required>
+                                        <div class="form-group">
+                                            <input type="email" class="form-control form-control-user" name="emailEmpresa" id="emailEmpresa" placeholder="Correo institucional" required>
                                         </div>
-                                        <div class=" form-group">
-                                            <input type="number" class="form-control form-control-user " id="codigoProfesor" name="codigoProfesor" placeholder="Digite su codigo" required>
-                                        </div>
-                                        <div class="form-group row ">
+                                        <div class="form-group row">
                                             <div class="col-sm-6 mb-3 mb-sm-0 ">
-                                                <input type="password" class="form-control form-control-user " id="contraseñaProfesor" name="contraseñaProfesor" placeholder="Contraseña" required>
+                                                <input type="password" class="form-control form-control-user" name="contraseñaEmpresa" id="contraseñaEmpresa" placeholder="Contraseña" required>
                                             </div>
                                             <div class="col-sm-6">
-                                                <input type="password" class="form-control form-control-user " id="repContraseñaProfesor" name="repContraseñaProfesor" placeholder="Repita la contraseña" required>
+                                                <input type="password" class="form-control form-control-user" name="repContraseñaEmpresa" id="repContraseñaEmpresa" placeholder="Repita la contraseña" required>
                                             </div>
                                         </div>
-                                        <button type="submit" name="enviar" id="enviar" class="btn btn-primary btn-user btn-block">Registrar profesor</button>
+                                        <div>Cargar convenio</div>
+                                        <div class="form-group row">
+                                            <input type="file" href="" class="btn btn-primary btn-user btn-block"></input>
+                                        </div>
+                                        <button type="submit" name="enviar" id="enviar" class="btn btn-primary btn-user btn-block">Registrar empresa</button>
                                     </form>
                                 </div>
                             </div>
@@ -250,9 +165,9 @@ require_once 'funciones/conexion.php';
                         <div class="col-lg-2 mb-2"></div>
                     </div>
                 </div>
+                <!-- END CONTENIDO DE LA PAGINA -->
             </div>
-            <!-- End of Main Content -->
-            <?php include_once 'template/footer.php'; ?>
+            <?php include_once '../footer.php'; ?>
         </div>
         <!-- End of Content Wrapper -->
     </div>
