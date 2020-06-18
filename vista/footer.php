@@ -4,15 +4,17 @@
         <div class="copyright text-center my-auto">
             <span>Copyright &copy; Practic UFPS
                 <script>
-                    document.write(new Date().getFullYear());
-                </script></span>
+                document.write(new Date().getFullYear());
+                </script>
+            </span>
         </div>
     </div>
 </footer>
 <!-- End of Footer -->
 
 <!-- Logout Modal-->
-<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -24,7 +26,8 @@
             <div class="modal-body">¿Seguro(a) quieres cerrar sesi&oacute;n?</div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-                <a class="btn btn-primary" href="../../modelo/salir.php" style="background: #dd4b39; border-color: #d73925;">Cerrar</a>
+                <a class="btn btn-primary" href="../../modelo/salir.php"
+                    style="background: #dd4b39; border-color: #d73925;">Cerrar</a>
             </div>
         </div>
     </div>
@@ -53,6 +56,8 @@
 <script src="../js/app.js"></script>
 
 <script src="../js/ver.js"></script>
+
+<script src="../js/historial.js"></script>
 
 <!-- Page level plugins -->
 <script src="../vendor/chart.js/Chart.min.js"></script>

@@ -1,7 +1,7 @@
 <!-- ========================== Vista de registro de empresa en el panel de administrador ========================== -->
 
 <?php
-if (isset($_SESSION["Usuario"])) {
+/* if (isset($_SESSION["Usuario"])) {
     $user = unserialize($_SESSION['Usuario']);
     $nombre = $_SESSION['Nombre'];
     $cedula = $_SESSION['Cedula'];
@@ -10,11 +10,26 @@ if (isset($_SESSION["Usuario"])) {
     $correo = $_SESSION['Correo'];
 } else {
     header("Location:Inicio");
+} */
+require_once '../../controlador/sesiones.php';
+include_once '../header.php';
+require_once '../../controlador/conexion.php';
+
+if (isset($_SESSION["usuario"])) {
+    $nombre = $_SESSION['usuario'];
+    if (isset($_SESSION['rol']) != 'Administrador') {
+        header('Location: ../../index.php');
+    } else {
+        $nombre = $_SESSION['usuario'];
+        $codigo = $_SESSION['codigo'];
+        $cedulanit = $_SESSION['cedulanit'];
+        $telefono = $_SESSION['telefono'];
+        $direccion = $_SESSION['direccion'];
+        $correo = $_SESSION['correo'];
+    }
 }
 
 ?>
-
-
 
 <body id="page-top">
     <!-- Page Wrapper -->
@@ -102,66 +117,11 @@ if (isset($_SESSION["Usuario"])) {
                                 <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
                             </div>
                         </li>
-                        <!-- Nav Item - Messages -->
-                        <li class="nav-item dropdown no-arrow mx-1">
-                            <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-envelope fa-fw"></i>
-                                <!-- Counter - Messages -->
-                                <span class="badge badge-danger badge-counter">7</span>
-                            </a>
-                            <!-- Dropdown - Messages -->
-                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="messagesDropdown">
-                                <h6 class="dropdown-header">
-                                    Message Center
-                                </h6>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="https://source.unsplash.com/fn_BT9fwg_E/60x60" alt="">
-                                        <div class="status-indicator bg-success"></div>
-                                    </div>
-                                    <div class="font-weight-bold">
-                                        <div class="text-truncate">Hi there! I am wondering if you can help me with a problem I've been having.</div>
-                                        <div class="small text-gray-500">Emily Fowler · 58m</div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="https://source.unsplash.com/AU4VPcFN4LE/60x60" alt="">
-                                        <div class="status-indicator"></div>
-                                    </div>
-                                    <div>
-                                        <div class="text-truncate">I have the photos that you ordered last month, how would you like them sent to you?</div>
-                                        <div class="small text-gray-500">Jae Chun · 1d</div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="https://source.unsplash.com/CS2uCrpNzJY/60x60" alt="">
-                                        <div class="status-indicator bg-warning"></div>
-                                    </div>
-                                    <div>
-                                        <div class="text-truncate">Last month's report looks great, I am very happy with the progress so far, keep up the good work!</div>
-                                        <div class="small text-gray-500">Morgan Alvarez · 2d</div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60" alt="">
-                                        <div class="status-indicator bg-success"></div>
-                                    </div>
-                                    <div>
-                                        <div class="text-truncate">Am I a good boy? The reason I ask is because someone told me that people say this to all dogs, even if they aren't good...</div>
-                                        <div class="small text-gray-500">Chicken the Dog · 2w</div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
-                            </div>
-                        </li>
                         <div class="topbar-divider d-none d-sm-block"></div>
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $nombre;?></span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $nombre; ?></span>
                                 <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
                             </a>
                             <!-- Dropdown - User Information -->
@@ -192,12 +152,40 @@ if (isset($_SESSION["Usuario"])) {
                         <div class="col-lg-12 mb-12">
                             <div class="d-sm-flex align-items-center justify-content-between mb-4">
                                 <h1 class="h3 mb-0 text-gray-900"><strong>Historial</strong></h1>
+                                <a href="pdf.php" target="_blank" class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Descargar historial</a>
                             </div>
                         </div>
                     </div>
                     <!-- Content Row -->
                     <div class="row">
-                    <div class="col-lg-12 mb-12">
+                        <div class="col-lg-12 mb-12">
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-4">
+                                    <h6 class="m-0 font-weight-bold text-primary">Historial de empresas</h6>
+                                </div>
+                                <div class="card-body">
+                                    <form class="user" id="FormBuscarHistorial" method="POST" action="../../modelo/historial.php">
+                                        <p>Seleccione la semestre a buscar.</p>
+                                        <div class="row">
+                                            <div class="col-lg-4">
+                                                <!-- Basic Card Example -->
+                                                <select class="browser-default custom-select" id="buscarHistorial" name="buscarHistorial">
+                                                    <option>Seleccione el semestre</option>
+                                                    <option value="2020-2">2020 - 2</option>
+                                                    <option value="2020-1">2020 - 1</option>
+                                                    <option value="2020-2">2019 - 2</option>
+                                                    <option value="2020-1">2019 - 1</option>
+                                                    <option value="2018-2">2018 - 2</option>
+                                                    <option value="2018-1">2018 - 1</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <button type="submit" class="btn btn-danger" data-dismiss="modal">Buscar</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
                             <div class="card shadow mb-4">
                                 <div class="card-header py-3">
                                     <h6 class="m-0 font-weight-bold text-primary">Estudiantes registrados</h6>
@@ -205,65 +193,37 @@ if (isset($_SESSION["Usuario"])) {
                                 <div class="card-body">
                                     <div class="table-responsive">
                                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                            <thead>
+                                            <thead class="p-3 bg-gray-700 text-white">
                                                 <tr>
-                                                    <th>Nombre</th>
-                                                    <th>Documento</th>
-                                                    <th>Correo</th>
-                                                    <th>Codigo</th>
-                                                    <th>Ver</th>
-                                                    <th>Eliminar</th>
+                                                    <th>Código</th>
+                                                    <th>Estudiante</th>
+                                                    <th>Nit</th>
+                                                    <th>Empresa</th>
+                                                    <th>Fecha</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <td>Edyson fabian leal marin</td>
-                                                    <td>1234567890</td>
-                                                    <td>edysonfabianlm@ufps.edu.co</td>
-                                                    <td>115387</td>
-                                                    <td>
-                                                        <a href="#" class="btn btn-info btn-circle btn-sm">
-                                                            <i class="fas fa-info-circle"></i>
-                                                        </a>
-                                                    </td>
-                                                    <td>
-                                                        <a href="#" class="btn btn-danger btn-circle btn-sm">
-                                                            <i class="fas fa-trash"></i>
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Adriana Elizabeth Quijano Rios</td>
-                                                    <td>1234567890</td>
-                                                    <td>adrianaelibethqr@ufps.edu.co</td>
-                                                    <td>1151378</td>
-                                                    <td>Ver</td>
-                                                    <td>Eliminar</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Shadia Shirley Ochoa Capacho</td>
-                                                    <td>J1234567890</td>
-                                                    <td>shadiashirleyoc@ufps.edu.co</td>
-                                                    <td>1151387</td>
-                                                    <td>Ver</td>
-                                                    <td>Eliminar</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Escanor Orgullo</td>
-                                                    <td>1234567890</td>
-                                                    <td>edysonfabianlm@ufps.edu.co</td>
-                                                    <td>115387</td>
-                                                    <td>Ver</td>
-                                                    <td>Eliminar</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Meliodas Ira</td>
-                                                    <td>1234567890</td>
-                                                    <td>edysonfabianlm@ufps.edu.co</td>
-                                                    <td>115387</td>
-                                                    <td>Ver</td>
-                                                    <td>Eliminar</td>
-                                                </tr>
+                                                <?php
+                                                try {
+                                                    require_once '../../controlador/conexion.php';
+                                                    $sql = "SELECT estudiante.codigo, p1.nombre AS estudiante, empresa.nit, p2.nombre AS empresa, fechaConvenio FROM crear_convenio 
+                                                    INNER JOIN estudiante ON estudiante.codigo = crear_convenio.estudiante INNER JOIN persona p1 ON p1.cedulanit = estudiante.cedula
+                                                    INNER JOIN empresa ON crear_convenio.empresa = empresa.nit INNER JOIN persona p2 ON p2.cedulanit = empresa.nit where fechaConvenio >= '2020-02-01' and fechaConvenio <= '2020-07-31'";
+                                                    $resultado = $conexion->query($sql);
+                                                } catch (Exception $e) {
+                                                    $error = $e->getMessage()();
+                                                    echo $error;
+                                                }
+
+                                                while ($empresa = $resultado->fetch_assoc()) { ?>
+                                                    <tr align="center">
+                                                        <td><?php echo $empresa['codigo'] ?></td>
+                                                        <td><?php echo $empresa['estudiante'] ?></td>
+                                                        <td><?php echo $empresa['nit'] ?></td>
+                                                        <td><?php echo $empresa['empresa'] ?></td>
+                                                        <td><?php echo $empresa['fechaConvenio'] ?></td>
+                                                    </tr>
+                                                <?php } ?>
                                             </tbody>
                                         </table>
                                     </div>
@@ -276,44 +236,9 @@ if (isset($_SESSION["Usuario"])) {
             </div>
             <!-- End of Main Content -->
             <!-- Footer -->
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Practic <a href="https://ww2.ufps.edu.co/" style="list-style: none;" target="_blank">UFPS</a>
-                            <script>
-                                document.write(new Date().getFullYear());
-                            </script>
-                        </span>
-                    </div>
-                </div>
-            </footer>
+            <?php include_once '../footer.php'; ?>
             <!-- End of Footer -->
         </div>
         <!-- End of Content Wrapper -->
-    </div>
-    <!-- End of Page Wrapper -->
-
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
-
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel"> Cerrar sesi&oacute;n</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">¿Seguro(a) quieres cerrar sesi&oacute;n?</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-                    <a class="btn btn-primary" style="background: #dd4b39; border-color: #d73925;" href="Salir" id="salir">Cerrar</a>
-                </div>
-            </div>
-        </div>
     </div>
 </body>

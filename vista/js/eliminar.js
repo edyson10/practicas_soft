@@ -53,17 +53,15 @@ function eliminarProfesor(nombre) {
     }).then((result) => {
         if (result.value) {
             $.ajax({
-                url: '../../modelo/eliminar.php',
-                data: {
-                    cedula: cedula,
-                    eliminar: 'eliminarProfesor'
-                },
+                url: '../../modelo/eliminarProfesor.php',
+                data: { cedula: cedula },
                 type: 'POST',
                 success: function(data) {
-                    var resultado = JSON.parse(data);
+                    /* var resultado = JSON.parse(data);
                     console.log(resultado);
-                    console.log('->' + resultado.cedulaProfesor);
-                    if (resultado.respuesta == 'exito') {
+                    console.log('->' + resultado.cedulaProfesor); */
+                    console.log(data)
+                    if (data == 'exito') {
                         Swal.fire(
                             'Eliminado!',
                             'El registro ha sido eliminado.',
@@ -103,17 +101,15 @@ function eliminarEstudiante(nombre) {
     }).then((result) => {
         if (result.value) {
             $.ajax({
-                url: '../../modelo/eliminar.php',
-                data: {
-                    cedula: cedula,
-                    eliminar: 'eliminarEstudiante'
-                },
+                url: '../../modelo/eliminarEstudiante.php',
+                data: { cedula: cedula },
                 type: 'POST',
                 success: function(data) {
-                    var resultado = JSON.parse(data);
+                    console.log(data);
+                    /* var resultado = JSON.parse(data);
                     console.log(resultado);
-                    console.log(resultado.cedulaEstudiante);
-                    if (resultado.respuesta == 'exito') {
+                    console.log(resultado.cedulaEstudiante); */
+                    if (data == 'exito') {
                         Swal.fire(
                             'Eliminado!',
                             'El registro ha sido eliminado.',
@@ -122,6 +118,96 @@ function eliminarEstudiante(nombre) {
                         setTimeout(function() {
                             window.location.href = "../pestanasAdmin/Visualizar_estudiante.php";
                         }, 700);
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error',
+                            text: 'No se pudo eliminar!'
+                        })
+                    }
+                }
+            });
+        }
+    })
+}
+
+/**
+ * Evento clic que permite eliminar empresa
+ */
+function eliminarEmpresa(empresa) {
+    var nit = String(empresa);
+    console.log("eliminado " + nit);
+    Swal.fire({
+        title: 'Eliminar',
+        text: "¿Estas seguro que quieres eliminar el registro?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, ¡eliminar!',
+        cancelButtonText: 'Cancelar'
+    }).then((result) => {
+        if (result.value) {
+            $.ajax({
+                url: '../../modelo/eliminarEmpresa.php',
+                data: { nit_empresa: nit },
+                type: 'POST',
+                success: function(data) {
+                    console.log(data)
+                        /* var resultado = JSON.parse(data);
+                        console.log(resultado);
+                        console.log(resultado.cedulaEstudiante); */
+                    if (data == 'exito') {
+                        Swal.fire(
+                            'Eliminado!',
+                            'El registro ha sido eliminado.',
+                            'success'
+                        )
+                        setTimeout(function() {
+                            window.location.href = "../pestanasAdmin/Visualizar_estudiante.php";
+                        }, 700);
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error',
+                            text: 'No se pudo eliminar!'
+                        })
+                    }
+                }
+            });
+        }
+    })
+}
+
+function eliminarAsociacion(asociacion) {
+    var id_convenio = String(asociacion);
+    console.log("eliminado " + id_convenio);
+    Swal.fire({
+        title: 'Eliminar',
+        text: "¿Estas seguro que quieres eliminar el registro?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, ¡eliminar!',
+        cancelButtonText: 'Cancelar'
+    }).then((result) => {
+        if (result.value) {
+            $.ajax({
+                url: '../../modelo/eliminarAsociacion.php',
+                data: { id_convenio: id_convenio },
+                type: 'POST',
+                success: function(data) {
+                    console.log(data);
+                    if (data == 'exito') {
+                        Swal.fire(
+                            'Eliminado!',
+                            'El registro ha sido eliminado.',
+                            'success'
+                        )
+                        setTimeout(function() {
+                            window.location.href = "../pestanasProf/Crear_asociacion.php";
+                        }, 400);
                     } else {
                         Swal.fire({
                             icon: 'error',

@@ -9,6 +9,9 @@ require_once '../../controlador/conexion.php';
 
 if (isset($_SESSION["usuario"])) {
     $nombre = $_SESSION['usuario'];
+    if(isset($_SESSION['rol']) != 'Profesor'){
+        header('Location: ../../index.php');
+    }
 }
 
 ?>
@@ -180,7 +183,7 @@ if (isset($_SESSION["usuario"])) {
                                         <div class="row">
                                             <div class="col-lg-4 col-md-4"></div>
                                             <div class="col-lg-4 col-md-4" style="text-align: center;">
-                                                <button type="submit" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                                                <button type="submit" class="btn btn-danger" data-dismiss="modal">Crear</button>
                                             </div>
                                             <div class="col-lg-4 col-md-4"></div>
                                         </div>

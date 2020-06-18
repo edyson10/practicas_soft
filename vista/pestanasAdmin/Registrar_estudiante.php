@@ -6,6 +6,9 @@ require_once '../../controlador/conexion.php';
 
 if (isset($_SESSION["usuario"])) {
     $nombre = $_SESSION['usuario'];
+    if(isset($_SESSION['rol']) != 'Administrador'){
+        header('Location: ../../index.php');
+    }
 }
 
 ?>

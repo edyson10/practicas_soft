@@ -19,6 +19,7 @@ if ($ingresarTipo == 'Administrador') {
     if ($rowcount > 0) {
         $row = $ejecutar->fetch_array(MYSQLI_ASSOC);
         session_start();
+        $_SESSION['rol'] = 1;
         $_SESSION['usuario'] = $row['nombre'];
         $_SESSION['codigo'] = $row['codigo'];
         $_SESSION['cedulanit'] = $row['cedulanit'];
@@ -51,6 +52,7 @@ if ($ingresarTipo == 'Administrador') {
     if ($rowcount > 0) {
         $row = $ejecutar->fetch_array(MYSQLI_ASSOC);
         session_start();
+        $_SESSION['rol'] = 4;
         $_SESSION['usuario'] = $row['nombre'];
         $_SESSION['codigo'] = $row['codigo'];
         $_SESSION['cedulanit'] = $row['cedulanit'];
@@ -84,6 +86,7 @@ if ($ingresarTipo == 'Administrador') {
     if ($rowcount > 0) {
         $row = $ejecutar->fetch_array(MYSQLI_ASSOC);
         session_start();
+        $_SESSION['rol'] = 3;
         $_SESSION['usuario'] = $row['nombre'];
         $_SESSION['codigo'] = $row['codigo'];
         $_SESSION['cedulanit'] = $row['cedulanit'];
@@ -116,6 +119,7 @@ if ($ingresarTipo == 'Administrador') {
     if ($rowcount > 0) {
         $row = $ejecutar->fetch_array(MYSQLI_ASSOC);
         session_start();
+        $_SESSION['rol'] = 2;
         $_SESSION['usuario'] = $row['nombre'];
         $_SESSION['codigo'] = $row['codigo'];
         $_SESSION['cedulanit'] = $row['cedulanit'];

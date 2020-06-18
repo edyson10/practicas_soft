@@ -16,7 +16,6 @@
         </a>
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="RegistroEstudiante.php">Registrar</a>
                 <a class="collapse-item" href="VisualizarEstudiante.php">Visualizar</a>
             </div>
         </div>
@@ -29,7 +28,6 @@
         </a>
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="RegistrarEmpresa.php">Registrar</a>
                 <a class="collapse-item" href="VisualizarEmpresa.php">Visualizar</a>
             </div>
         </div>
@@ -43,9 +41,9 @@
     </li>
     <!-- Nav Item - Charts -->
     <li class="nav-item">
-        <a class="nav-link" href="Crear_convenio.php">
+        <a class="nav-link" href="Crear_asociacion.php">
             <i class="fas fa-sitemap"></i>
-            <span>Crear convenio</span>
+            <span>Crear asociaci&oacute;n</span>
         </a>
     </li>
     <!-- Nav Item - Charts -->

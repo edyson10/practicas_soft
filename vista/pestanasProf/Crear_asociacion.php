@@ -7,6 +7,9 @@ require_once '../../controlador/conexion.php';
 
 if (isset($_SESSION["usuario"])) {
     $nombre = $_SESSION['usuario'];
+    if(isset($_SESSION['rol']) != 'Profesor'){
+        header('Location: index.php');
+    }
 }
 
 ?>
@@ -121,7 +124,7 @@ if (isset($_SESSION["usuario"])) {
                 <div class="container-fluid">
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-900"><strong>Convenio</strong></h1>
+                        <h1 class="h3 mb-0 text-gray-900"><strong>Asociaci&oacute;n</strong></h1>
                     </div>
                     <!-- Content Row -->
                     <div class="row">
@@ -129,7 +132,7 @@ if (isset($_SESSION["usuario"])) {
                             <!-- Basic Card Example -->
                             <div class="card shadow mb-4">
                                 <div class="card-header py-4">
-                                    <h6 class="m-0 font-weight-bold text-primary">Crear convenio</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">Crear asociaci&oacute;n</h6>
                                 </div>
                                 <div class="card-body">
                                     <form  class="user" id="FormCrearConvenio" method="POST" action="../../modelo/convenio.php">
@@ -178,7 +181,7 @@ if (isset($_SESSION["usuario"])) {
                                         <div class="row">
                                             <div class="col-lg-4 col-md-4"></div>
                                             <div class="col-lg-4 col-md-4" style="text-align: center;">
-                                                <button type="submit" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                                                <button type="submit" class="btn btn-danger"  data-dismiss="modal">Crear</button>
                                             </div>
                                             <div class="col-lg-4 col-md-4"></div>
                                         </div>
@@ -191,7 +194,7 @@ if (isset($_SESSION["usuario"])) {
                         <div class="col-lg-12 mb-12">
                             <div class="card shadow mb-4">
                                 <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Convenios registrados</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">Asociaciones registradas</h6>
                                 </div>
                                 <div class="card-body">
                                     <div class="table-responsive">
@@ -202,6 +205,7 @@ if (isset($_SESSION["usuario"])) {
                                                     <th>Estudiante</th>
                                                     <th>Empresa</th>
                                                     <th>Fecha inicio practicas</th>
+                                                    <th>Eliminar</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -210,7 +214,7 @@ if (isset($_SESSION["usuario"])) {
                                                     require_once '../../controlador/conexion.php';
                                                     $sql = "SELECT crear_convenio.id_convenio, p1.nombre AS estudiante, p2.nombre AS empresa, fechaConvenio FROM crear_convenio 
                                                     INNER JOIN estudiante ON estudiante.codigo = crear_convenio.estudiante INNER JOIN persona p1 ON p1.cedulanit = estudiante.cedula
-                                                    INNER JOIN empresa ON crear_convenio.empresa = empresa.nit INNER JOIN persona p2 ON p2.cedulanit = empresa.nit;";
+                                                    INNER JOIN empresa ON crear_convenio.empresa = empresa.nit INNER JOIN persona p2 ON p2.cedulanit = empresa.nit";
                                                     $resultado = $conexion->query($sql);
                                                 } catch (Exception $e) {
                                                     $error = $e->getMessage()();
@@ -223,6 +227,13 @@ if (isset($_SESSION["usuario"])) {
                                                         <td><?php echo $profesor['estudiante'] ?></td>
                                                         <td><?php echo $profesor['empresa'] ?></td>
                                                         <td><?php echo $profesor['fechaConvenio'] ?></td>
+                                                        <td>
+                                                            <a href="#" onclick="eliminarAsociacion('<?php echo $profesor['id_convenio'] ?>')" class="btn btn-danger btn-icon-split">
+                                                                <span class="icon text-white-50">
+                                                                    <i class="fas fa-trash"></i>
+                                                                </span>
+                                                            </a>
+                                                        </td>
                                                     </tr>
                                                 <?php } ?>
                                             </tbody>

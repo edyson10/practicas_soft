@@ -2,6 +2,19 @@
 
 require_once 'controlador/conexion.php';
 
+session_start();
+if (isset($_SESSION['rol'])) {
+    if ($_SESSION['rol'] == 1) {
+        header('Location: vista/pestanasAdmin/Perfil_administrador.php');
+    } else if ($_SESSION['rol'] == 2) {
+        header('Location: vista/pestanasProf/Perfil_profesor.php');
+    } else if ($_SESSION['rol'] == 3) {
+        header('Location: vista/pestanasEst/Perfil_estudiante.php');
+    } else if ($_SESSION['rol'] == 4) {
+        header('Location: vista/pestanasEmp/Perfil_empresa.php');
+    }
+}
+
 ?>
 
 <head>
@@ -21,6 +34,7 @@ require_once 'controlador/conexion.php';
 
     <!-- Custom styles for this template-->
     <link href="vista/css/sb-admin-2.min.css" rel="stylesheet">
+    <!-- Custom style Sweetalert2 -->
     <link href="vista/css/sweetalert2.min.css" rel="stylesheet">
 
     <!-- Custom styles for this page -->
@@ -54,8 +68,8 @@ require_once 'controlador/conexion.php';
                                         <div class="form-group">
                                             <input type="password" class="form-control form-control-user" name="ingresarContrasena" id="ingresarContrasena" placeholder="Contraseña" required>
                                         </div>
-                                        <div class="form-group row">
-                                            <div class="col-lg-8 col-md-6">
+                                        <div class="form-group row" style="width: 100%;">
+                                            <div class="col-lg-12 col-md-12">
                                                 <select class="dropdown" style="border-radius: 20px !important;" id="ingresarTipo" name="ingresarTipo">
                                                     <option value="">Seleccione el rol &nbsp;&nbsp;&nbsp;</option>
                                                     <option value="Administrador">Administrador</option>
@@ -151,11 +165,12 @@ require_once 'controlador/conexion.php';
     <!-- Custom scripts for all pages-->
     <script src="vista/js/sb-admin-2.min.js"></script>
 
+    <!-- Javasript Sweetalert2 -->
     <script src="vista/js/sweetalert2.min.js"></script>
 
     <script src="vista/js/registro.js"></script>
 
-    <script src="vista/js/alertas.js"></script>
+    <!-- <script src="vista/js/alertas.js"></script> -->
 
     <script src="vista/js/inicio.js"></script>
 

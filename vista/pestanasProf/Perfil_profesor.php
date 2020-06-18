@@ -6,7 +6,9 @@ require_once '../../controlador/sesiones.php';
 include_once '../header.php';
 require_once '../../controlador/conexion.php';
 
-if (isset($_SESSION["usuario"])) {
+if (isset($_SESSION['rol']) != 2) {
+     header('Location: index.php'); 
+} else {
     $nombre = $_SESSION['usuario'];
     $codigo = $_SESSION['codigo'];
     $cedulanit = $_SESSION['cedulanit'];

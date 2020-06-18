@@ -6,6 +6,9 @@ require_once '../../controlador/conexion.php';
 
 if (isset($_SESSION["usuario"])) {
     $nombre = $_SESSION['usuario'];
+    if(isset($_SESSION['rol']) != 'Administrador'){
+        header('Location: ../../index.php');
+    }
 }
 
 ?>
@@ -104,7 +107,7 @@ if (isset($_SESSION["usuario"])) {
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-900"><strong>Empresa</strong></h1>
-                        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-upload fa-sm text-white-50"></i> Subir excel</a>
+                        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm"><i class="fas fa-upload fa-sm text-white-50"></i> Registrar empresas</a>
                     </div>
                     <!-- Content Row -->
                     <div class="row">
@@ -131,19 +134,19 @@ if (isset($_SESSION["usuario"])) {
                                                 <?php
                                                 try {
                                                     require_once '../../controlador/conexion.php';
-                                                    $sql = "SELECT persona.nombre, persona.cedulanit, persona.correo, empresa.nit from persona inner join empresa on persona.cedulanit = empresa.nit";
+                                                    $sql = "SELECT persona.nombre, empresa.nit, empresa.representante_legal, persona.correo from persona inner join empresa on persona.cedulanit = empresa.nit";
                                                     $resultado = $conexion->query($sql);
                                                 } catch (Exception $e) {
                                                     $error = $e->getMessage()();
                                                     echo $error;
                                                 }
 
-                                                while ($profesor = $resultado->fetch_assoc()) { ?>
-                                                    <tr>
-                                                        <td><?php echo $profesor['nombre'] ?></td>
-                                                        <td><?php echo $profesor['cedulanit'] ?></td>
-                                                        <td><?php echo $profesor['correo'] ?></td>
-                                                        <td><?php echo $profesor['nit'] ?></td>
+                                                while ($empresa = $resultado->fetch_assoc()) { ?>
+                                                    <tr align="center">
+                                                        <td><?php echo $empresa['nombre'] ?></td>
+                                                        <td><?php echo $empresa['nit'] ?></td>
+                                                        <td><?php echo $empresa['representante_legal'] ?></td>
+                                                        <td><?php echo $empresa['correo'] ?></td>
                                                         <td>
                                                             <a href="#" id="informacion" class="btn btn-info btn-icon-split">
                                                                 <span class="icon text-white-50">
@@ -151,8 +154,8 @@ if (isset($_SESSION["usuario"])) {
                                                                 </span>
                                                             </a>
                                                         </td>
-                                                        <td>
-                                                            <a href="#" id="eliminar" onclick="eliminar()" class="btn btn-danger btn-icon-split">
+                                                        <td align="center">
+                                                            <a href="#" id="eliminar" onclick="eliminarEmpresa('<?php echo $empresa['nit'] ?>')" class="btn btn-danger btn-icon-split">
                                                                 <span class="icon text-white-50">
                                                                     <i class="fas fa-trash"></i>
                                                                 </span>

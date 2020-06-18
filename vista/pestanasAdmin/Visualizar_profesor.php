@@ -6,6 +6,9 @@ require_once '../../controlador/conexion.php';
 
 if (isset($_SESSION["usuario"])) {
     $nombre = $_SESSION['usuario'];
+    if(isset($_SESSION['rol']) != 'Administrador'){
+        header('Location: ../../index.php');
+    }
 }
 
 ?>
@@ -103,7 +106,7 @@ if (isset($_SESSION["usuario"])) {
                 <div class="container-fluid">
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-900"><strong>Profesor</strong></h1>
-                        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-upload fa-sm text-white-50"></i> Subir excel</a>
+                        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm"><i class="fas fa-upload fa-sm text-white-50"></i> Registrar profesores</a>
                     </div>
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
@@ -141,14 +144,14 @@ if (isset($_SESSION["usuario"])) {
                                                 <td><?php echo $profesor['cedulanit'] ?></td>
                                                 <td><?php echo $profesor['correo'] ?></td>
                                                 <td><?php echo $profesor['codigo'] ?></td>
-                                                <td>
+                                                <td align="center">
                                                     <a id="informacion" onclick="verInformacion('<?php echo $profesor['cedulanit'] ?>')" class="btn btn-info btn-icon-split" data-toggle="modal" data-target="#myModal">
                                                         <span class="icon text-white-50">
                                                             <i class="fas fa-info-circle"></i>
                                                         </span>
                                                     </a>
                                                 </td>
-                                                <td>
+                                                <td align="center">
                                                     <a id="eliminar" onclick="eliminarProfesor('<?php echo $profesor['cedulanit'] ?>')" class="btn btn-danger btn-icon-split">
                                                         <span class="icon text-white-50">
                                                             <i class="fas fa-trash"></i>
