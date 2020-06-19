@@ -59,6 +59,8 @@
 
 <script src="../js/historial.js"></script>
 
+<script src="../js/actualizar.js"></script>
+
 <!-- Page level plugins -->
 <script src="../vendor/chart.js/Chart.min.js"></script>
 

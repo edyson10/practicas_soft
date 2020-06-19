@@ -2,7 +2,7 @@
 
 require_once '../controlador/conexion.php';
 
-/* die(json_encode($_POST)); */
+//die(json_encode($_POST));
 
 $ingresarUsuario = $_POST['ingresarUsuario'];
 $ingresarContrasena = $_POST['ingresarContrasena'];
@@ -54,7 +54,6 @@ if ($ingresarTipo == 'Administrador') {
         session_start();
         $_SESSION['rol'] = 4;
         $_SESSION['usuario'] = $row['nombre'];
-        $_SESSION['codigo'] = $row['codigo'];
         $_SESSION['cedulanit'] = $row['cedulanit'];
         $_SESSION['representante'] = $row['representante_legal'];
         $_SESSION['telefono'] = $row['telefono'];

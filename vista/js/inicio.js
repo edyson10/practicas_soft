@@ -10,6 +10,7 @@ $(document).ready(function() {
             success: function(data) {
                 //console.log(data);
                 var resultado = JSON.parse(data);
+                //console.log(resultado);
                 if (resultado.respuesta == 'exitoso') {
                     Swal.fire(
                         'Iniciaste Sesión',

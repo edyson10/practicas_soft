@@ -7,6 +7,11 @@ include_once '../header.php';
 require_once '../../controlador/conexion.php';
 
 $nombre = $_SESSION['usuario'];
+$codigo = $_SESSION['codigo'];
+$cedulanit = $_SESSION['cedulanit'];
+$telefono = $_SESSION['telefono'];
+$direccion = $_SESSION['direccion'];
+$correo = $_SESSION['correo'];
 
 ?>
 
@@ -104,7 +109,7 @@ $nombre = $_SESSION['usuario'];
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="Perfil_estudiante">
                                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i> Configuraci&oacute;n
                                 </a>
                                 <div class="dropdown-divider"></div>
@@ -119,103 +124,57 @@ $nombre = $_SESSION['usuario'];
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
                     <!-- Page Heading -->
-                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-900"><strong>Practica y evaluaci&oacute;n</strong></h1>
+                    <div class="row">
+                        <div class="col-lg-2 mb-2"></div>
+                        <div class="col-lg-8 mb-8">
+                            <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                                <h1 class="h3 mb-0 text-gray-900"><strong>Perfil</strong></h1>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 mb-2"></div>
                     </div>
                     <!-- Content Row -->
                     <div class="row">
-                        <div class="col-lg-6">
-                            <!-- Basic Card Example -->
+                        <div class="col-lg-2 mb-2"></div>
+                        <div class="col-lg-8 mb-8">
+                            <!-- Approach -->
                             <div class="card shadow mb-4">
-                                <div class="card-header py-4">
-                                    <h6 class="m-0 font-weight-bold text-primary">Documentaci&oacute;n</h6>
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-danger">Datos personales</h6>
                                 </div>
                                 <div class="card-body">
-                                    <p>En los siguientes recuadros subir en formato PDF el ARL y el Plan de trabajo.</p>
-                                    <!-- Cargar documentacion de ARL -->
-                                    <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-12 my-12 my-md-0 mw-100 navbar-search" style="width: 90%;">
-                                        <div class="input-group">
-                                            <input type="text" class="form-control bg-light border-0 small" placeholder="Buscar ARL" aria-label="Search" aria-describedby="basic-addon2">
-                                            <div class="input-group-append">
-                                                <button class="btn btn-primary" type="button">
-                                                    <i class="fas fa-sm">Cargar</i>
-                                                </button>
+                                    <form class="user" id="FormRegistroEmpr">
+                                        <div class=" form-group ">
+                                            <input type="nombre" class="form-control form-control-user " id="nombre" placeholder="<?php echo $nombre; ?>" readonly>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control form-control-user" id="cedula" placeholder="<?php echo $cedulanit; ?>" readonly>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                                <input type="text" class="form-control form-control-user" id="direccion" placeholder="<?php echo $direccion; ?>">
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <input type="number" class="form-control form-control-user" id="telefono" placeholder="<?php echo $telefono; ?>">
                                             </div>
                                         </div>
-                                    </form>
-                                    <br><br>
-                                    <div class="row">
-                                        <div class="col-lg-4 col-md-4"></div>
-                                        <div class="col-lg-4 col-md-4">
-                                            <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Guardar</a>
+                                        <div class=" form-group ">
+                                            <input type="email " class="form-control form-control-user " id="email" placeholder="<?php echo $correo; ?>" readonly>
                                         </div>
-                                        <div class="col-lg-4 col-md-4"></div>
-                                    </div>
-                                    <br>
-                                    <!-- Cargar plan de trabajo -->
-                                    <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-12 my-12 my-md-0 mw-100 navbar-search" style="width: 90%;">
-                                        <div class="input-group">
-                                            <input type="text" class="form-control bg-light border-0 small" placeholder="Buscar plan de trabajo" aria-label="Search" aria-describedby="basic-addon2">
-                                            <div class="input-group-append">
-                                                <button class="btn btn-primary" type="button">
-                                                    <i class="fas fa-sm">Cargar</i>
-                                                </button>
+                                        <div class="form-group row ">
+                                            <div class="col-sm-6 mb-3 mb-sm-0 ">
+                                                <input type="password" class="form-control form-control-user " id="contraseña" placeholder="Contraseña">
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <input type="password" class="form-control form-control-user " id="contraseña" placeholder="Repita la contraseña">
                                             </div>
                                         </div>
+                                        <a href="" class="btn btn-primary btn-user btn-block">Actualizar datos</a>
                                     </form>
-                                    <br><br>
-                                    <div class="row">
-                                        <div class="col-lg-4 col-md-4"></div>
-                                        <div class="col-lg-4 col-md-4">
-                                            <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Guardar</a>
-                                        </div>
-                                        <div class="col-lg-4 col-md-4"></div>
-                                    </div>
-                                    <br>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-6">
-                            <!-- Basic Card Example -->
-                            <div class="card shadow mb-4">
-                                <div class="card-header py-4">
-                                    <h6 class="m-0 font-weight-bold text-primary">Evaluaci&oacute;n</h6>
-                                </div>
-                                <div class="card-body">
-                                    <p>En el siguiente recuadro subir en formato PDF la evaluaci&oacute;n de la empresa y del estudiante.</p>
-                                    <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-12 my-12 my-md-0 mw-100 navbar-search" style="width: 90%;">
-                                        <div class="input-group">
-                                            <input type="text" class="form-control bg-light border-0 small" placeholder="Descargar evaluación" aria-label="Search" aria-describedby="basic-addon2">
-                                            <div class="input-group-append">
-                                                <button class="btn btn-primary" type="button">
-                                                    <i class="fas fa-sm">Cargar</i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                    <br><br>
-                                    <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-12 my-12 my-md-0 mw-100 navbar-search" style="width: 90%;">
-                                        <div class="input-group">
-                                            <input type="text" class="form-control bg-light border-0 small" placeholder="Subir evaluación" aria-label="Search" aria-describedby="basic-addon2">
-                                            <div class="input-group-append">
-                                                <button class="btn btn-primary" type="button">
-                                                    <i class="fas fa-sm">Cargar</i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                    <br><br>
-                                    <div class="row">
-                                        <div class="col-lg-4 col-md-4"></div>
-                                        <div class="col-lg-4 col-md-4">
-                                            <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Guardar</a>
-                                        </div>
-                                        <div class="col-lg-4 col-md-4"></div>
-                                    </div>
-                                    <br><br>
-                                </div>
-                            </div>
-                        </div>
+                        <div class="col-lg-2 mb-2"></div>
                     </div>
                 </div>
                 <!-- /.container-fluid -->
