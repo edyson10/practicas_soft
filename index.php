@@ -71,7 +71,7 @@ if (isset($_SESSION['rol'])) {
                                         <div class="form-group row" style="width: 100%;">
                                             <div class="col-lg-12 col-md-12">
                                                 <select class="dropdown" style="border-radius: 20px !important;" id="ingresarTipo" name="ingresarTipo">
-                                                    <option value="">Seleccione el rol &nbsp;&nbsp;&nbsp;</option>
+                                                    <option value="Seleccione">Seleccione el rol &nbsp;&nbsp;&nbsp;</option>
                                                     <option value="Administrador">Administrador</option>
                                                     <option value="Empresa">Empresa</option>
                                                     <option value="Estudiante">Estudiante</option>

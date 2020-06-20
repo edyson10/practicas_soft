@@ -40,6 +40,12 @@ $(document).ready(function() {
                         title: 'Error',
                         text: 'Usuario, contraseña y/o rol incorrectos'
                     })
+                } else if (resultado.respuesta == 'seleccion') {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: 'Debes de seleccionar un rol correcto'
+                    })
                 }
             }
         });

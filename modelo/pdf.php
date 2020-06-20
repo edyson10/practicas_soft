@@ -1,5 +1,9 @@
 <?php
+
 require('../../modelo/FPDF/fpdf.php');
+
+die($_POST);
+$_POST['buscarHistorial'];
 
 class PDF extends FPDF
 {
@@ -38,5 +42,4 @@ $pdf->SetFont('Times', '', 12);
 for ($i = 1; $i <= 10; $i++)
     $pdf->Cell(30, 10, utf8_decode('Imprimiendo líinea número ') . $i, 0, 1);
 $pdf->Output();
-?>df->Output();
 ?>

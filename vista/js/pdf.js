@@ -1,9 +1,12 @@
+/*
+Método para descargar el historial en la vista del administrador
+*/
 $(document).ready(function() {
     $("#FormBuscarHistorial").on('submit', function(e) {
-        e.preventDefault();
+        /* e.preventDefault(); */
         var datos = $(this).serializeArray();
         console.log(datos);
-        $.ajax({
+        /* $.ajax({
             url: $(this).attr("action"),
             data: datos,
             type: $(this).attr("method"),
@@ -17,7 +20,7 @@ $(document).ready(function() {
                         'Se ha registrado correctamente el profesor',
                         'success'
                     )
-                    document.getElementById("FormRegistroProfesor").reset();
+                    document.getElementById("FormBuscarHistorial").reset();
                 } else if (resultado.respuesta == 'error') {
                     Swal.fire({
                         icon: 'error',
@@ -32,6 +35,6 @@ $(document).ready(function() {
                     })
                 }
             }
-        });
+        }); */
     });
 });

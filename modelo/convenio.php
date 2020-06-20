@@ -2,7 +2,6 @@
 
 require_once '../controlador/conexion.php';
 
-
 $estudiante = $_POST['estudianteConvenio'];
 $empresa = $_POST['empresaConvenio'];
 $fecha_actual = date("Y-m-d");
@@ -19,3 +18,5 @@ if ($ejecutar) {
 } else {
     echo 'error';
 }
+
+mysqli_close($conexion);

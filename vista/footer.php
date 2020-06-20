@@ -57,7 +57,7 @@
 
 <script src="../js/ver.js"></script>
 
-<script src="../js/historial.js"></script>
+<script src="../js/pdf.js"></script>
 
 <script src="../js/actualizar.js"></script>
 
