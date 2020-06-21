@@ -99,15 +99,12 @@ $nombre = $_SESSION['usuario'];
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $nombre;?></span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $nombre; ?></span>
                                 <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> Perfil
-                                </a>
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="Perfil_empresa">
                                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i> Configuraci&oacute;n
                                 </a>
                                 <!-- <a class="dropdown-item" href="#">
@@ -124,7 +121,7 @@ $nombre = $_SESSION['usuario'];
                 <!-- End of Topbar -->
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-                <div class="row">
+                    <div class="row">
                         <div class="col-lg-2"></div>
                         <div class="col-lg-8">
                             <!-- Page Heading -->
@@ -143,29 +140,29 @@ $nombre = $_SESSION['usuario'];
                                 <div class="card-header py-4">
                                     <h6 class="m-0 font-weight-bold text-primary">Subida de evidencias</h6>
                                 </div>
-                                <div class="card-body">
-                                    <p>En los siguiente recuadro subir las evidencias que realizo en este mes el estudiante.</p>
-                                    <!-- Cargar documentacion de ARL -->
-                                    <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-12 my-12 my-md-0 mw-100 navbar-search" style="width: 90%;">
+                                <form role="form" name="envidencia-empresa" id="evidencia-empresa" method="POST" action="../../modelo/evidencia_empresa.php" enctype="multipart/form-data">
+                                    <div class="card-body">
+                                        <p>En los siguiente recuadro subir las evidencias que realizo en este mes el estudiante.</p>
+                                        <!-- Cargar documentacion de ARL -->
                                         <div class="input-group">
-                                            <input type="text" class="form-control bg-light border-0 small" placeholder="Cargar evidencia" aria-label="Search" aria-describedby="basic-addon2">
-                                            <div class="input-group-append">
+                                            <input type="file" class="form-control bg-light border-0 small" placeholder="Cargar evidencia" id="archivo-empresa" name="archivo-empresa" aria-describedby="basic-addon2">
+                                            <!-- <div class="input-group-append">
                                                 <button class="btn btn-primary" type="button">
                                                     <i class="fas fa-sm">Cargar</i>
                                                 </button>
+                                            </div> -->
+                                        </div>
+                                        <br>
+                                        <div class="row">
+                                            <div class="col-lg-4 col-md-4"></div>
+                                            <div class="col-lg-4 col-md-4" style="text-align: center;">
+                                                <button type="submit" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" style="width: 100px;">Guardar</button>
                                             </div>
+                                            <div class="col-lg-4 col-md-4"></div>
                                         </div>
-                                    </form>
-                                    <br><br>
-                                    <div class="row">
-                                        <div class="col-lg-4 col-md-4"></div>
-                                        <div class="col-lg-4 col-md-4" style="text-align: center;">
-                                            <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Guardar</a>
-                                        </div>
-                                        <div class="col-lg-4 col-md-4"></div>
+                                        <br>
                                     </div>
-                                    <br>
-                                </div>
+                                </form>
                             </div>
                         </div>
                         <div class="col-lg-2"></div>

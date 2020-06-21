@@ -43,7 +43,7 @@
     <li class="nav-item">
         <a class="nav-link" href="Crear_asociacion.php">
             <i class="fas fa-sitemap"></i>
-            <span>Crear asociaci&oacute;n</span>
+            <span>Crear asignaci&oacute;n</span>
         </a>
     </li>
     <!-- Nav Item - Charts -->

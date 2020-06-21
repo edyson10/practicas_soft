@@ -8,7 +8,7 @@ require_once '../../controlador/conexion.php';
 
 if (isset($_SESSION["usuario"])) {
     $nombre = $_SESSION['usuario'];
-    if(isset($_SESSION['rol']) != 'Profesor'){
+    if (isset($_SESSION['rol']) != 'Profesor') {
         header('Location: ../../index.php');
     }
 }
@@ -161,14 +161,14 @@ if (isset($_SESSION["usuario"])) {
                                                     echo $error;
                                                 }
 
-                                                while ($profesor = $resultado->fetch_assoc()) { ?>
+                                                while ($empresa = $resultado->fetch_assoc()) { ?>
                                                     <tr>
-                                                        <td><?php echo $profesor['nombre'] ?></td>
-                                                        <td><?php echo $profesor['cedulanit'] ?></td>
-                                                        <td><?php echo $profesor['correo'] ?></td>
-                                                        <td><?php echo $profesor['nit'] ?></td>
+                                                        <td><?php echo $empresa['nombre'] ?></td>
+                                                        <td><?php echo $empresa['cedulanit'] ?></td>
+                                                        <td><?php echo $empresa['correo'] ?></td>
+                                                        <td><?php echo $empresa['nit'] ?></td>
                                                         <td>
-                                                            <a id="informacion" onclick="verInformacion('<?php echo $profesor['cedulanit'] ?>')" class="btn btn-info btn-icon-split" data-toggle="modal" data-target="#myModal">
+                                                            <a id="informacion" onclick="verInformacionEmpresa('<?php echo $empresa['cedulanit'] ?>')" class="btn btn-info btn-icon-split" data-toggle="modal" data-target="#myModal">
                                                                 <span class="icon text-white-50">
                                                                     <i class="fas fa-info-circle"></i>
                                                                 </span>
@@ -181,6 +181,47 @@ if (isset($_SESSION["usuario"])) {
                                     </div>
                                 </div>
                             </div>
+                            <!-- START MODAL USER -->
+                            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLongTitle"><strong>Informaci&oacute;n</strong></h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form class="user" role="form">
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control form-control-user" id="nombreEmpresa" name="nombreEmpresa" placeholder="Nombre completo" readonly>
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="number" class="form-control form-control-user" id="nitEmpresa" name="nitEmpresa" placeholder="Cedula" readonly>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                                        <input type="text" class="form-control form-control-user" id="direccionEmpresa" name="direccionEmpresa" placeholder="Direccion" readonly>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <input type="number" class="form-control form-control-user" id="telefonoEmpresa" name="telefonoEmpresa" placeholder="Telefono" readonly>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="email" class="form-control form-control-user" id="correoEmpresa" name="correoEmpresa" placeholder="Correo corporativo" readonly>
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="number" class="form-control form-control-user" id="representante_legal" name="representante_legal" placeholder="Representante legal" readonly>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- END MODAL USER -->
                         </div>
                     </div>
                 </div>

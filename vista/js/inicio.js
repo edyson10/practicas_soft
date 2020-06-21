@@ -2,15 +2,15 @@ $(document).ready(function() {
     $("#FormLogin").on('submit', function(e) {
         e.preventDefault();
         var datos = $(this).serializeArray();
-        //console.log(datos);
+        console.log(datos);
         $.ajax({
             url: $(this).attr("action"),
             data: datos,
             type: $(this).attr("method"),
             success: function(data) {
-                //console.log(data);
+                console.log(data);
                 var resultado = JSON.parse(data);
-                //console.log(resultado);
+                console.log(resultado);
                 if (resultado.respuesta == 'exitoso') {
                     Swal.fire(
                         'Iniciaste Sesión',

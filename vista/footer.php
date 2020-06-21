@@ -61,6 +61,8 @@
 
 <script src="../js/actualizar.js"></script>
 
+<script src="../js/evidencia.js"></script>
+
 <!-- Page level plugins -->
 <script src="../vendor/chart.js/Chart.min.js"></script>
 

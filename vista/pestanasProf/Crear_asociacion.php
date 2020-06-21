@@ -124,7 +124,7 @@ if (isset($_SESSION["usuario"])) {
                 <div class="container-fluid">
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-900"><strong>Asociaci&oacute;n</strong></h1>
+                        <h1 class="h3 mb-0 text-gray-900"><strong>Asignaci&oacute;n</strong></h1>
                     </div>
                     <!-- Content Row -->
                     <div class="row">
@@ -132,11 +132,11 @@ if (isset($_SESSION["usuario"])) {
                             <!-- Basic Card Example -->
                             <div class="card shadow mb-4">
                                 <div class="card-header py-4">
-                                    <h6 class="m-0 font-weight-bold text-primary">Crear asociaci&oacute;n</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">Crear asignaci&oacute;n</h6>
                                 </div>
                                 <div class="card-body">
                                     <form  class="user" id="FormCrearConvenio" method="POST" action="../../modelo/convenio.php">
-                                        <p>Crear convenio entre estudiante y empresa.</p>
+                                        <p>Crear asignaci&oacute;n entre estudiante y empresa.</p>
                                         <div class="row">
                                             <div class="col-lg-6">
                                                 <!-- Basic Card Example -->
@@ -160,7 +160,7 @@ if (isset($_SESSION["usuario"])) {
                                             <div class="col-lg-6">
                                                 <!-- Basic Card Example -->
                                                 <select class="browser-default custom-select" id="empresaConvenio" name="empresaConvenio" >
-                                                    <option>Seleccione el estudiante</option>
+                                                    <option>Seleccione la empresa</option>
                                                     <?php
                                                     try {
                                                         require_once '../../controlador/conexion.php';

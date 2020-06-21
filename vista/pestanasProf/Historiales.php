@@ -125,169 +125,157 @@ if (isset($_SESSION["usuario"])) {
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
                     <!-- Page Heading -->
-                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-900"><strong>Historial</strong></h1>
-                        <a href="../../modelo/descargarExcel.php" class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Descargar excel</a>
-                    </div>
                     <div class="row">
                         <div class="col-lg-12 mb-12">
-                            <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Filtrar</h6>
-                                </div>
-                                <div class="card-body">
-                                    <form class="user" id="FormCrearConvenio" method="POST" action="../../modelo/convenio.php">
-                                        <div class="row">
-                                            <div class="col-lg-6">
-                                                <p>Crear convenio entre estudiante</p>
-                                                <!-- Basic Card Example -->
-                                                <select class="browser-default custom-select" id="estudianteConvenio" name="estudianteConvenio">
-                                                    <option>Seleccione el estudiante</option>
-                                                    <?php
-                                                    try {
-                                                        require_once '../../controlador/conexion.php';
-                                                        $sql = "SELECT persona.nombre, estudiante.codigo FROM persona INNER JOIN estudiante ON persona.cedulanit = estudiante.cedula ORDER BY persona.nombre ASC";
-                                                        $resultado = $conexion->query($sql);
-                                                    } catch (Exception $e) {
-                                                        $error = $e->getMessage()();
-                                                        echo $error;
-                                                    }
-
-                                                    while ($estudiante = mysqli_fetch_array($resultado)) { ?>
-                                                        <option value="<?php echo $estudiante['codigo'] ?>"><?php echo $estudiante['codigo'] . ' - ' . $estudiante['nombre']; ?></option>
-                                                    <?php } ?>
-                                                </select>
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <p>Crear convenio entre estudiante y empresa.</p>
-                                                <!-- Basic Card Example -->
-                                                <select class="browser-default custom-select" id="empresaConvenio" name="empresaConvenio">
-                                                    <option>Seleccione el estudiante</option>
-                                                    <?php
-                                                    try {
-                                                        require_once '../../controlador/conexion.php';
-                                                        $sql = "SELECT persona.nombre, empresa.nit FROM persona INNER JOIN empresa ON persona.cedulanit = empresa.nit ORDER BY persona.nombre ASC";
-                                                        $resultado = $conexion->query($sql);
-                                                    } catch (Exception $e) {
-                                                        $error = $e->getMessage()();
-                                                        echo $error;
-                                                    }
-
-                                                    while ($estudiante = mysqli_fetch_array($resultado)) { ?>
-                                                        <option value="<?php echo $estudiante['nit'] ?>"><?php echo $estudiante['nit'] . ' - ' . $estudiante['nombre']; ?></option>
-                                                    <?php } ?>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <br><br>
-                                        <div class="row">
-                                            <div class="col-lg-4 col-md-4"></div>
-                                            <div class="col-lg-4 col-md-4" style="text-align: center;">
-                                                <button type="submit" class="btn btn-danger" data-dismiss="modal">Crear</button>
-                                            </div>
-                                            <div class="col-lg-4 col-md-4"></div>
-                                        </div>
-                                    </form>
-                                </div>
+                            <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                                <h1 class="h3 mb-0 text-gray-900"><strong>Historial</strong></h1>
+                                <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm" data-toggle="modal" data-target="#logoutPDF">
+                                    <i class="fas fa-download fa-sm text-white-50"></i> Descargar historial
+                                </a>
                             </div>
                         </div>
                     </div>
-                    <!-- Content Row -->
-                    <div class="row">
-                        <div class="col-lg-12 mb-12">
-                            <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Listado de todos los estudiantes que han realizado pr&aacute;cticas.</h6>
+                    <form class="user" method="POST">
+                        <div class="row">
+                            <div class="col-lg-12 mb-12">
+                                <div class="card shadow mb-4">
+                                    <div class="card-header py-4">
+                                        <h6 class="m-0 font-weight-bold text-primary">Historial de empresas</h6>
+                                    </div>
+                                    <div class="card-body">
+                                        <p>Seleccione la semestre a buscar.</p>
+                                        <div class="row">
+                                            <div class="col-lg-4">
+                                                <!-- Basic Card Example -->
+                                                <select class="browser-default custom-select" id="buscarHistorial" name="buscarHistorial">
+                                                    <option>Seleccione el semestre</option>
+                                                    <option value="2020-2">2020 - 2</option>
+                                                    <option value="2020-1">2020 - 1</option>
+                                                    <option value="2019-2">2019 - 2</option>
+                                                    <option value="2019-1">2019 - 1</option>
+                                                    <option value="2018-2">2018 - 2</option>
+                                                    <option value="2018-1">2018 - 1</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <button type="submit" class="btn btn-danger" data-dismiss="modal">Buscar</button>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="card-body">
-                                    <div class="table-responsive">
-                                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                            <thead class="p-3 bg-gray-700 text-white">
-                                                <tr>
-                                                    <th>ID Convenio</th>
-                                                    <th>C&oacute;digo</th>
-                                                    <th>Nombre</th>
-                                                    <th>Fecha del convenio</th>
-                                                    <th>Ver</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <?php
-                                                try {
-                                                    require_once '../../controlador/conexion.php';
-                                                    $sql = "SELECT crear_convenio.id_convenio, estudiante.codigo, persona.nombre, fechaConvenio FROM crear_convenio 
-                                                    INNER JOIN estudiante ON estudiante.codigo = crear_convenio.estudiante INNER JOIN persona ON persona.cedulanit = estudiante.cedula";
-                                                    $resultado = $conexion->query($sql);
-                                                } catch (Exception $e) {
-                                                    $error = $e->getMessage()();
-                                                    echo $error;
-                                                }
-
-                                                while ($profesor = $resultado->fetch_assoc()) { ?>
+                                <div class="card shadow mb-4">
+                                    <div class="card-header py-3">
+                                        <h6 class="m-0 font-weight-bold text-primary">Estudiantes registrados</h6>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                                <thead class="p-3 bg-gray-700 text-white">
                                                     <tr>
-                                                        <td><?php echo $profesor['id_convenio']; ?></td>
-                                                        <td><?php echo $profesor['codigo'] ?></td>
-                                                        <td><?php echo $profesor['nombre'] ?></td>
-                                                        <td><?php echo $profesor['fechaConvenio'] ?></td>
-                                                        <td>
-                                                            <a id="informacion" onclick="verInformacion('<?php echo $profesor['id_convenio'] ?>')" class="btn btn-info btn-icon-split" data-toggle="modal" data-target="#myModal">
-                                                                <span class="icon text-white-50">
-                                                                    <i class="fas fa-info-circle"></i>
-                                                                </span>
-                                                            </a>
-                                                        </td>
+                                                        <th>ID Convenio</th>
+                                                        <th>Código</th>
+                                                        <th>Estudiante</th>
+                                                        <th>Empresa</th>
+                                                        <th>Fecha convenio</th>
                                                     </tr>
-                                                <?php } ?>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                                <!-- START MODAL USER -->
-                                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLongTitle"><strong>Informaci&oacute;n</strong></h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <form class="user" role="form">
-                                                    <div class="form-group">
-                                                        <input type="text" class="form-control form-control-user" id="nombreProfesor" placeholder="ID Convenio" readonly>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <input type="number" class="form-control form-control-user" id="cedulaProf" placeholder="Codigo del estudiante" readonly>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <input type="text" class="form-control form-control-user" id="direccionProfesor" placeholder="Nombre del estudiante" readonly>
-                                                    </div>
-                                                    <div class="form-group row">
-                                                        <div class="col-sm-6 mb-3 mb-sm-0">
-                                                            <input type="number" class="form-control form-control-user" id="telefonoProfesor" placeholder="Nit de la empresa" readonly>
-                                                        </div>
-                                                        <div class="col-sm-6">
-                                                            <input type="text" class="form-control form-control-user" id="fechaProfesor" placeholder="Nombre de la empresa" readonly>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <input type="email" class="form-control form-control-user" id="correoProfesor" placeholder="Fecha del convenio" readonly>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
-                                            </div>
+                                                </thead>
+                                                <tbody>
+                                                    <?php
+                                                    try {
+                                                        require_once '../../controlador/conexion.php';
+                                                        if (isset($_POST['buscarHistorial'])) {
+                                                            $estudiante = $_POST['buscarHistorial'];
+                                                            $fecha  = $_POST['buscarHistorial'];
+                                                            $fecha = explode("-", $fecha);
+                                                            $anio = $fecha[0];
+                                                            $periodo = $fecha[1];
+                                                            if ($periodo == 1) {
+                                                                $fechaAntes = $anio . '-02-01';
+                                                                $fechaDespues = $anio . '-07-31';
+                                                                $sql = "SELECT crear_convenio.id_convenio, estudiante.codigo, p1.nombre as estudiante, p2.nombre as empresa, crear_convenio.fechaConvenio from persona p1 inner join estudiante on p1.cedulanit = estudiante.cedula
+                                                                inner join crear_convenio on crear_convenio.estudiante = estudiante.codigo inner join empresa on empresa.nit = crear_convenio.empresa inner join persona p2 on p2.cedulanit = empresa.nit
+                                                                where fechaConvenio >= '$fechaAntes' and fechaConvenio <= '$fechaDespues'";
+                                                            } else {
+                                                                $fechaAntes = $anio . '-08-01';
+                                                                $fechaDespues = ($anio + 1) . '-01-31';
+                                                                $sql = "SELECT crear_convenio.id_convenio, estudiante.codigo, p1.nombre as estudiante, p2.nombre as empresa, crear_convenio.fechaConvenio from persona p1 inner join estudiante on p1.cedulanit = estudiante.cedula
+                                                                inner join crear_convenio on crear_convenio.estudiante = estudiante.codigo inner join empresa on empresa.nit = crear_convenio.empresa inner join persona p2 on p2.cedulanit = empresa.nit
+                                                                where fechaConvenio >= '$fechaAntes' and fechaConvenio <= '$fechaDespues'";
+                                                            }
+
+                                                            $resultado = $conexion->query($sql);
+
+                                                            while ($empresa = $resultado->fetch_assoc()) { ?>
+                                                                <tr align="center">
+                                                                    <td><?php echo $empresa['id_convenio'] ?></td>
+                                                                    <td><?php echo $empresa['codigo'] ?></td>
+                                                                    <td><?php echo $empresa['estudiante'] ?></td>
+                                                                    <td><?php echo $empresa['empresa'] ?></td>
+                                                                    <td><?php echo $empresa['fechaConvenio'] ?></td>
+                                                                </tr>
+                                                    <?php }
+                                                        }
+                                                    } catch (Exception $e) {
+                                                        $error = $e->getMessage()();
+                                                        echo $error;
+                                                    }
+
+                                                    mysqli_close($conexion);
+                                                    ?>
+                                                </tbody>
+                                            </table>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </form>
+                    <!-- Content Row -->
                 </div>
                 <!-- /.container-fluid -->
             </div>
+            <!-- MODAL DESCARGA HISTORIAL -->
+            <div class="modal fade" id="logoutPDF" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel"> Descargar PDF</h5>
+                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="card-body">
+                                <p>Seleccione la semestre a buscar.</p>
+                                <form class="user" role="form"  id="FormBuscarHistorial" name="FormBuscarHistorial" method="POST" action="../../modelo/descargarExcel.php">
+                                    <div class="row">
+                                        <div class="col-lg-9">
+                                            <!-- Basic Card Example -->
+                                            <select class="browser-default custom-select" id="buscarHistorial" name="buscarHistorial">
+                                                <option>Seleccione el semestre</option>
+                                                <option value="2020-2">2020 - 2</option>
+                                                <option value="2020-1">2020 - 1</option>
+                                                <option value="2019-2">2019 - 2</option>
+                                                <option value="2019-1">2019 - 1</option>
+                                                <option value="2018-2">2018 - 2</option>
+                                                <option value="2018-1">2018 - 1</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <button type="submit" name="enviar" id="enviar" class="btn btn-danger" data-dismiss="modal" >Descargar</button>
+                                            <!-- <a href="pdf.php" target="_blank">Descargar</a> -->
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END DESCARGA HISTORIAL -->
             <?php include_once '../footer.php'; ?>
             <!-- End of Main Content -->
         </div>

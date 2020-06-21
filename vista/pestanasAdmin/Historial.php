@@ -257,7 +257,8 @@ if (isset($_SESSION["usuario"])) {
                 </div>
                 <!-- /.container-fluid -->
             </div>
-
+            
+            <!-- MODAL DESCARGA HISTORIAL -->
             <div class="modal fade" id="logoutPDF" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -298,6 +299,7 @@ if (isset($_SESSION["usuario"])) {
                     </div>
                 </div>
             </div>
+            <!-- END DESCARGA HISTORIAL -->
             <!-- End of Main Content -->
             <!-- Footer -->
             <?php include_once '../footer.php'; ?>

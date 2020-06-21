@@ -148,7 +148,7 @@ if (isset($_SESSION["usuario"])) {
                                                         <td><?php echo $estudiante['correo'] ?></td>
                                                         <td><?php echo $estudiante['codigo'] ?></td>
                                                         <td align="center">
-                                                            <a id="informacion" onclick="verInformacion('<?php echo $estudiante['cedulanit'] ?>')" class="btn btn-info btn-icon-split" data-toggle="modal" data-target="#exampleModalCenter">
+                                                            <a id="informacion" onclick="verInformacionEstudiante('<?php echo $estudiante['cedulanit'] ?>')" class="btn btn-info btn-icon-split" data-toggle="modal" data-target="#exampleModalCenter">
                                                                 <span class="icon text-white-50">
                                                                     <i class="fas fa-info-circle"></i>
                                                                 </span>
@@ -182,29 +182,29 @@ if (isset($_SESSION["usuario"])) {
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    <form class="user" role="form">
+                                <form class="user" role="form">
                                         <div class="form-group">
-                                            <input type="text" class="form-control form-control-user" placeholder="<?php echo $nombre?>" readonly >
+                                            <input type="text" class="form-control form-control-user" id="nombreProfesor" name="nombreProfesor" placeholder="Nombre completo" readonly>
                                         </div>
                                         <div class="form-group">
-                                            <input type="number" class="form-control form-control-user"  placeholder="<?php echo $cedulanit?>" readonly>
+                                            <input type="number" class="form-control form-control-user" id="cedulaProf" name="cedulaProf" placeholder="Cedula" readonly>
                                         </div>
                                         <div class="form-group row">
                                             <div class="col-sm-6 mb-3 mb-sm-0">
-                                                <input type="text" class="form-control form-control-user"  placeholder="<?php echo $direccion?>" readonly>
+                                                <input type="text" class="form-control form-control-user" id="direccionProfesor" name="direccionProfesor" placeholder="Direccion" readonly>
                                             </div>
                                             <div class="col-sm-6">
-                                                <input type="number" class="form-control form-control-user" placeholder="<?php echo $telefono?>" readonly>
+                                                <input type="number" class="form-control form-control-user" id="telefonoProfesor" name="telefonoProfesor" placeholder="Telefono" readonly>
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <input type="text" class="form-control form-control-user" placeholder="<?php echo $fecha?>" readonly>
+                                            <input type="text" class="form-control form-control-user" id="fechaProfesor" name="fechaProfesor" placeholder="Fecha nacimiento" readonly>
                                         </div>
                                         <div class="form-group">
-                                            <input type="email" class="form-control form-control-user" placeholder="<?php echo $correo?>" readonly>
+                                            <input type="email" class="form-control form-control-user" id="correoProfesor" name="correoProfesor" placeholder="Correo insitucional" readonly>
                                         </div>
                                         <div class="form-group">
-                                            <input type="number" class="form-control form-control-user" placeholder="<?php echo $codigo?>" readonly>
+                                            <input type="number" class="form-control form-control-user" id="codigoProfesor" name="codigoProfesor" placeholder="Código" readonly>
                                         </div>
                                     </form>
                                 </div>

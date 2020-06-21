@@ -104,10 +104,7 @@ $nombre = $_SESSION['usuario'];
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> Perfil
-                                </a>
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="Perfil_empresa">
                                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i> Configuraci&oacute;n
                                 </a>
                                 <!-- <a class="dropdown-item" href="#">
@@ -139,55 +136,35 @@ $nombre = $_SESSION['usuario'];
                                 <div class="card-body">
                                     <p>En los siguientes recuadros subir en formato PDF el Convenio y el radicado.</p>
                                     <!-- Cargar documentacion de ARL -->
-                                    <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-12 my-12 my-md-0 mw-100 navbar-search" style="width: 90%;">
+                                    <h6 class="m-0 font-weight-bold text-danger">Cargar Radicado</h6><br>
+                                    <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-12 my-12 my-md-0 mw-100 navbar-search" style="width: 90%;"
+                                    name="fromRadicadoEmpresa" id="fromRadicadoEmpresa" method="POST" action="../../modelo/radicado_empresa.php" enctype="multipart/form-data">
                                         <div class="input-group">
-                                            <input type="text" class="form-control bg-light border-0 small" placeholder="Cargar Radicado" aria-label="Search" aria-describedby="basic-addon2" readonly>
+                                            <input type="file" class="form-control bg-light border-0 small" id="radicado-empresa" name="radicado-empresa" aria-describedby="basic-addon2" readonly>
                                             <div class="input-group-append">
-                                                <button class="btn btn-primary" type="button">
-                                                    <i class="fas fa-sm">Cargar</i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                    <br><br>
-                                    <div class="row">
-                                        <div class="col-lg-4 col-md-4"></div>
-                                        <div class="col-lg-4 col-md-4">
-                                            <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Guardar</a>
-                                        </div>
-                                        <div class="col-lg-4 col-md-4"></div>
-                                    </div>
-                                    <br>
-                                    <!-- Cargar plan de trabajo -->
-                                    <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-12 my-12 my-md-0 mw-100 navbar-search" style="width: 90%;">
-                                        <div class="input-group">
-                                            <input type="text" class="form-control bg-light border-0 small" placeholder="Cargar convenio" aria-describedby="basic-addon2" readonly>
-                                            <div class="input-group-append">
-                                                <button class="btn btn-primary" type="button">
-                                                    <i class="fas fa-sm">Cargar</i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                    <br><br>
-                                    <div class="row">
-                                        <div class="col-lg-4 col-md-4"></div>
-                                        <div class="col-lg-4 col-md-4">
-                                            <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Guardar</a>
-                                        </div>
-                                        <div class="col-lg-4 col-md-4"></div>
-                                    </div>
-                                    <br>
-                                    <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-12 my-12 my-md-0 mw-100 navbar-search" style="width: 90%;">
-                                        <div class="input-group">
-                                            <input type="number" class="form-control bg-light border-0 small" id="num_practicantes" placeholder="Cantidad practicantes" aria-describedby="basic-addon2">
-                                            <div class="input-group-append">
-                                                <button class="btn btn-primary" type="button">
+                                                <button class="btn btn-primary" type="submit">
                                                     <i class="fas fa-sm">Guardar</i>
                                                 </button>
                                             </div>
                                         </div>
                                     </form>
+                                    <br><br>
+                                    <br>
+                                    <!-- Cargar plan de trabajo -->
+                                    <h6 class="m-0 font-weight-bold text-danger">Cargar convenio</h6><br>
+                                    <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-12 my-12 my-md-0 mw-100 navbar-search" style="width: 90%;" 
+                                    name="froConvenioEmpresa" id="froConvenioEmpresa" method="POST" action="../../modelo/convenio_empresa.php" enctype="multipart/form-data">
+                                        <div class="input-group">
+                                            <input type="file" class="form-control bg-light border-0 small" id="convenio-empresa" name="convenio-empresa" aria-describedby="basic-addon2" readonly>
+                                            <div class="input-group-append">
+                                                <button class="btn btn-primary" type="submit">
+                                                    <i class="fas fa-sm">Guardar</i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <br><br>
+                                    <br>
                                 </div>
                             </div>
                         </div>

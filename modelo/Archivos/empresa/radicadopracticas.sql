@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 21-06-2020 a las 18:13:40
+-- Tiempo de generación: 11-06-2020 a las 05:45:00
 -- Versión del servidor: 10.4.8-MariaDB
 -- Versión de PHP: 7.3.11
 
@@ -88,19 +88,8 @@ CREATE TABLE `cargar_arl` (
 
 CREATE TABLE `cargar_convenio` (
   `empresa` int(11) NOT NULL,
-  `ruta_archivo` varchar(50) COLLATE utf8_spanish2_ci NOT NULL
+  `ruta_archivo` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
-
---
--- Volcado de datos para la tabla `cargar_convenio`
---
-
-INSERT INTO `cargar_convenio` (`empresa`, `ruta_archivo`) VALUES
-(123456789, 'c2f8fb51cc02e41facbcae080519f6c3.pdf'),
-(123456789, 'practicas.sql'),
-(123456789, 'madeufps.sql'),
-(123456789, 'c2f8fb51cc02e41facbcae080519f6c3.pdf'),
-(123456789, 'img20200523_11531400.pdf');
 
 -- --------------------------------------------------------
 
@@ -120,6 +109,10 @@ CREATE TABLE `crear_convenio` (
 --
 
 INSERT INTO `crear_convenio` (`id_convenio`, `estudiante`, `empresa`, `fechaConvenio`) VALUES
+(1, 23, 123456789, '2020-06-10'),
+(3, 1151464, 1234, '0000-00-00'),
+(4, 23, 123456789, '2020-06-01'),
+(5, 1151464, 123456789, '2020-06-10'),
 (6, 1, 123456789, '2020-06-10'),
 (7, 1151464, 1234, '2020-06-10'),
 (8, 1151464, 1234, '2020-06-10'),
@@ -131,8 +124,7 @@ INSERT INTO `crear_convenio` (`id_convenio`, `estudiante`, `empresa`, `fechaConv
 (15, 1, 1234, '2020-08-21'),
 (16, 23, 321, '2020-08-21'),
 (17, 1, 1234, '2020-08-21'),
-(18, 1, 1234, '2020-08-21'),
-(23, 23, 1234, '2020-06-21');
+(18, 1, 1234, '2020-08-21');
 
 -- --------------------------------------------------------
 
@@ -143,7 +135,6 @@ INSERT INTO `crear_convenio` (`id_convenio`, `estudiante`, `empresa`, `fechaConv
 CREATE TABLE `empresa` (
   `nit` int(11) NOT NULL,
   `representante_legal` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
-  `ruta_radicado` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,
   `cantidad_practicantes` int(11) DEFAULT NULL,
   `contraseña` varchar(50) COLLATE utf8_spanish2_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
@@ -152,10 +143,10 @@ CREATE TABLE `empresa` (
 -- Volcado de datos para la tabla `empresa`
 --
 
-INSERT INTO `empresa` (`nit`, `representante_legal`, `ruta_radicado`, `cantidad_practicantes`, `contraseña`) VALUES
-(321, 'asdas', 'practicas.sql', 0, '1'),
-(1234, 'asdas', 'practicas.sql', 0, '1'),
-(123456789, 'edyson leal', 'madeufps.sql', NULL, '12345');
+INSERT INTO `empresa` (`nit`, `representante_legal`, `cantidad_practicantes`, `contraseña`) VALUES
+(321, 'asdas', 0, '1'),
+(1234, 'asdas', 0, '1'),
+(123456789, 'edyson leal', NULL, '1234');
 
 -- --------------------------------------------------------
 
@@ -187,6 +178,7 @@ INSERT INTO `estudiante` (`codigo`, `cedula`, `fechaNacimiento`, `contraseña`) 
 
 CREATE TABLE `evidencia_empresa` (
   `id_evidencia` int(11) NOT NULL,
+  `estudiante` int(11) DEFAULT NULL,
   `empresa` int(11) DEFAULT NULL,
   `ruta_archivo` varchar(200) COLLATE utf8_spanish2_ci DEFAULT NULL,
   `fecha` date DEFAULT NULL
@@ -249,7 +241,7 @@ INSERT INTO `persona` (`nombre`, `cedulanit`, `rol`, `telefono`, `direccion`, `c
 ('nelson beltram', 12121, 2, '12', 'avenida', 'edysonleal@gmail.com'),
 ('Judith del Pilar Rodriguez Tenjo', 98765, 1, '3154871926', 'cucuta', 'judithdelpilarrt@ufps.edu.co'),
 ('gallardo', 777777, 2, '1', 'avenida', 'edysonleal@gmail.com'),
-('loyalsoft', 123456789, 4, '5844980', 'libertad', 'contacto@loyalsoft.co');
+('loyalsoft', 123456789, 4, '3154871926', 'avenida 8', 'contacto@loyalsoft.co');
 
 -- --------------------------------------------------------
 
@@ -370,6 +362,7 @@ ALTER TABLE `estudiante`
 --
 ALTER TABLE `evidencia_empresa`
   ADD PRIMARY KEY (`id_evidencia`),
+  ADD KEY `estudiante` (`estudiante`),
   ADD KEY `empresa` (`empresa`);
 
 --
@@ -433,13 +426,13 @@ ALTER TABLE `calificar_estudiante`
 -- AUTO_INCREMENT de la tabla `crear_convenio`
 --
 ALTER TABLE `crear_convenio`
-  MODIFY `id_convenio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id_convenio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT de la tabla `evidencia_empresa`
 --
 ALTER TABLE `evidencia_empresa`
-  MODIFY `id_evidencia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id_evidencia` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `evidencia_estudiante`
@@ -518,6 +511,7 @@ ALTER TABLE `estudiante`
 -- Filtros para la tabla `evidencia_empresa`
 --
 ALTER TABLE `evidencia_empresa`
+  ADD CONSTRAINT `evidencia_empresa_ibfk_1` FOREIGN KEY (`estudiante`) REFERENCES `estudiante` (`codigo`),
   ADD CONSTRAINT `evidencia_empresa_ibfk_2` FOREIGN KEY (`empresa`) REFERENCES `empresa` (`nit`);
 
 --

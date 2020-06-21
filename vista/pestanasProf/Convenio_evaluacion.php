@@ -138,25 +138,36 @@ if (isset($_SESSION['rol']) == 'Profesor') {
                                 </div>
                                 <div class="card-body">
                                     <p>En el siguiente recuadro subir en formato PDF el Convenio de la empresa.</p>
-                                    <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-12 my-12 my-md-0 mw-100 navbar-search" style="width: 90%;">
+                                    <!-- Basic Card Example -->
+                                    <select class="browser-default custom-select" id="empresaConvenio" name="empresaConvenio">
+                                        <option>Seleccione la empresa</option>
+                                        <?php
+                                        try {
+                                            require_once '../../controlador/conexion.php';
+                                            $sql = "SELECT persona.nombre, empresa.nit FROM persona INNER JOIN empresa ON persona.cedulanit = empresa.nit order by persona.nombre asc";
+                                            $resultado = $conexion->query($sql);
+                                        } catch (Exception $e) {
+                                            $error = $e->getMessage()();
+                                            echo $error;
+                                        }
+
+                                        while ($estudiante = mysqli_fetch_array($resultado)) { ?>
+                                            <option value="<?php echo $estudiante['nit'] ?>"><?php echo $estudiante['nit'] . ' - ' . $estudiante['nombre']; ?></option>
+                                        <?php } ?>
+                                    </select>
+                                    <br><br>
+                                    <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-12 my-12 my-md-0 mw-100 navbar-search" style="width: 100%;" name="froConvenioEmpresa" id="froConvenioEmpresa" method="POST" action="../../modelo/convenio_empresa.php" enctype="multipart/form-data">
                                         <div class="input-group">
-                                            <input type="text" class="form-control bg-light border-0 small" placeholder="Buscar convenio" aria-label="Search" aria-describedby="basic-addon2">
+                                            <input type="file" class="form-control bg-light border-0 small" id="convenio-empresa" name="convenio-empresa" aria-describedby="basic-addon2">
                                             <div class="input-group-append">
-                                                <button class="btn btn-primary" type="button">
-                                                    <i class="fas fa-sm">Cargar</i>
+                                                <button class="btn btn-primary" type="submit">
+                                                    <i class="fas fa-sm">Guardar</i>
                                                 </button>
                                             </div>
                                         </div>
                                     </form>
                                     <br><br>
-                                    <div class="row">
-                                        <div class="col-lg-4 col-md-4"></div>
-                                        <div class="col-lg-4 col-md-4">
-                                            <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Guardar</a>
-                                        </div>
-                                        <div class="col-lg-4 col-md-4"></div>
-                                    </div>
-                                    <br><br>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -168,35 +179,28 @@ if (isset($_SESSION['rol']) == 'Profesor') {
                                 </div>
                                 <div class="card-body">
                                     <p>En el siguiente recuadro subir en formato PDF el Convenio de la empresa.</p>
-                                    <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-12 my-12 my-md-0 mw-100 navbar-search" style="width: 90%;">
+                                    <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-12 my-12 my-md-0 mw-100 navbar-search" style="width: 100%;">
                                         <div class="input-group">
-                                            <input type="text" class="form-control bg-light border-0 small" placeholder="Subir evaluación estudiante" aria-label="Search" aria-describedby="basic-addon2">
+                                            <input type="file" class="form-control bg-light border-0 small" placeholder="Subir evaluación estudiante" aria-label="Search" aria-describedby="basic-addon2">
                                             <div class="input-group-append">
-                                                <button class="btn btn-primary" type="button">
-                                                    <i class="fas fa-sm">Cargar</i>
+                                                <button class="btn btn-primary" type="submit">
+                                                    <i class="fas fa-sm">Guardar</i>
                                                 </button>
                                             </div>
                                         </div>
                                     </form>
                                     <br><br>
-                                    <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-12 my-12 my-md-0 mw-100 navbar-search" style="width: 90%;">
+                                    <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-12 my-12 my-md-0 mw-100 navbar-search" style="width: 100%;">
                                         <div class="input-group">
-                                            <input type="text" class="form-control bg-light border-0 small" placeholder="Subir evaluación empresa" aria-label="Search" aria-describedby="basic-addon2">
+                                            <input type="file" class="form-control bg-light border-0 small" placeholder="Subir evaluación empresa" aria-label="Search" aria-describedby="basic-addon2">
                                             <div class="input-group-append">
-                                                <button class="btn btn-primary" type="button">
-                                                    <i class="fas fa-sm">Cargar</i>
+                                                <button class="btn btn-primary" type="submit">
+                                                    <i class="fas fa-sm">Guardar</i>
                                                 </button>
                                             </div>
                                         </div>
                                     </form>
                                     <br><br>
-                                    <div class="row">
-                                        <div class="col-lg-4 col-md-4"></div>
-                                        <div class="col-lg-4 col-md-4">
-                                            <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Guardar</a>
-                                        </div>
-                                        <div class="col-lg-4 col-md-4"></div>
-                                    </div>
                                 </div>
                             </div>
                         </div>

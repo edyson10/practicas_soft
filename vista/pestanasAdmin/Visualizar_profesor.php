@@ -6,7 +6,7 @@ require_once '../../controlador/conexion.php';
 
 if (isset($_SESSION["usuario"])) {
     $nombre = $_SESSION['usuario'];
-    if(isset($_SESSION['rol']) != 'Administrador'){
+    if (isset($_SESSION['rol']) != 'Administrador') {
         header('Location: ../../index.php');
     }
 }
@@ -145,7 +145,7 @@ if (isset($_SESSION["usuario"])) {
                                                 <td><?php echo $profesor['correo'] ?></td>
                                                 <td><?php echo $profesor['codigo'] ?></td>
                                                 <td align="center">
-                                                    <a id="informacion" onclick="verInformacion('<?php echo $profesor['cedulanit'] ?>')" class="btn btn-info btn-icon-split" data-toggle="modal" data-target="#myModal">
+                                                    <a id="informacion" onclick="verInformacionDocente('<?php echo $profesor['cedulanit'] ?>')" class="btn btn-info btn-icon-split" data-toggle="modal" data-target="#myModal">
                                                         <span class="icon text-white-50">
                                                             <i class="fas fa-info-circle"></i>
                                                         </span>
@@ -178,27 +178,27 @@ if (isset($_SESSION["usuario"])) {
                                 <div class="modal-body">
                                     <form class="user" role="form">
                                         <div class="form-group">
-                                            <input type="text" class="form-control form-control-user" id="nombreProfesor" placeholder="Nombre completo" readonly>
+                                            <input type="text" class="form-control form-control-user" id="nombreProfesor" name="nombreProfesor" placeholder="Nombre completo" readonly>
                                         </div>
                                         <div class="form-group">
-                                            <input type="number" class="form-control form-control-user" id="cedulaProf" placeholder="Cedula" readonly>
+                                            <input type="number" class="form-control form-control-user" id="cedulaProf" name="cedulaProf" placeholder="Cedula" readonly>
                                         </div>
                                         <div class="form-group row">
                                             <div class="col-sm-6 mb-3 mb-sm-0">
-                                                <input type="text" class="form-control form-control-user" id="direccionProfesor" placeholder="Direccion" readonly>
+                                                <input type="text" class="form-control form-control-user" id="direccionProfesor" name="direccionProfesor" placeholder="Direccion" readonly>
                                             </div>
                                             <div class="col-sm-6">
-                                                <input type="number" class="form-control form-control-user" id="telefonoProfesor" placeholder="Telefono" readonly>
+                                                <input type="number" class="form-control form-control-user" id="telefonoProfesor" name="telefonoProfesor" placeholder="Telefono" readonly>
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <input type="text" class="form-control form-control-user" id="fechaProfesor" placeholder="Fecha nacimiento" readonly>
+                                            <input type="text" class="form-control form-control-user" id="fechaProfesor" name="fechaProfesor" placeholder="Fecha nacimiento" readonly>
                                         </div>
                                         <div class="form-group">
-                                            <input type="email" class="form-control form-control-user" id="correoProfesor" placeholder="Correo insitucional" readonly>
+                                            <input type="email" class="form-control form-control-user" id="correoProfesor" name="correoProfesor" placeholder="Correo insitucional" readonly>
                                         </div>
                                         <div class="form-group">
-                                            <input type="number" class="form-control form-control-user" id="codigoProfesor" placeholder="Código" readonly>
+                                            <input type="number" class="form-control form-control-user" id="codigoProfesor" name="codigoProfesor" placeholder="Código" readonly>
                                         </div>
                                     </form>
                                 </div>

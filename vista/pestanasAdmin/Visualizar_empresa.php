@@ -6,7 +6,7 @@ require_once '../../controlador/conexion.php';
 
 if (isset($_SESSION["usuario"])) {
     $nombre = $_SESSION['usuario'];
-    if(isset($_SESSION['rol']) != 'Administrador'){
+    if (isset($_SESSION['rol']) != 'Administrador') {
         header('Location: ../../index.php');
     }
 }
@@ -148,7 +148,7 @@ if (isset($_SESSION["usuario"])) {
                                                         <td><?php echo $empresa['representante_legal'] ?></td>
                                                         <td><?php echo $empresa['correo'] ?></td>
                                                         <td>
-                                                            <a href="#" id="informacion" class="btn btn-info btn-icon-split">
+                                                            <a href="#" id="informacion" onclick="verInformacionEmpresa('<?php echo $empresa['nit'] ?>')" class="btn btn-info btn-icon-split">
                                                                 <span class="icon text-white-50">
                                                                     <i class="fas fa-info-circle"></i>
                                                                 </span>
@@ -168,6 +168,47 @@ if (isset($_SESSION["usuario"])) {
                                     </div>
                                 </div>
                             </div>
+                            <!-- START MODAL USER -->
+                            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLongTitle"><strong>Informaci&oacute;n</strong></h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form class="user" role="form">
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control form-control-user" id="nombreEmpresa" name="nombreEmpresa" placeholder="Nombre completo" readonly>
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="number" class="form-control form-control-user" id="nitEmpresa" name="nitEmpresa" placeholder="Cedula" readonly>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                                        <input type="text" class="form-control form-control-user" id="direccionEmpresa" name="direccionEmpresa" placeholder="Direccion" readonly>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <input type="number" class="form-control form-control-user" id="telefonoEmpresa" name="telefonoEmpresa" placeholder="Telefono" readonly>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="email" class="form-control form-control-user" id="correoEmpresa" name="correoEmpresa" placeholder="Correo corporativo" readonly>
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="number" class="form-control form-control-user" id="representante_legal" name="representante_legal" placeholder="Representante legal" readonly>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- END MODAL USER -->
                         </div>
                     </div>
                 </div>
