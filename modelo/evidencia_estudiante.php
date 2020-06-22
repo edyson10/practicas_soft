@@ -4,21 +4,17 @@ require_once '../controlador/sesiones.php';
 require_once '../controlador/conexion.php';
 
 //die(json_encode($_FILES));
-//die(json_encode($_POST));
-if(isset($_POST['empresaConvenio'])){
-    $empresa = $_POST['empresaConvenio'];
-} else {
-    $empresa = $_SESSION['cedulanit'];
-}
 
-$directorio = "Archivos/empresa/convenio";
+$estudiante = $_SESSION['codigo'];
+$fecha_actual = date("Y-m-d");
+$directorio = "Archivos/estudiante";
 
 if(!is_dir($directorio)){
     mkdir($directorio, 0755, true);
 } 
 
-if(move_uploaded_file($_FILES['convenio-empresa']['tmp_name'], $directorio . $_FILES['convenio-empresa']['name'])){
-    $archivo_url = $_FILES['convenio-empresa']['name'];
+if(move_uploaded_file($_FILES['evidencia-estudiante']['tmp_name'], $directorio . $_FILES['evidencia-estudiante']['name'])){
+    $archivo_url = $_FILES['evidencia-estudiante']['name'];
     $archivo_resultado = "Se subio correctamente el archivo";
     $respuesta = array(
         'respuesta' => $archivo_url
@@ -27,7 +23,7 @@ if(move_uploaded_file($_FILES['convenio-empresa']['tmp_name'], $directorio . $_F
     echo '->'. error_get_last();
 }
 
-$sql = "INSERT INTO cargar_convenio (empresa, ruta_archivo) VALUES ('$empresa', '$archivo_url')";
+$sql = "INSERT INTO evidencia_estudiante (id_evidencia, estudiante, ruta_archivo, fecha) VALUES (NULL, '$estudiante', '$archivo_url', '$fecha_actual')";
 
 $ejecutar = mysqli_query($conexion, $sql);
 

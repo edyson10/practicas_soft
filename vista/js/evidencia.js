@@ -82,7 +82,88 @@ $(document).ready(function() {
 Método para subir el convenio a la base de datos de radicado en el panel de empresa
 */
 $(document).ready(function() {
-    $("#froConvenioEmpresa").on('submit', function(e) {
+    $("#fromConvenioEmpresa").on('submit', function(e) {
+        e.preventDefault();
+        var datos = new FormData(this)
+            //console.log(datos);
+        $.ajax({
+            url: $(this).attr("action"),
+            data: datos,
+            type: $(this).attr("method"),
+            dataType: 'json',
+            contentType: false,
+            processData: false,
+            async: true,
+            cache: false,
+            success: function(data) {
+                //console.log(data);
+                /* var resultado = JSON.parse(data);
+                console.log('->' + resultado.respuesta); */
+                if (data == 'exito') {
+                    Swal.fire(
+                        'Correcto!',
+                        'Se ha subido correctamente el convenio',
+                        'success'
+                    )
+                    document.getElementById("fromConvenioEmpresa").reset();
+                } else if (data == 'error') {
+                    Swal.fire({
+                        icon: 'error',
+                        title: '¡Ups!',
+                        text: 'Error al subir el convenio'
+                    })
+                }
+            }
+        });
+    });
+});
+
+/*
+Método para subir el ARL a la base de datos de radicado en el panel de estudiante
+*/
+$(document).ready(function() {
+    $("#formArlEstudiante").on('submit', function(e) {
+        e.preventDefault();
+        var datos = new FormData(this)
+            //console.log(datos);
+        $.ajax({
+            url: $(this).attr("action"),
+            data: datos,
+            type: $(this).attr("method"),
+            dataType: 'json',
+            contentType: false,
+            processData: false,
+            async: true,
+            cache: false,
+            success: function(data) {
+                //console.log(data);
+                /* var resultado = JSON.parse(data);
+                console.log('->' + resultado.respuesta); */
+                if (data == 'exito') {
+                    Swal.fire(
+                        'Correcto!',
+                        'Se ha subido correctamente el convenio',
+                        'success'
+                    )
+                    document.getElementById("formArlEstudiante").reset();
+                } else if (data == 'error') {
+                    Swal.fire({
+                        icon: 'error',
+                        title: '¡Ups!',
+                        text: 'Error al subir el convenio'
+                    })
+                }
+            }
+        });
+    });
+});
+
+/*
+ Método para subir el Plan de trabajo del estudiante 
+ a la base de datos de radicado en el panel de estudiante
+ */
+$(document).ready(function() {
+    $("#formPlanEstudiante").on('submit', function(e) {
         e.preventDefault();
         var datos = new FormData(this)
         console.log(datos);
@@ -105,7 +186,48 @@ $(document).ready(function() {
                         'Se ha subido correctamente el convenio',
                         'success'
                     )
-                    document.getElementById("froConvenioEmpresa").reset();
+                    document.getElementById("formPlanEstudiante").reset();
+                } else if (data == 'error') {
+                    Swal.fire({
+                        icon: 'error',
+                        title: '¡Ups!',
+                        text: 'Error al subir el convenio'
+                    })
+                }
+            }
+        });
+    });
+});
+
+/*
+ Método para subir el Plan de trabajo del estudiante 
+ a la base de datos de radicado en el panel de estudiante
+ */
+$(document).ready(function() {
+    $("#fromEvidenciaEstudiante").on('submit', function(e) {
+        e.preventDefault();
+        var datos = new FormData(this)
+            //console.log(datos);
+        $.ajax({
+            url: $(this).attr("action"),
+            data: datos,
+            type: $(this).attr("method"),
+            dataType: 'json',
+            contentType: false,
+            processData: false,
+            async: true,
+            cache: false,
+            success: function(data) {
+                //console.log(data);
+                /* var resultado = JSON.parse(data);
+                console.log('->' + resultado.respuesta); */
+                if (data == 'exito') {
+                    Swal.fire(
+                        'Correcto!',
+                        'Se ha subido correctamente el convenio',
+                        'success'
+                    )
+                    document.getElementById("fromEvidenciaEstudiante").reset();
                 } else if (data == 'error') {
                     Swal.fire({
                         icon: 'error',

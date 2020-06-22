@@ -56,7 +56,7 @@ function verInformacionEstudiante(cedula) {
 
 function verInformacionEmpresa(cedula) {
     var cedulanit = String(cedula);
-    //console.log("cedula " + cedulanit);
+    console.log("cedula " + cedulanit);
     $('#exampleModalCenter').modal('show');
     $.ajax({
         url: '../../modelo/ver.php',
@@ -67,15 +67,15 @@ function verInformacionEmpresa(cedula) {
         type: 'POST',
         success: function(data) {
             var resultado = JSON.parse(data);
-            //console.log(resultado);
+            console.log(resultado);
             if (resultado.respuesta == 'exito') {
                 document.getElementById('nombreEmpresa').value = resultado.usuario;
                 document.getElementById('nitEmpresa').value = resultado.cedulanit;
                 document.getElementById('direccionEmpresa').value = resultado.direccion;
                 document.getElementById('telefonoEmpresa').value = resultado.telefono;
                 document.getElementById('correoEmpresa').value = resultado.correo;
-                document.getElementById('representante_legal').value = resultado.representante_legal;
-                //console.log(resultado.cedulanit);
+                document.getElementById('representante').value = resultado.representante;
+                console.log(resultado.representante);
             }
         }
     })

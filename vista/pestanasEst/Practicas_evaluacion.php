@@ -133,45 +133,34 @@ $nombre = $_SESSION['usuario'];
                                 <div class="card-body">
                                     <p>En los siguientes recuadros subir en formato PDF el ARL y el Plan de trabajo.</p>
                                     <!-- Cargar documentacion de ARL -->
-                                    <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-12 my-12 my-md-0 mw-100 navbar-search" style="width: 90%;">
+                                    <h6 class="m-0 font-weight-bold text-danger">Cargar ARL</h6><br>
+                                    <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-12 my-12 my-md-0 mw-100 navbar-search" style="width: 100%;" 
+                                    name="formArlEstudiante" id="formArlEstudiante" method="POST" action="../../modelo/cargarARL.php" enctype="multipart/form-data">
                                         <div class="input-group">
-                                            <input type="text" class="form-control bg-light border-0 small" placeholder="Buscar ARL" aria-label="Search" aria-describedby="basic-addon2">
+                                            <input type="file" class="form-control bg-light border-0 small" id="arl-estudiante" name="arl-estudiante" aria-describedby="basic-addon2">
                                             <div class="input-group-append">
-                                                <button class="btn btn-primary" type="button">
-                                                    <i class="fas fa-sm">Cargar</i>
+                                                <button class="btn btn-primary" type="submit">
+                                                    <i class="fas fa-sm">Guardar</i>
                                                 </button>
                                             </div>
                                         </div>
                                     </form>
                                     <br><br>
-                                    <div class="row">
-                                        <div class="col-lg-4 col-md-4"></div>
-                                        <div class="col-lg-4 col-md-4">
-                                            <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Guardar</a>
-                                        </div>
-                                        <div class="col-lg-4 col-md-4"></div>
-                                    </div>
                                     <br>
                                     <!-- Cargar plan de trabajo -->
-                                    <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-12 my-12 my-md-0 mw-100 navbar-search" style="width: 90%;">
+                                    <h6 class="m-0 font-weight-bold text-danger">Cargar Plan de trabajo</h6><br>
+                                    <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-12 my-12 my-md-0 mw-100 navbar-search" style="width: 100%;" 
+                                    name="formPlanEstudiante" id="formPlanEstudiante" method="POST" action="../../modelo/cargarPlanTrabajo.php" enctype="multipart/form-data">
                                         <div class="input-group">
-                                            <input type="text" class="form-control bg-light border-0 small" placeholder="Buscar plan de trabajo" aria-label="Search" aria-describedby="basic-addon2">
+                                            <input type="file" class="form-control bg-light border-0 small" id="plan-estudiante" name="plan-estudiante" aria-describedby="basic-addon2">
                                             <div class="input-group-append">
-                                                <button class="btn btn-primary" type="button">
-                                                    <i class="fas fa-sm">Cargar</i>
+                                                <button class="btn btn-primary" type="submit">
+                                                    <i class="fas fa-sm">Guardar</i>
                                                 </button>
                                             </div>
                                         </div>
                                     </form>
                                     <br><br>
-                                    <div class="row">
-                                        <div class="col-lg-4 col-md-4"></div>
-                                        <div class="col-lg-4 col-md-4">
-                                            <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Guardar</a>
-                                        </div>
-                                        <div class="col-lg-4 col-md-4"></div>
-                                    </div>
-                                    <br>
                                 </div>
                             </div>
                         </div>
@@ -183,35 +172,30 @@ $nombre = $_SESSION['usuario'];
                                 </div>
                                 <div class="card-body">
                                     <p>En el siguiente recuadro subir en formato PDF la evaluaci&oacute;n de la empresa y del estudiante.</p>
-                                    <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-12 my-12 my-md-0 mw-100 navbar-search" style="width: 90%;">
+                                    <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-12 my-12 my-md-0 mw-100 navbar-search" style="width: 100%;">
+                                        <h6 class="m-0 font-weight-bold text-danger">Cargar ARL</h6><br>
                                         <div class="input-group">
                                             <input type="text" class="form-control bg-light border-0 small" placeholder="Descargar evaluación" aria-label="Search" aria-describedby="basic-addon2">
                                             <div class="input-group-append">
                                                 <button class="btn btn-primary" type="button">
-                                                    <i class="fas fa-sm">Cargar</i>
+                                                    <i class="fas fa-sm">Descargar</i>
                                                 </button>
                                             </div>
                                         </div>
                                     </form>
                                     <br><br>
-                                    <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-12 my-12 my-md-0 mw-100 navbar-search" style="width: 90%;">
+                                    <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-12 my-12 my-md-0 mw-100 navbar-search" style="width: 100%;"
+                                    name="fromEvidenciaEstudiante" id="fromEvidenciaEstudiante" method="POST" action="../../modelo/evidencia_estudiante.php" enctype="multipart/form-data">
+                                        <h6 class="m-0 font-weight-bold text-danger">Cargar evaluación</h6><br>
                                         <div class="input-group">
-                                            <input type="text" class="form-control bg-light border-0 small" placeholder="Subir evaluación" aria-label="Search" aria-describedby="basic-addon2">
+                                            <input type="file" class="form-control bg-light border-0 small" id="evidencia-estudiante" name="evidencia-estudiante" aria-describedby="basic-addon2">
                                             <div class="input-group-append">
-                                                <button class="btn btn-primary" type="button">
-                                                    <i class="fas fa-sm">Cargar</i>
+                                                <button class="btn btn-primary" type="submit">
+                                                    <i class="fas fa-sm">Guardar</i>
                                                 </button>
                                             </div>
                                         </div>
                                     </form>
-                                    <br><br>
-                                    <div class="row">
-                                        <div class="col-lg-4 col-md-4"></div>
-                                        <div class="col-lg-4 col-md-4">
-                                            <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Guardar</a>
-                                        </div>
-                                        <div class="col-lg-4 col-md-4"></div>
-                                    </div>
                                     <br><br>
                                 </div>
                             </div>

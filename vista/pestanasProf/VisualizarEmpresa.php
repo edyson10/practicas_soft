@@ -211,7 +211,7 @@ if (isset($_SESSION["usuario"])) {
                                                     <input type="email" class="form-control form-control-user" id="correoEmpresa" name="correoEmpresa" placeholder="Correo corporativo" readonly>
                                                 </div>
                                                 <div class="form-group">
-                                                    <input type="number" class="form-control form-control-user" id="representante_legal" name="representante_legal" placeholder="Representante legal" readonly>
+                                                    <input type="text" class="form-control form-control-user" id="representante" name="representante" placeholder="Representante" readonly>
                                                 </div>
                                             </form>
                                         </div>

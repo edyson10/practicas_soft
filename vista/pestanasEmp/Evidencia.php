@@ -146,11 +146,6 @@ $nombre = $_SESSION['usuario'];
                                         <!-- Cargar documentacion de ARL -->
                                         <div class="input-group">
                                             <input type="file" class="form-control bg-light border-0 small" placeholder="Cargar evidencia" id="archivo-empresa" name="archivo-empresa" aria-describedby="basic-addon2">
-                                            <!-- <div class="input-group-append">
-                                                <button class="btn btn-primary" type="button">
-                                                    <i class="fas fa-sm">Cargar</i>
-                                                </button>
-                                            </div> -->
                                         </div>
                                         <br>
                                         <div class="row">

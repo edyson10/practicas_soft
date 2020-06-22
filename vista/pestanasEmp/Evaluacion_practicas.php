@@ -153,7 +153,7 @@ $nombre = $_SESSION['usuario'];
                                     <!-- Cargar plan de trabajo -->
                                     <h6 class="m-0 font-weight-bold text-danger">Cargar convenio</h6><br>
                                     <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-12 my-12 my-md-0 mw-100 navbar-search" style="width: 90%;" 
-                                    name="froConvenioEmpresa" id="froConvenioEmpresa" method="POST" action="../../modelo/convenio_empresa.php" enctype="multipart/form-data">
+                                    name="fromConvenioEmpresa" id="fromConvenioEmpresa" method="POST" action="../../modelo/convenio_empresa.php" enctype="multipart/form-data">
                                         <div class="input-group">
                                             <input type="file" class="form-control bg-light border-0 small" id="convenio-empresa" name="convenio-empresa" aria-describedby="basic-addon2" readonly>
                                             <div class="input-group-append">

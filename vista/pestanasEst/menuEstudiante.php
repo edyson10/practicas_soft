@@ -10,7 +10,7 @@
     <hr class="sidebar-divider">
     <!-- Nav Item - Charts -->
     <li class="nav-item">
-        <a class="nav-link" href="Perfil_estudiante">
+        <a class="nav-link" href="Perfil_estudiante.php">
             <i class="fas fa-fw fa-user-circle"></i>
             <span>Datos del estudiante</span>
         </a>
