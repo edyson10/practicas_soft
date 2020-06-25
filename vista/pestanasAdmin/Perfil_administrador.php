@@ -15,12 +15,27 @@ require_once '../../controlador/conexion.php';
     $correo = $_SESSION['correo'];
 } */
 
-$nombre = $_SESSION['usuario'];
+
 $codigo = $_SESSION['codigo'];
-$cedulanit = $_SESSION['cedulanit'];
-$telefono = $_SESSION['telefono'];
-$direccion = $_SESSION['direccion'];
 $correo = $_SESSION['correo'];
+$nombre = $_SESSION['usuario'];
+
+$sql = "SELECT persona.nombre, administrador.codigo, persona.cedulanit, persona.telefono, persona.direccion, persona.correo, administrador.fechaNacimiento 
+        from persona inner join administrador on persona.cedulanit = administrador.cedula where persona.correo = '$correo' or administrador.codigo = '$codigo'";
+
+$ejecutar = mysqli_query($conexion, $sql);
+$rowcount = mysqli_num_rows($ejecutar);
+
+if ($rowcount > 0) {
+    $row = $ejecutar->fetch_array(MYSQLI_ASSOC);
+    $usuario = $row['nombre'];
+    $codigo = $row['codigo'];
+    $cedulanit = $row['cedulanit'];
+    $telefono = $row['telefono'];
+    $direccion = $row['direccion'];
+    $correo = $row['correo'];
+}
+
 ?>
 
 <body id="page-top">
@@ -29,7 +44,6 @@ $correo = $_SESSION['correo'];
         <!-- Sidebar -->
         <?php require_once 'menuAdministrador.php'; ?>
         <!-- End of Sidebar -->
-
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
             <!-- Main Content -->
@@ -91,7 +105,6 @@ $correo = $_SESSION['correo'];
                             </div>
                         </li>
                         <div class="topbar-divider d-none d-sm-block"></div>
-
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -135,9 +148,9 @@ $correo = $_SESSION['correo'];
                                         <h6 class="m-0 font-weight-bold text-danger">Datos personales</h6>
                                     </div>
                                     <div class="card-body">
-                                        <form class="user" id="FormRegistroEmpr">
+                                        <form class="user" role="form" id="FormActualizarAdministrador" name="FormActualizarAdministrador" method="POST" action="../../modelo/actualizarAdministrador.php">
                                             <div class=" form-group ">
-                                                <input type="nombre" class="form-control form-control-user " id="nombreProfesor" placeholder="<?php echo $nombre; ?>" readonly>
+                                                <input type="nombre" class="form-control form-control-user " id="nombreProfesor" placeholder="<?php echo $usuario; ?>" readonly>
                                             </div>
                                             <div class="form-group">
                                                 <input type="text" class="form-control form-control-user" id="cedulaProfesor" placeholder="<?php echo $cedulanit; ?>" readonly>
@@ -147,10 +160,10 @@ $correo = $_SESSION['correo'];
                                             </div>
                                             <div class="form-group row">
                                                 <div class="col-sm-6 mb-3 mb-sm-0">
-                                                    <input type="text" class="form-control form-control-user" id="direccionProfesor" placeholder="<?php echo $direccion; ?>">
+                                                    <input type="text" class="form-control form-control-user" id="direccionAdministrador" name="direccionAdministrador" placeholder="<?php echo $direccion; ?>">
                                                 </div>
                                                 <div class="col-sm-6">
-                                                    <input type="number" class="form-control form-control-user" id="telefonoProfesor" placeholder="<?php echo $telefono; ?>">
+                                                    <input type="number" class="form-control form-control-user" id="telefonoAdministrador" name="telefonoAdministrador" placeholder="<?php echo $telefono; ?>">
                                                 </div>
                                             </div>
                                             <div class=" form-group ">
@@ -158,13 +171,13 @@ $correo = $_SESSION['correo'];
                                             </div>
                                             <div class="form-group row ">
                                                 <div class="col-sm-6 mb-3 mb-sm-0 ">
-                                                    <input type="password" class="form-control form-control-user" id="contraseñaProfesor" placeholder="Contraseña">
+                                                    <input type="password" class="form-control form-control-user" id="contraseñaAdministrador" name="contraseñaAdministrador" placeholder="Contraseña">
                                                 </div>
                                                 <div class="col-sm-6">
-                                                    <input type="password" class="form-control form-control-user" id="contraseñaProfesor" placeholder="Repita la contraseña">
+                                                    <input type="password" class="form-control form-control-user" id="repContraseñaAdministrador" name="repContraseñaAdministrador" placeholder="Repita la contraseña">
                                                 </div>
                                             </div>
-                                            <a href="" class="btn btn-primary btn-user btn-block">Actualizar datos</a>
+                                            <button type="submit" class="btn btn-primary btn-user btn-block">Actualizar datos</button>
                                         </form>
                                     </div>
                                 </div>
@@ -174,11 +187,6 @@ $correo = $_SESSION['correo'];
                     </div>
                 </div>
                 <!-- END CONTENIDO DE LA PAGINA -->
-                <!-- <div class="container-fluid">
-                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Perfil </h1>
-                    </div>
-                </div> -->
             </div>
             <!-- End of Main Content -->
             <!-- Footer -->

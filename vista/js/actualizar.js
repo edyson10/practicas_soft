@@ -2,7 +2,7 @@
 Método para actualizar un profesor en la vista del administrador
 */
 $(document).ready(function() {
-    $("#FormRegistroProfesor").on('submit', function(e) {
+    $("#FormActualizarAdministrador").on('submit', function(e) {
         e.preventDefault();
         var datos = $(this).serializeArray();
         console.log(datos);
@@ -17,15 +17,17 @@ $(document).ready(function() {
                 if (resultado.respuesta == 'exito') {
                     Swal.fire(
                         'Correcto!',
-                        'Se ha registrado correctamente el profesor',
+                        'Se ha actualizado correctamente el administrador',
                         'success'
                     )
-                    document.getElementById("FormRegistroProfesor").reset();
+                    setTimeout(function() {
+                        location.reload();
+                    }, 900);
                 } else if (resultado.respuesta == 'error') {
                     Swal.fire({
                         icon: 'error',
-                        title: 'Error al registrar',
-                        text: '¡Profesor ya existente!'
+                        title: '¡Ups!',
+                        text: 'Error al actualizar'
                     })
                 } else if (resultado.respuesta == 'mal') {
                     Swal.fire({

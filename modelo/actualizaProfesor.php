@@ -8,8 +8,8 @@ session_start();
 $cedula = $_SESSION['cedulanit'];
 $direccionAdministrador = $_POST['direccionAdministrador'];
 $telefonoAdministrador = $_POST['telefonoAdministrador'];
-$contraseñaAdministrador = $_POST['contraseñaAdministrador'];
-$repContraseñaAdministrador = $_POST['repContraseñaAdministrador'];
+$contraseñaAdministrador = $_POST['contrasenaAdministrador'];
+$repContraseñaAdministrador = $_POST['repContrasenaAdministrador'];
 
 if ($contraseñaAdministrador != $repContraseñaAdministrador) {
     $respuesta = array(
