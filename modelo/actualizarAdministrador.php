@@ -18,7 +18,6 @@ if ($contraseñaAdministrador != $repContraseñaAdministrador) {
     echo json_encode($respuesta);
     return;
 } else {
-    /* if (isset($_POST['contraseñaEmpresa']) && isset($_POST['repContraseñaEmpresa'])) { */
     $sql = "UPDATE persona inner join administrador on persona.cedulanit = administrador.cedula set persona.direccion = '$direccionAdministrador', persona.telefono = '$telefonoAdministrador'
         , administrador.contrasena = '$contraseñaAdministrador' where persona.cedulanit = '$cedula'";
     $ejecutar = mysqli_query($conexion, $sql);

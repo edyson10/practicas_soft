@@ -6,12 +6,26 @@ require_once '../../controlador/sesiones.php';
 include_once '../header.php';
 require_once '../../controlador/conexion.php';
 
-$nombre = $_SESSION['usuario'];
 $codigo = $_SESSION['codigo'];
-$cedulanit = $_SESSION['cedulanit'];
-$telefono = $_SESSION['telefono'];
-$direccion = $_SESSION['direccion'];
 $correo = $_SESSION['correo'];
+$nombre = $_SESSION['usuario'];
+
+$sql = "SELECT persona.nombre, estudiante.codigo, persona.cedulanit, persona.telefono, persona.direccion, persona.correo, estudiante.fechaNacimiento 
+        from persona inner join estudiante on persona.cedulanit = estudiante.cedula where persona.correo = '$correo' or estudiante.codigo = '$codigo'";
+
+$ejecutar = mysqli_query($conexion, $sql);
+$rowcount = mysqli_num_rows($ejecutar);
+
+if ($rowcount > 0) {
+    $row = $ejecutar->fetch_array(MYSQLI_ASSOC);
+    $usuario = $row['nombre'];
+    $codigo = $row['codigo'];
+    $cedulanit = $row['cedulanit'];
+    $fecha = $row['fechaNacimiento'];
+    $telefono = $row['telefono'];
+    $direccion = $row['direccion'];
+    $correo = $row['correo'];
+}
 
 ?>
 
@@ -143,33 +157,41 @@ $correo = $_SESSION['correo'];
                                     <h6 class="m-0 font-weight-bold text-danger">Datos personales</h6>
                                 </div>
                                 <div class="card-body">
-                                    <form class="user" id="FormRegistroEmpr">
-                                        <div class=" form-group ">
-                                            <input type="nombre" class="form-control form-control-user " id="nombre" placeholder="<?php echo $nombre; ?>" readonly>
-                                        </div>
+                                    <form class="user" role="form" id="FormActualizarEstudiante" name="FormActualizarEstudiante" method="POST" action="../../modelo/actualizarEstudiante.php">
                                         <div class="form-group">
-                                            <input type="text" class="form-control form-control-user" id="cedula" placeholder="<?php echo $cedulanit; ?>" readonly>
+                                            <input type="nombre" class="form-control form-control-user" id="nombre" placeholder="<?php echo $usuario; ?>" readonly>
                                         </div>
                                         <div class="form-group row">
                                             <div class="col-sm-6 mb-3 mb-sm-0">
-                                                <input type="text" class="form-control form-control-user" id="direccion" placeholder="<?php echo $direccion; ?>">
+                                                <input type="text" class="form-control form-control-user" id="cedulaProfesor" placeholder="<?php echo $cedulanit; ?>" readonly>
                                             </div>
                                             <div class="col-sm-6">
-                                                <input type="number" class="form-control form-control-user" id="telefono" placeholder="<?php echo $telefono; ?>">
+                                                <input type="text" class="form-control form-control-user" id="codigoProfesor" placeholder="<?php echo $codigo; ?>" readonly>
                                             </div>
                                         </div>
-                                        <div class=" form-group ">
-                                            <input type="email " class="form-control form-control-user " id="email" placeholder="<?php echo $correo; ?>" readonly>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control form-control-user" id="fechaProfesor" placeholder="<?php echo $fecha; ?>" readonly>
                                         </div>
-                                        <div class="form-group row ">
+                                        <div class="form-group row">
+                                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                                <input type="text" class="form-control form-control-user" id="direccionEstudiante" name="direccionEstudiante" placeholder="<?php echo $direccion; ?>">
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <input type="number" class="form-control form-control-user" id="telefonoEstudiante" name="telefonoEstudiante" placeholder="<?php echo $telefono; ?>">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="email " class="form-control form-control-user" id="email" placeholder="<?php echo $correo; ?>" readonly>
+                                        </div>
+                                        <div class="form-group row">
                                             <div class="col-sm-6 mb-3 mb-sm-0 ">
-                                                <input type="password" class="form-control form-control-user " id="contraseña" placeholder="Contraseña">
+                                                <input type="password" class="form-control form-control-user" id="contraseñaEstudiante" name="contraseñaEstudiante" placeholder="Contraseña">
                                             </div>
                                             <div class="col-sm-6">
-                                                <input type="password" class="form-control form-control-user " id="contraseña" placeholder="Repita la contraseña">
+                                                <input type="password" class="form-control form-control-user" id="repContraseñaEstudiante" name="repContraseñaEstudiante" placeholder="Repita la contraseña">
                                             </div>
                                         </div>
-                                        <a href="" class="btn btn-primary btn-user btn-block">Actualizar datos</a>
+                                        <button type="submit" class="btn btn-primary btn-user btn-block">Actualizar datos</button>
                                     </form>
                                 </div>
                             </div>

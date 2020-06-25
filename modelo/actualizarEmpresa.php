@@ -2,42 +2,37 @@
 
 require_once '../controlador/conexion.php';
 
-//die($_POST);
+//die(json_encode($_POST));
 
-$nit = $_POST['nit'];
+session_start();
+$nit = $_SESSION['nit'];
 $direccionEmpresa = $_POST['direccionEmpresa'];
 $telefonoEmpresa = $_POST['telefonoEmpresa'];
 $contraseñaEmpresa = $_POST['contraseñaEmpresa'];
 $repContraseñaEmpresa = $_POST['repContraseñaEmpresa'];
 
 if ($contraseñaEmpresa != $repContraseñaEmpresa) {
-    echo 'mal';
+    $respuesta = array(
+        'respuesta' => 'mal'
+    );
+    echo json_encode($respuesta);
     return;
 } else {
-    /* if (isset($_POST['contraseñaEmpresa']) && isset($_POST['repContraseñaEmpresa'])) { */
-        $sql = "UPDATE persona INNER JOIN empresa ON persona.cedulanit = empresa.nit SET persona.direccion = '$direccionEmpresa', 
-        persona.telefono = '$telefonoEmpresa', empresa.contraseña = '$contraseñaEmpresa' where persona.cedulanit = '$nit'";
-        $ejecutar = mysqli_query($conexion, $sql);
+    $sql = "UPDATE persona INNER JOIN empresa ON persona.cedulanit = empresa.nit SET persona.direccion = '$direccionEmpresa', 
+        persona.telefono = '$telefonoEmpresa', empresa.contrasena = '$contraseñaEmpresa' where persona.cedulanit = '$nit'";
+    $ejecutar = mysqli_query($conexion, $sql);
 
-        if ($ejecutar) {
-            echo 'exito';
-        } else {
-            echo 'error';
-        }
-    /* } else {
-        $sql = "UPDATE persona INNER JOIN empresa ON persona.cedulanit = empresa.nit SET persona.direccion = '$direccionEmpresa',
-        persona.telefono = '$telefonoEmpresa' where persona.cedulanit = '$nit'";
-        $ejecutar = mysqli_query($conexion, $sql);
-
-        if ($ejecutar) {
-            echo 'exito';
-        } else {
-            echo 'error';
-            
-        }
-    } */
-
-    /* echo json_encode($respuesta); */
+    if ($ejecutar) {
+        $respuesta = array(
+            'respuesta' => 'exito'
+        );
+    } else {
+        $respuesta = array(
+            'respuesta' => 'error'
+        );
+    }
 }
+
+echo json_encode($respuesta);
 
 mysqli_close($conexion);

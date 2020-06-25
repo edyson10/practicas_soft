@@ -4,12 +4,25 @@ require_once '../../controlador/sesiones.php';
 include_once '../header.php';
 require_once '../../controlador/conexion.php';
 
-$nombre = $_SESSION['usuario'];
-$cedulanit = $_SESSION['cedulanit'];
-$representante = $_SESSION['representante'];
-$telefono = $_SESSION['telefono'];
-$direccion = $_SESSION['direccion'];
 $correo = $_SESSION['correo'];
+$nombre = $_SESSION['usuario'];
+$nit = $_SESSION['nit'];
+
+$sql = "SELECT persona.nombre, empresa.nit, persona.cedulanit, empresa.representante_legal, persona.telefono, persona.direccion, persona.correo 
+from persona inner join empresa on persona.cedulanit = empresa.nit where persona.correo = '$correo'";
+
+$ejecutar = mysqli_query($conexion, $sql);
+$rowcount = mysqli_num_rows($ejecutar);
+
+if ($rowcount > 0) {
+    $row = $ejecutar->fetch_array(MYSQLI_ASSOC);
+    $usuario = $row['nombre'];
+    $cedulanit = $row['nit'];
+    $representante = $row['representante_legal'];
+    $telefono = $row['telefono'];
+    $direccion = $row['direccion'];
+    $correo = $row['correo'];
+}
 
 ?>
 
@@ -142,7 +155,7 @@ $correo = $_SESSION['correo'];
                                 </div>
                                 <div class="card-body">
                                     <form class="user" id="FormActualizarEmpresa" name="FormActualizarEmpresa" method="POST" action="../../modelo/actualizarEmpresa.php">
-                                        <div class=" form-group ">
+                                        <div class="form-group">
                                             <input type="email" class="form-control form-control-user" id="nombreEmpresa" placeholder="<?php echo $nombre; ?>" readonly>
                                         </div>
                                         <div class="form-group row">
@@ -161,15 +174,15 @@ $correo = $_SESSION['correo'];
                                                 <input type="number" class="form-control form-control-user" id="telefonoEmpresa" name="telefonoEmpresa" placeholder="<?php echo $telefono; ?>">
                                             </div>
                                         </div>
-                                        <div class=" form-group ">
-                                            <input type="email " class="form-control form-control-user " id="email" placeholder="<?php echo $correo; ?>" readonly>
+                                        <div class="form-group">
+                                            <input type="email" class="form-control form-control-user" id="email" placeholder="<?php echo $correo; ?>" readonly>
                                         </div>
-                                        <div class="form-group row ">
-                                            <div class="col-sm-6 mb-3 mb-sm-0 ">
+                                        <div class="form-group row">
+                                            <div class="col-sm-6 mb-3 mb-sm-0">
                                                 <input type="password" class="form-control form-control-user" id="contraseñaEmpresa" name="contraseñaEmpresa" placeholder="Contraseña">
                                             </div>
                                             <div class="col-sm-6">
-                                                <input type="password" class="form-control form-control-user" id="repassword" name="repassword" placeholder="Repita la contraseña">
+                                                <input type="password" class="form-control form-control-user" id="repassword" name="repContraseñaEmpresa" placeholder="Repita la contraseña">
                                             </div>
                                         </div>
                                         <button type="submit" name="enviar" id="enviar" class="btn btn-primary btn-user btn-block">Actualizar cuenta</button>

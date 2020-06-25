@@ -17,10 +17,9 @@ function verInformacionDocente(cedula) {
                 document.getElementById('cedulaProf').value = resultado.cedulanit;
                 document.getElementById('direccionProfesor').value = resultado.direccion;
                 document.getElementById('telefonoProfesor').value = resultado.telefono;
-                document.getElementById('fechaProfesor').value = resultado.cedulanit;
+                document.getElementById('fechaProfesor').value = resultado.fecha;
                 document.getElementById('correoProfesor').value = resultado.correo;
                 document.getElementById('codigoProfesor').value = resultado.codigo;
-                //console.log(resultado.cedulanit);
             }
         }
     })
@@ -45,10 +44,9 @@ function verInformacionEstudiante(cedula) {
                 document.getElementById('cedulaProf').value = resultado.cedulanit;
                 document.getElementById('direccionProfesor').value = resultado.direccion;
                 document.getElementById('telefonoProfesor').value = resultado.telefono;
-                document.getElementById('fechaProfesor').value = resultado.cedulanit;
+                document.getElementById('fechaProfesor').value = resultado.fecha;
                 document.getElementById('correoProfesor').value = resultado.correo;
                 document.getElementById('codigoProfesor').value = resultado.codigo;
-                //console.log(resultado.cedulanit);
             }
         }
     })
@@ -67,7 +65,7 @@ function verInformacionEmpresa(cedula) {
         type: 'POST',
         success: function(data) {
             var resultado = JSON.parse(data);
-            console.log(resultado);
+            //console.log(resultado);
             if (resultado.respuesta == 'exito') {
                 document.getElementById('nombreEmpresa').value = resultado.usuario;
                 document.getElementById('nitEmpresa').value = resultado.cedulanit;
@@ -75,7 +73,6 @@ function verInformacionEmpresa(cedula) {
                 document.getElementById('telefonoEmpresa').value = resultado.telefono;
                 document.getElementById('correoEmpresa').value = resultado.correo;
                 document.getElementById('representante').value = resultado.representante;
-                //console.log(resultado.representante);
             }
         }
     })

@@ -15,7 +15,6 @@ require_once '../../controlador/conexion.php';
     $correo = $_SESSION['correo'];
 } */
 
-
 $codigo = $_SESSION['codigo'];
 $correo = $_SESSION['correo'];
 $nombre = $_SESSION['usuario'];
@@ -31,6 +30,7 @@ if ($rowcount > 0) {
     $usuario = $row['nombre'];
     $codigo = $row['codigo'];
     $cedulanit = $row['cedulanit'];
+    $fecha = $row['fechaNacimiento'];
     $telefono = $row['telefono'];
     $direccion = $row['direccion'];
     $correo = $row['correo'];
@@ -149,14 +149,19 @@ if ($rowcount > 0) {
                                     </div>
                                     <div class="card-body">
                                         <form class="user" role="form" id="FormActualizarAdministrador" name="FormActualizarAdministrador" method="POST" action="../../modelo/actualizarAdministrador.php">
-                                            <div class=" form-group ">
-                                                <input type="nombre" class="form-control form-control-user " id="nombreProfesor" placeholder="<?php echo $usuario; ?>" readonly>
+                                            <div class="form-group">
+                                                <input type="nombre" class="form-control form-control-user" id="nombreProfesor" placeholder="<?php echo $usuario; ?>" readonly>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                                    <input type="text" class="form-control form-control-user" id="cedulaProfesor" placeholder="<?php echo $cedulanit; ?>" readonly>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <input type="text" class="form-control form-control-user" id="codigoProfesor" placeholder="<?php echo $codigo; ?>" readonly>
+                                                </div>
                                             </div>
                                             <div class="form-group">
-                                                <input type="text" class="form-control form-control-user" id="cedulaProfesor" placeholder="<?php echo $cedulanit; ?>" readonly>
-                                            </div>
-                                            <div class="form-group">
-                                                <input type="text" class="form-control form-control-user" id="codigoProfesor" placeholder="<?php echo $codigo; ?>" readonly>
+                                                <input type="text" class="form-control form-control-user" id="fechaProfesor" placeholder="<?php echo $fecha; ?>" readonly>
                                             </div>
                                             <div class="form-group row">
                                                 <div class="col-sm-6 mb-3 mb-sm-0">
@@ -166,10 +171,10 @@ if ($rowcount > 0) {
                                                     <input type="number" class="form-control form-control-user" id="telefonoAdministrador" name="telefonoAdministrador" placeholder="<?php echo $telefono; ?>">
                                                 </div>
                                             </div>
-                                            <div class=" form-group ">
-                                                <input type="email " class="form-control form-control-user" id="emailProfesor" placeholder="<?php echo $correo; ?>" readonly>
+                                            <div class="form-group">
+                                                <input type="email" class="form-control form-control-user" id="emailProfesor" placeholder="<?php echo $correo; ?>" readonly>
                                             </div>
-                                            <div class="form-group row ">
+                                            <div class="form-group row">
                                                 <div class="col-sm-6 mb-3 mb-sm-0 ">
                                                     <input type="password" class="form-control form-control-user" id="contraseñaAdministrador" name="contraseñaAdministrador" placeholder="Contraseña">
                                                 </div>

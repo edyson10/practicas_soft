@@ -28,12 +28,9 @@ if ($ingresarTipo == 'Seleccione') {
             $name = explode(" ", $row['nombre']);
             $nombre = $name[0];
             $_SESSION['usuario'] = $nombre;
-            /* $_SESSION['codigo'] = $row['codigo'];
             $_SESSION['cedulanit'] = $row['cedulanit'];
-            $_SESSION['telefono'] = $row['telefono'];
-            $_SESSION['direccion'] = $row['direccion'];
+            $_SESSION['codigo'] = $row['codigo'];
             $_SESSION['correo'] = $row['correo'];
-            $_SESSION['fecha'] = $row['fechaNacimiento']; */
             $respuesta = array(
                 'respuesta' => 'exitoso',
                 'rol' => 'admin'
@@ -44,8 +41,8 @@ if ($ingresarTipo == 'Seleccione') {
         echo json_encode($respuesta);
     } else if ($ingresarTipo == 'Empresa') {
         $sql = "SELECT persona.nombre, empresa.nit, persona.cedulanit, empresa.representante_legal, persona.telefono, persona.direccion, persona.correo 
-    from persona inner join empresa on persona.cedulanit = empresa.nit where persona.correo = '$ingresarUsuario' 
-    and empresa.contrasena = '$ingresarContrasena'";
+        from persona inner join empresa on persona.cedulanit = empresa.nit where persona.correo = '$ingresarUsuario' 
+        and empresa.contrasena = '$ingresarContrasena'";
 
         $ejecutar = mysqli_query($conexion, $sql);
         $rowcount = mysqli_num_rows($ejecutar);
@@ -57,21 +54,11 @@ if ($ingresarTipo == 'Seleccione') {
             $name = explode(" ", $row['nombre']);
             $nombre = $name[0];
             $_SESSION['usuario'] = $nombre;
-            $_SESSION['cedulanit'] = $row['cedulanit'];
-            $_SESSION['representante'] = $row['representante_legal'];
-            $_SESSION['telefono'] = $row['telefono'];
-            $_SESSION['direccion'] = $row['direccion'];
+            $_SESSION['nit'] = $row['cedulanit'];
             $_SESSION['correo'] = $row['correo'];
             $respuesta = array(
                 'respuesta' => 'exitoso',
-                'rol' => 'empresa',
-                'usuario' => $row['nombre'],
-                'nit' => $row['nit'],
-                'representante' => $row['representante_legal'],
-                'cedulanit' => $row['cedulanit'],
-                'telefono' => $row['telefono'],
-                'direccion' => $row['direccion'],
-                'correo' => $row['correo']
+                'rol' => 'empresa'
             );
         } else {
             $respuesta = array('respuesta' => 'error');
@@ -79,8 +66,8 @@ if ($ingresarTipo == 'Seleccione') {
         echo json_encode($respuesta);
     } else if ($ingresarTipo == 'Estudiante') {
         $sql = "SELECT persona.nombre, estudiante.codigo, persona.cedulanit, persona.telefono, persona.direccion, persona.correo, estudiante.fechaNacimiento 
-    from persona inner join estudiante on persona.cedulanit = estudiante.cedula where persona.correo = '$ingresarUsuario' 
-    and estudiante.contrasena = '$ingresarContrasena' or estudiante.codigo = '$ingresarUsuario'";
+        from persona inner join estudiante on persona.cedulanit = estudiante.cedula where persona.correo = '$ingresarUsuario' 
+        and estudiante.contrasena = '$ingresarContrasena' or estudiante.codigo = '$ingresarUsuario'";
 
         $ejecutar = mysqli_query($conexion, $sql);
         $rowcount = mysqli_num_rows($ejecutar);
@@ -92,21 +79,12 @@ if ($ingresarTipo == 'Seleccione') {
             $name = explode(" ", $row['nombre']);
             $nombre = $name[0];
             $_SESSION['usuario'] = $nombre;
-            $_SESSION['codigo'] = $row['codigo'];
             $_SESSION['cedulanit'] = $row['cedulanit'];
-            $_SESSION['telefono'] = $row['telefono'];
-            $_SESSION['direccion'] = $row['direccion'];
+            $_SESSION['codigo'] = $row['codigo'];
             $_SESSION['correo'] = $row['correo'];
-            $_SESSION['fecha'] = $row['fechaNacimiento'];
             $respuesta = array(
                 'respuesta' => 'exitoso',
-                'rol' => 'estudiante',
-                'usuario' => $row['nombre'],
-                'codigo' => $row['codigo'],
-                'cedulanit' => $row['cedulanit'],
-                'telefono' => $row['telefono'],
-                'direccion' => $row['direccion'],
-                'correo' => $row['correo']
+                'rol' => 'estudiante'
             );
         } else {
             $respuesta = array('respuesta' => 'error');
@@ -114,8 +92,8 @@ if ($ingresarTipo == 'Seleccione') {
         echo json_encode($respuesta);
     } else if ($ingresarTipo == 'Profesor') {
         $sql = "SELECT persona.nombre, profesor.codigo, persona.cedulanit, persona.telefono, persona.direccion, persona.correo, profesor.fechaNacimiento 
-    from persona inner join profesor on persona.cedulanit = profesor.cedula where persona.correo = '$ingresarUsuario' 
-    and profesor.contrasena = '$ingresarContrasena' or profesor.codigo = '$ingresarUsuario'";
+        from persona inner join profesor on persona.cedulanit = profesor.cedula where persona.correo = '$ingresarUsuario' 
+        and profesor.contrasena = '$ingresarContrasena' or profesor.codigo = '$ingresarUsuario'";
 
         $ejecutar = mysqli_query($conexion, $sql);
         $rowcount = mysqli_num_rows($ejecutar);
@@ -127,21 +105,12 @@ if ($ingresarTipo == 'Seleccione') {
             $name = explode(" ", $row['nombre']);
             $nombre = $name[0];
             $_SESSION['usuario'] = $nombre;
-            $_SESSION['codigo'] = $row['codigo'];
             $_SESSION['cedulanit'] = $row['cedulanit'];
-            $_SESSION['telefono'] = $row['telefono'];
-            $_SESSION['direccion'] = $row['direccion'];
+            $_SESSION['codigo'] = $row['codigo'];
             $_SESSION['correo'] = $row['correo'];
-            $_SESSION['fecha'] = $row['fechaNacimiento'];
             $respuesta = array(
                 'respuesta' => 'exitoso',
-                'rol' => 'profesor',
-                'usuario' => $row['nombre'],
-                'codigo' => $row['codigo'],
-                'cedulanit' => $row['cedulanit'],
-                'telefono' => $row['telefono'],
-                'direccion' => $row['direccion'],
-                'correo' => $row['correo']
+                'rol' => 'profesor'
             );
         } else {
             $respuesta = array('respuesta' => 'error');
