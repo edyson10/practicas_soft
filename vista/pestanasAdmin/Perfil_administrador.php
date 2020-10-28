@@ -4,16 +4,13 @@ require_once '../../controlador/sesiones.php';
 include_once '../header.php';
 require_once '../../controlador/conexion.php';
 
-/* if (isset($_SESSION['rol']) != 1) {
-    header('Location: ../../index.php');
+if (isset($_SESSION['rol'])) {
+    if ($_SESSION['rol'] != '1'){
+        header('Location: ../../error.php');
+    }
 } else {
-    $nombre = $_SESSION['usuario'];
-    $codigo = $_SESSION['codigo'];
-    $cedulanit = $_SESSION['cedulanit'];
-    $telefono = $_SESSION['telefono'];
-    $direccion = $_SESSION['direccion'];
-    $correo = $_SESSION['correo'];
-} */
+    header('Location: ../../index.php');
+}
 
 $codigo = $_SESSION['codigo'];
 $correo = $_SESSION['correo'];

@@ -4,13 +4,13 @@ require_once 'controlador/conexion.php';
 
 session_start();
 if (isset($_SESSION['rol'])) {
-    if ($_SESSION['rol'] == 1) {
+    if ($_SESSION['rol'] == '1') {
         header('Location: vista/pestanasAdmin/Perfil_administrador.php');
-    } else if ($_SESSION['rol'] == 2) {
+    } else if ($_SESSION['rol'] == '2') {
         header('Location: vista/pestanasProf/Perfil_profesor.php');
-    } else if ($_SESSION['rol'] == 3) {
+    } else if ($_SESSION['rol'] == '3') {
         header('Location: vista/pestanasEst/Perfil_estudiante.php');
-    } else if ($_SESSION['rol'] == 4) {
+    } else if ($_SESSION['rol'] == '4') {
         header('Location: vista/pestanasEmp/Perfil_empresa.php');
     }
 }

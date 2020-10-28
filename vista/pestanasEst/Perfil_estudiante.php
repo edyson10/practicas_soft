@@ -1,10 +1,16 @@
-<!-- ========================== Vista de registro de empresa en el panel de administrador ========================== -->
-
 <?php
 
 require_once '../../controlador/sesiones.php';
 include_once '../header.php';
 require_once '../../controlador/conexion.php';
+
+if (isset($_SESSION['rol'])) {
+    if ($_SESSION['rol'] != '3'){
+        header('Location: ../../error.php');
+    }
+} else {
+    header('Location: ../../index.php');
+}
 
 $codigo = $_SESSION['codigo'];
 $correo = $_SESSION['correo'];

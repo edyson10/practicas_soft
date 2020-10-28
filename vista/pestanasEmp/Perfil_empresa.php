@@ -4,6 +4,14 @@ require_once '../../controlador/sesiones.php';
 include_once '../header.php';
 require_once '../../controlador/conexion.php';
 
+if (isset($_SESSION['rol'])) {
+    if ($_SESSION['rol'] != '4'){
+        header('Location: ../../error.php');
+    }
+} else {
+    header('Location: ../../index.php');
+}
+
 $correo = $_SESSION['correo'];
 $nombre = $_SESSION['usuario'];
 $nit = $_SESSION['nit'];
