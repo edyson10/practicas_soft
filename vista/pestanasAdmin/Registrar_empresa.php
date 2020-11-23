@@ -125,7 +125,7 @@ if (isset($_SESSION["usuario"])) {
                                     <h6 class="m-0 font-weight-bold text-danger">Registrar empresa</h6>
                                 </div>
                                 <div class="card-body">
-                                    <form class="user" role="form" id="FormRegistrompresa" name="FormRegistrompresa" method="POST" action="../../modelo/registroEmpresa.php">
+                                    <form class="user" role="form" id="FormRegistroEmpresa" name="FormRegistroEmpresa" method="POST" action="../../modelo/registroEmpresa.php" enctype="multipart/form-data">
                                     <div class="form-group">
                                             <input type="text" class="form-control form-control-user" name="nombreEmpresa" id="nombreEmpresa" placeholder="Nombre de la empresa" required>
                                         </div>
@@ -158,7 +158,7 @@ if (isset($_SESSION["usuario"])) {
                                         </div>
                                         <div>Cargar convenio</div>
                                         <div class="form-group row">
-                                            <input type="file" href="" class="btn btn-primary btn-user btn-block"></input>
+                                            <input type="file" id="carga-convenio" name="carga-convenio" class="btn btn-primary btn-user btn-block"></input>
                                         </div>
                                         <button type="submit" name="enviar" id="enviar" class="btn btn-primary btn-user btn-block">Registrar empresa</button>
                                     </form>

@@ -84,7 +84,7 @@ $(document).ready(function() {
 Método para registar una empresa en la vista del administrador
 */
 $(document).ready(function() {
-    $("#FormRegistrompresa").on('submit', function(e) {
+    $("#FormRegistroEmpresa").on('submit', function(e) {
         e.preventDefault();
         var datos = $(this).serializeArray();
         console.log(datos);
@@ -92,6 +92,11 @@ $(document).ready(function() {
             url: $(this).attr("action"),
             data: datos,
             type: $(this).attr("method"),
+            dataType: 'json',
+            contentType: false,
+            processData: false,
+            async: true,
+            cache: false,
             success: function(data) {
                 console.log(data);
                 var resultado = JSON.parse(data);

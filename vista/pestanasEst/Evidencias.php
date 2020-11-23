@@ -142,7 +142,7 @@ $nombre = $_SESSION['usuario'];
                                     <!-- Cargar documentacion de ARL -->
                                     <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-12 my-12 my-md-0 mw-100 navbar-search" style="width: 90%;">
                                         <div class="input-group">
-                                            <input type="text" class="form-control bg-light border-0 small" placeholder="Cargar evidencia" aria-label="Search" aria-describedby="basic-addon2">
+                                            <input type="file" class="form-control bg-light border-0 small" placeholder="Cargar evidencia" aria-label="Search" aria-describedby="basic-addon2">
                                             <div class="input-group-append">
                                                 <button class="btn btn-primary" type="button">
                                                     <i class="fas fa-sm">Cargar</i>

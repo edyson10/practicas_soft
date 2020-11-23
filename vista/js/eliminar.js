@@ -220,3 +220,45 @@ function eliminarAsociacion(asociacion) {
         }
     })
 }
+
+function eliminarARL(asociacion) {
+    var codigo = String(asociacion);
+    console.log("eliminado " + id_convenio);
+    Swal.fire({
+        title: 'Eliminar',
+        text: "¿Estas seguro que quieres eliminar el ARL?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, ¡eliminar!',
+        cancelButtonText: 'Cancelar'
+    }).then((result) => {
+        if (result.value) {
+            $.ajax({
+                url: '../../modelo/eliminarARL.php',
+                data: { codigo: codigo },
+                type: 'POST',
+                success: function(data) {
+                    console.log(data);
+                    if (data == 'exito') {
+                        Swal.fire(
+                            'Eliminado!',
+                            'El registro ha sido eliminado.',
+                            'success'
+                        )
+                        setTimeout(function() {
+                            window.location.href = "../pestanasProf/Practicas_evaluacion.php";
+                        }, 400);
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error',
+                            text: 'No se pudo eliminar!'
+                        })
+                    }
+                }
+            });
+        }
+    })
+}

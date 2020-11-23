@@ -10,6 +10,11 @@ $telefonoEmpresa = $_POST['telefonoEmpresa'];
 $emailEmpresa = $_POST['emailEmpresa'];
 $contraseñaEmpresa = $_POST['contraseñaEmpresa'];
 $repContraseñaEmpresa = $_POST['repContraseñaEmpresa'];
+$directorio = "Archivos/empresa/";
+
+if (!is_dir($directorio)) {
+  mkdir($directorio, 0755, true);
+}
 
 if ($contraseñaEmpresa != $repContraseñaEmpresa) {
   $respuesta = array(
@@ -18,23 +23,29 @@ if ($contraseñaEmpresa != $repContraseñaEmpresa) {
   echo json_encode($respuesta);
   return;
 } else {
-  $sqlPer = "INSERT INTO persona (nombre, cedulanit, rol, telefono, direccion, correo) 
+  if (move_uploaded_file($_FILES['carga-convenio']['tmp_name'], $directorio . $_FILES['carga-convenio']['name'])) {
+    $archivo_url = $_FILES['carga-convenio']['name'];
+    $archivo_resultado = "Se subio correctamente el archivo";
+    $sqlPer = "INSERT INTO persona (nombre, cedulanit, rol, telefono, direccion, correo) 
           VALUES ('$nombreEmpresa', '$nit', '4', '$telefonoEmpresa', '$direccionEmpresa', '$emailEmpresa')";
-  $sqlAdm = "INSERT INTO empresa (nit, representante_legal, cantidad_practicantes, contraseña) 
-          VALUES ('$nit', '$representante', '0', '$contraseñaEmpresa')";
-  $ejecutarPer = mysqli_query($conexion, $sqlPer);
-  $ejecutarEmp = mysqli_query($conexion, $sqlAdm);
+    $sqlAdm = "INSERT INTO empresa (nit, representante_legal, ruta_radicado, cantidad_practicantes, contrasena) 
+          VALUES ('$nit', '$representante', '$directorio', '0', '$contraseñaEmpresa')";
+    $ejecutarPer = mysqli_query($conexion, $sqlPer);
+    $ejecutarEmp = mysqli_query($conexion, $sqlAdm);
 
-  if ($ejecutarPer && $ejecutarEmp) {
-    $respuesta = array(
-      'respuesta' => 'exito'
-    );
+    if ($ejecutarPer && $ejecutarEmp) {
+      $respuesta = array(
+        'respuesta' => 'exito'
+      );
+    } else {
+      $respuesta = array(
+        'respuesta' => 'error'
+      );
+    }
+    echo json_encode($respuesta);
   } else {
-    $respuesta = array(
-      'respuesta' => 'error'
-    );
+    echo '->' . error_get_last();
   }
-  echo json_encode($respuesta);
 }
 
 mysqli_close($conexion);

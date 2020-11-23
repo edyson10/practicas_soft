@@ -6,35 +6,43 @@ $(document).ready(function() {
         e.preventDefault();
         var datos = new FormData(this)
             //console.log(datos);
-        $.ajax({
-            url: $(this).attr("action"),
-            data: datos,
-            type: $(this).attr("method"),
-            dataType: 'json',
-            contentType: false,
-            processData: false,
-            async: true,
-            cache: false,
-            success: function(data) {
-                //console.log(data);
-                /* var resultado = JSON.parse(data);
-                console.log('->' + resultado.respuesta); */
-                if (data == 'exito') {
-                    Swal.fire(
-                        'Correcto!',
-                        'Se ha subido correctamente la evidencia',
-                        'success'
-                    )
-                    document.getElementById("evidencia-empresa").reset();
-                } else if (dataa == 'error') {
-                    Swal.fire({
-                        icon: 'error',
-                        title: '¡Ups!',
-                        text: 'Error al subir la evidencia'
-                    })
+        if (document.getElementById("archivo-empresa").files.length == 0) {
+            Swal.fire({
+                icon: 'error',
+                title: '¡Ups!',
+                text: 'No se ha cargado ningún archivo'
+            })
+        } else {
+            $.ajax({
+                url: $(this).attr("action"),
+                data: datos,
+                type: $(this).attr("method"),
+                dataType: 'json',
+                contentType: false,
+                processData: false,
+                async: true,
+                cache: false,
+                success: function(data) {
+                    //console.log(data);
+                    /* var resultado = JSON.parse(data);
+                    console.log('->' + resultado.respuesta); */
+                    if (data == 'exito') {
+                        Swal.fire(
+                            'Correcto!',
+                            'Se ha subido correctamente la evidencia',
+                            'success'
+                        )
+                        document.getElementById("evidencia-empresa").reset();
+                    } else if (dataa == 'error') {
+                        Swal.fire({
+                            icon: 'error',
+                            title: '¡Ups!',
+                            text: 'Error al subir la evidencia'
+                        })
+                    }
                 }
-            }
-        });
+            });
+        }
     });
 });
 
@@ -46,35 +54,43 @@ $(document).ready(function() {
         e.preventDefault();
         var datos = new FormData(this)
             //console.log(datos);
-        $.ajax({
-            url: $(this).attr("action"),
-            data: datos,
-            type: $(this).attr("method"),
-            dataType: 'json',
-            contentType: false,
-            processData: false,
-            async: true,
-            cache: false,
-            success: function(data) {
-                //console.log(data);
-                /* var resultado = JSON.parse(data);
-                console.log('->' + resultado.respuesta); */
-                if (data == 'exito') {
-                    Swal.fire(
-                        'Correcto!',
-                        'Se ha subido correctamente el radicado',
-                        'success'
-                    )
-                    document.getElementById("fromRadicadoEmpresa").reset();
-                } else if (dataa == 'error') {
-                    Swal.fire({
-                        icon: 'error',
-                        title: '¡Ups!',
-                        text: 'Error al subir el radicado'
-                    })
+        if (document.getElementById("radicado-empresa").files.length == 0) {
+            Swal.fire({
+                icon: 'error',
+                title: '¡Ups!',
+                text: 'No se ha cargado ningún archivo'
+            })
+        } else {
+            $.ajax({
+                url: $(this).attr("action"),
+                data: datos,
+                type: $(this).attr("method"),
+                dataType: 'json',
+                contentType: false,
+                processData: false,
+                async: true,
+                cache: false,
+                success: function(data) {
+                    //console.log(data);
+                    /* var resultado = JSON.parse(data);
+                    console.log('->' + resultado.respuesta); */
+                    if (data == 'exito') {
+                        Swal.fire(
+                            'Correcto!',
+                            'Se ha subido correctamente el radicado',
+                            'success'
+                        )
+                        document.getElementById("fromRadicadoEmpresa").reset();
+                    } else if (dataa == 'error') {
+                        Swal.fire({
+                            icon: 'error',
+                            title: '¡Ups!',
+                            text: 'Error al subir el radicado'
+                        })
+                    }
                 }
-            }
-        });
+            });
+        }
     });
 });
 
@@ -86,35 +102,43 @@ $(document).ready(function() {
         e.preventDefault();
         var datos = new FormData(this)
             //console.log(datos);
-        $.ajax({
-            url: $(this).attr("action"),
-            data: datos,
-            type: $(this).attr("method"),
-            dataType: 'json',
-            contentType: false,
-            processData: false,
-            async: true,
-            cache: false,
-            success: function(data) {
-                //console.log(data);
-                /* var resultado = JSON.parse(data);
-                console.log('->' + resultado.respuesta); */
-                if (data == 'exito') {
-                    Swal.fire(
-                        'Correcto!',
-                        'Se ha subido correctamente el convenio',
-                        'success'
-                    )
-                    document.getElementById("fromConvenioEmpresa").reset();
-                } else if (data == 'error') {
-                    Swal.fire({
-                        icon: 'error',
-                        title: '¡Ups!',
-                        text: 'Error al subir el convenio'
-                    })
+        if (document.getElementById("convenio-empresa").files.length == 0) {
+            Swal.fire({
+                icon: 'error',
+                title: '¡Ups!',
+                text: 'No se ha cargado ningún archivo'
+            })
+        } else {
+            $.ajax({
+                url: $(this).attr("action"),
+                data: datos,
+                type: $(this).attr("method"),
+                dataType: 'json',
+                contentType: false,
+                processData: false,
+                async: true,
+                cache: false,
+                success: function(data) {
+                    //console.log(data);
+                    /* var resultado = JSON.parse(data);
+                    console.log('->' + resultado.respuesta); */
+                    if (data == 'exito') {
+                        Swal.fire(
+                            'Correcto!',
+                            'Se ha subido correctamente el convenio',
+                            'success'
+                        )
+                        document.getElementById("fromConvenioEmpresa").reset();
+                    } else if (data == 'error') {
+                        Swal.fire({
+                            icon: 'error',
+                            title: '¡Ups!',
+                            text: 'Error al subir el convenio'
+                        })
+                    }
                 }
-            }
-        });
+            });
+        }
     });
 });
 
@@ -126,35 +150,43 @@ $(document).ready(function() {
         e.preventDefault();
         var datos = new FormData(this)
             //console.log(datos);
-        $.ajax({
-            url: $(this).attr("action"),
-            data: datos,
-            type: $(this).attr("method"),
-            dataType: 'json',
-            contentType: false,
-            processData: false,
-            async: true,
-            cache: false,
-            success: function(data) {
-                //console.log(data);
-                /* var resultado = JSON.parse(data);
-                console.log('->' + resultado.respuesta); */
-                if (data == 'exito') {
-                    Swal.fire(
-                        'Correcto!',
-                        'Se ha subido correctamente el convenio',
-                        'success'
-                    )
-                    document.getElementById("formArlEstudiante").reset();
-                } else if (data == 'error') {
-                    Swal.fire({
-                        icon: 'error',
-                        title: '¡Ups!',
-                        text: 'Error al subir el convenio'
-                    })
+        if (document.getElementById("arl-estudiante").files.length == 0) {
+            Swal.fire({
+                icon: 'error',
+                title: '¡Ups!',
+                text: 'No se ha cargado ningún archivo'
+            })
+        } else {
+            $.ajax({
+                url: $(this).attr("action"),
+                data: datos,
+                type: $(this).attr("method"),
+                dataType: 'json',
+                contentType: false,
+                processData: false,
+                async: true,
+                cache: false,
+                success: function(data) {
+                    //console.log(data);
+                    /* var resultado = JSON.parse(data);
+                    console.log('->' + resultado.respuesta); */
+                    if (data == 'exito') {
+                        Swal.fire(
+                            'Correcto!',
+                            'Se ha subido correctamente el ARL',
+                            'success'
+                        )
+                        document.getElementById("formArlEstudiante").reset();
+                    } else if (data == 'error') {
+                        Swal.fire({
+                            icon: 'error',
+                            title: '¡Ups!',
+                            text: 'Error al subir el ARL'
+                        })
+                    }
                 }
-            }
-        });
+            });
+        }
     });
 });
 
@@ -166,36 +198,44 @@ $(document).ready(function() {
     $("#formPlanEstudiante").on('submit', function(e) {
         e.preventDefault();
         var datos = new FormData(this)
-        console.log(datos);
-        $.ajax({
-            url: $(this).attr("action"),
-            data: datos,
-            type: $(this).attr("method"),
-            dataType: 'json',
-            contentType: false,
-            processData: false,
-            async: true,
-            cache: false,
-            success: function(data) {
-                console.log(data);
-                /* var resultado = JSON.parse(data);
-                console.log('->' + resultado.respuesta); */
-                if (data == 'exito') {
-                    Swal.fire(
-                        'Correcto!',
-                        'Se ha subido correctamente el convenio',
-                        'success'
-                    )
-                    document.getElementById("formPlanEstudiante").reset();
-                } else if (data == 'error') {
-                    Swal.fire({
-                        icon: 'error',
-                        title: '¡Ups!',
-                        text: 'Error al subir el convenio'
-                    })
+            //console.log(datos);
+        if (document.getElementById("plan-estudiante").files.length == 0) {
+            Swal.fire({
+                icon: 'error',
+                title: '¡Ups!',
+                text: 'No se ha cargado ningún archivo'
+            })
+        } else {
+            $.ajax({
+                url: $(this).attr("action"),
+                data: datos,
+                type: $(this).attr("method"),
+                dataType: 'json',
+                contentType: false,
+                processData: false,
+                async: true,
+                cache: false,
+                success: function(data) {
+                    console.log(data);
+                    /* var resultado = JSON.parse(data);
+                    console.log('->' + resultado.respuesta); */
+                    if (data == 'exito') {
+                        Swal.fire(
+                            'Correcto!',
+                            'Se ha subido correctamente el plan de trabajo',
+                            'success'
+                        )
+                        document.getElementById("formPlanEstudiante").reset();
+                    } else if (data == 'error') {
+                        Swal.fire({
+                            icon: 'error',
+                            title: '¡Ups!',
+                            text: 'Error al subir el plan de trabajo'
+                        })
+                    }
                 }
-            }
-        });
+            });
+        }
     });
 });
 
@@ -207,35 +247,42 @@ $(document).ready(function() {
     $("#fromEvidenciaEstudiante").on('submit', function(e) {
         e.preventDefault();
         var datos = new FormData(this)
-            //console.log(datos);
-        $.ajax({
-            url: $(this).attr("action"),
-            data: datos,
-            type: $(this).attr("method"),
-            dataType: 'json',
-            contentType: false,
-            processData: false,
-            async: true,
-            cache: false,
-            success: function(data) {
-                //console.log(data);
-                /* var resultado = JSON.parse(data);
-                console.log('->' + resultado.respuesta); */
-                if (data == 'exito') {
-                    Swal.fire(
-                        'Correcto!',
-                        'Se ha subido correctamente el convenio',
-                        'success'
-                    )
-                    document.getElementById("fromEvidenciaEstudiante").reset();
-                } else if (data == 'error') {
-                    Swal.fire({
-                        icon: 'error',
-                        title: '¡Ups!',
-                        text: 'Error al subir el convenio'
-                    })
+        if (document.getElementById("evidencia-estudiante").files.length == 0) {
+            Swal.fire({
+                icon: 'error',
+                title: '¡Ups!',
+                text: 'No se ha cargado ningún archivo'
+            })
+        } else {
+            $.ajax({
+                url: $(this).attr("action"),
+                data: datos,
+                type: $(this).attr("method"),
+                dataType: 'json',
+                contentType: false,
+                processData: false,
+                async: true,
+                cache: false,
+                success: function(data) {
+                    //console.log(data);
+                    /* var resultado = JSON.parse(data);
+                    console.log('->' + resultado.respuesta); */
+                    if (data == 'exito') {
+                        Swal.fire(
+                            'Correcto!',
+                            'Se ha subido correctamente la evidencia',
+                            'success'
+                        )
+                        document.getElementById("fromEvidenciaEstudiante").reset();
+                    } else if (data == 'error') {
+                        Swal.fire({
+                            icon: 'error',
+                            title: '¡Ups!',
+                            text: 'Error al subir la evidencia'
+                        })
+                    }
                 }
-            }
-        });
+            });
+        }
     });
 });

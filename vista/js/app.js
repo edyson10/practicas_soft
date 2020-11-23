@@ -16,3 +16,14 @@ $(document).ready(function() {
         }
     });
 });
+
+$(document).ready(function() {
+    $('#dataTable1').DataTable({
+        "language": {
+            "emptyTable": "No hay registros"
+        },
+        "bPaginate": false,
+        "bInfo": false,
+        "bFilter": false,
+    });
+});

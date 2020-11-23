@@ -23,7 +23,7 @@ if ($contrasenaEstudiante != $repContrasenaEstudiante) {
 } else {
   $sqlPer = "INSERT INTO persona (nombre, cedulanit, rol, telefono, direccion, correo) 
           VALUES ('$nombreEstudiante', '$cedulaEstudiante', '3', '$telefonoEstudiante', '$direccionEstudiante', '$emailEstudiante')";
-  $sqlAdm = "INSERT INTO estudiante (`codigo`, `cedula`, `fechaNacimiento`, `contraseña`) 
+  $sqlAdm = "INSERT INTO estudiante (`codigo`, `cedula`, `fechaNacimiento`, `contrasena`) 
           VALUES ('$codigoEstudiante', '$cedulaEstudiante', '$fechaEstudiante', '$contrasenaEstudiante')";
   $ejecutarPer = mysqli_query($conexion, $sqlPer);
   $ejecutarEst = mysqli_query($conexion, $sqlAdm);
