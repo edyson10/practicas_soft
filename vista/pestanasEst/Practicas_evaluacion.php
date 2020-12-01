@@ -125,6 +125,53 @@ $codigo = $_SESSION['codigo'];
                     </div>
                     <!-- Content Row -->
                     <div class="row">
+                        <div class="col-lg-12 mb-12">
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">Empresa a realizar practicas</h6>
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered" id="dataTable1" width="100%" cellspacing="0">
+                                            <thead class="p-3 bg-gray-700 text-white">
+                                                <tr>
+                                                    <th>Nombre empresa</th>
+                                                    <th>Direcci&oacute;n</th>
+                                                    <th>T&eacute;lefono</th>
+                                                    <th>Correo</th>
+                                                    <th>Fecha convenio</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php
+                                                try {
+                                                    require_once '../../controlador/conexion.php';
+                                                    $sql = "SELECT persona.nombre, persona.direccion, persona.telefono, persona.correo, crear_convenio.fechaConvenio 
+                                                    from persona inner join empresa on persona.cedulanit = empresa.nit inner join crear_convenio on empresa.nit = crear_convenio.empresa 
+                                                    where crear_convenio.estudiante = '$codigo'";
+                                                    $resultado = $conexion->query($sql);
+                                                } catch (Exception $e) {
+                                                    $error = $e->getMessage()();
+                                                    echo $error;
+                                                }
+
+                                                while ($empresa = $resultado->fetch_assoc()) { ?>
+                                                    <tr>
+                                                        <td><?php echo $empresa['nombre'] ?></td>
+                                                        <td><?php echo $empresa['direccion'] ?></td>
+                                                        <td><?php echo $empresa['telefono'] ?></td>
+                                                        <td><?php echo $empresa['correo'] ?></td>
+                                                        <td><?php echo $empresa['fechaConvenio'] ?></td>
+                                                    </tr>
+                                                <?php } ?>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
                         <div class="col-lg-6">
                             <!-- Basic Card Example -->
                             <div class="card shadow mb-4">
@@ -173,7 +220,7 @@ $codigo = $_SESSION['codigo'];
                                     <h6 class="m-0 font-weight-bold text-danger">Cargar Plan de trabajo</h6><br>
                                     <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-12 my-12 my-md-0 mw-100 navbar-search" style="width: 100%;" name="formPlanEstudiante" id="formPlanEstudiante" method="POST" action="../../modelo/cargarPlanTrabajo.php" enctype="multipart/form-data">
                                         <div class="input-group">
-                                            <?php 
+                                            <?php
                                             try {
                                                 require_once '../../controlador/conexion.php';
                                                 $sql = "SELECT * FROM plan_trabajo WHERE estudiante = '$codigo'";
@@ -230,12 +277,33 @@ $codigo = $_SESSION['codigo'];
                                     <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-12 my-12 my-md-0 mw-100 navbar-search" style="width: 100%;" name="fromEvidenciaEstudiante" id="fromEvidenciaEstudiante" method="POST" action="../../modelo/evidencia_estudiante.php" enctype="multipart/form-data">
                                         <h6 class="m-0 font-weight-bold text-danger">Cargar evaluación</h6><br>
                                         <div class="input-group">
-                                            <input type="file" class="form-control bg-light border-0 small" id="evidencia-estudiante" name="evidencia-estudiante" aria-describedby="basic-addon2">
-                                            <div class="input-group-append">
-                                                <button class="btn btn-primary" type="submit" id="boton">
-                                                    <i class="fas fa-sm">Guardar</i>
-                                                </button>
-                                            </div>
+                                            <?php
+                                            try {
+                                                require_once '../../controlador/conexion.php';
+                                                $sql = "SELECT * FROM evidencia_estudiante WHERE estudiante = '$codigo'";
+                                                $resultado = $conexion->query($sql);
+                                            } catch (Exception $e) {
+                                                $error = $e->getMessage()();
+                                                echo $error;
+                                            }
+
+                                            $fila = mysqli_num_rows($resultado);
+
+                                            if ($fila > 0) { ?>
+                                                <input type="file" class="form-control bg-light border-0 small" id="evidencia-estudiante" name="evidencia-estudiante" aria-describedby="basic-addon2" disabled>
+                                                <div class="input-group-append">
+                                                    <button class="btn btn-primary" type="submit" id="boton" disabled>
+                                                        <i class="fas fa-sm">Guardar</i>
+                                                    </button>
+                                                </div>
+                                            <?php } else { ?>
+                                                <input type="file" class="form-control bg-light border-0 small" id="evidencia-estudiante" name="evidencia-estudiante" aria-describedby="basic-addon2">
+                                                <div class="input-group-append">
+                                                    <button class="btn btn-primary" type="submit" id="boton">
+                                                        <i class="fas fa-sm">Guardar</i>
+                                                    </button>
+                                                </div>
+                                            <?php } ?>
                                         </div>
                                     </form>
                                     <br><br>
@@ -363,7 +431,7 @@ $codigo = $_SESSION['codigo'];
 
                                                 while ($empresa = $resultado->fetch_assoc()) { ?>
                                                     <tr align="center">
-                                                        <?php $id = $empresa['id_evidencia']?>
+                                                        <?php $id = $empresa['id_evidencia'] ?>
                                                         <td><?php echo $empresa['ruta_archivo'] ?></td>
                                                         <td><?php echo $empresa['fecha'] ?></td>
                                                         <td align="center">
@@ -482,7 +550,7 @@ $codigo = $_SESSION['codigo'];
             })
         }
 
-        function eliminarEvaEst(id){
+        function eliminarEvaEst(id) {
             var id = String(id);
             console.log("eliminado " + id);
             Swal.fire({

@@ -1,30 +1,15 @@
-<?php
-
-require_once 'controlador/conexion.php';
-
-session_start();
-if (isset($_SESSION['rol'])) {
-    if ($_SESSION['rol'] == '1') {
-        header('Location: vista/pestanasAdmin/Perfil_administrador.php');
-    } else if ($_SESSION['rol'] == '2') {
-        header('Location: vista/pestanasProf/Perfil_profesor.php');
-    } else if ($_SESSION['rol'] == '3') {
-        header('Location: vista/pestanasEst/Perfil_estudiante.php');
-    } else if ($_SESSION['rol'] == '4') {
-        header('Location: vista/pestanasEmp/Perfil_empresa.php');
-    }
-}
-
-?>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Pr&aacute;ctic</title>
+    <title>Pr&aacute;ctic | Recuperar contraseña</title>
 
     <link rel="icon" type="image/png" href="vista/img/logo.ico" />
 
@@ -34,64 +19,34 @@ if (isset($_SESSION['rol'])) {
 
     <!-- Custom styles for this template-->
     <link href="vista/css/sb-admin-2.min.css" rel="stylesheet">
-    <!-- Custom style Sweetalert2 -->
-    <link href="vista/css/sweetalert2.min.css" rel="stylesheet">
 
-    <!-- Custom styles for this page -->
-    <link href="vista/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 </head>
 
 <body style="background-color: #aa1916;">
     <div class="container">
         <!-- Outer Row -->
-        <br>
-        <div class="row justify-content-center">
-            <h1 class="font-weight-bold" style="font-size: 65px; color: #eee; font-family: 'Roboto', sans-serif;">PRACTIC</h1>
-        </div>
         <div class="row justify-content-center">
             <div class="col-xl-10 col-lg-12 col-md-9">
                 <div class="card o-hidden border-0 shadow-lg my-5">
                     <div class="card-body p-0">
                         <!-- Nested Row within Card Body -->
                         <div class="row">
-                            <div class="col-lg-6 d-none d-lg-block bg-login-image">
-                            </div>
+                            <div class="col-lg-6 d-none d-lg-block bg-password-image"></div>
                             <div class="col-lg-6">
                                 <div class="p-5">
                                     <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">Bienvenido</h1>
+                                        <h1 class="h4 text-gray-900 mb-2">¿Olvidaste su contraseña?</h1>
+                                        <p class="mb-4">Lo entendemos, pasan cosas. Simplemente ingrese su dirección de correo electrónico a continuación y le enviaremos un enlace para restablecer su contraseña.</p>
                                     </div>
-                                    <form class="user" id="FormLogin" method="POST" name="FormLogin" action="modelo/login.php">
+                                    <form class="user" id="FormForgotPassword" method="POST" name="FormPassword" action="modelo/forgot_password.php">
                                         <div class="form-group">
-                                            <input type="text" class="form-control form-control-user" name="ingresarUsuario" id="ingresarUsuario" aria-describedby="emailHelp" placeholder="Ingrese su correo electrónico" required>
+                                            <input type="email" class="form-control form-control-user" id="emailForgot" name="emailForgot" aria-describedby="emailHelp" placeholder="Ingrese su correo electronico">
                                         </div>
-                                        <div class="form-group">
-                                            <input type="password" class="form-control form-control-user" name="ingresarContrasena" id="ingresarContrasena" placeholder="Contraseña" required>
-                                        </div>
-                                        <div class="form-group row" style="width: 100%;">
-                                            <div class="col-lg-12 col-md-12">
-                                                <select class="dropdown" style="border-radius: 20px !important;" id="ingresarTipo" name="ingresarTipo">
-                                                    <option value="Seleccione">Seleccione el rol &nbsp;&nbsp;&nbsp;</option>
-                                                    <option value="Administrador">Administrador</option>
-                                                    <option value="Empresa">Empresa</option>
-                                                    <option value="Estudiante">Estudiante</option>
-                                                    <option value="Profesor">Profesor</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <button type="submit" name="enviar" class="btn btn-primary btn-user btn-block">Iniciar Sesi&oacute;n</button>
-                                        <!--
-                                          <hr>
-                                         <a href="index.html" class="btn btn-google btn-user btn-block">
-                                            <i class="fab fa-google fa-fw"></i> Login with Google
-                                        </a>
-                                        <a href="index.html" class="btn btn-facebook btn-user btn-block">
-                                            <i class="fab fa-facebook-f fa-fw"></i> Login with Facebook
-                                        </a> -->
+                                        <button type="submit" name="enviar" class="btn btn-primary btn-user btn-block">Resetear contraseña</button>
                                     </form>
                                     <hr>
                                     <div class="text-center">
-                                        <a class="small" href="recuperar-contrasena.php">¿Olvidaste tu contraseña?</a>
+                                        <a class="small" href="index.php">¿Ya tienes una cuenta? ¡Iniciar sesión!</a>
                                     </div>
                                 </div>
                             </div>
@@ -164,28 +119,6 @@ if (isset($_SESSION['rol'])) {
     <!-- Custom scripts for all pages-->
     <script src="vista/js/sb-admin-2.min.js"></script>
 
-    <!-- Javasript Sweetalert2 -->
-    <script src="vista/js/sweetalert2.min.js"></script>
-
-    <script src="vista/js/registro.js"></script>
-
-    <!-- <script src="vista/js/alertas.js"></script> -->
-
-    <script src="vista/js/inicio.js"></script>
-
-    <!-- Page level plugins -->
-    <script src="vista/vendor/chart.js/Chart.min.js"></script>
-
-    <!-- Page level custom scripts -->
-    <script src="vista/js/demo/chart-area-demo.js"></script>
-    <script src="vista/js/demo/chart-pie-demo.js"></script>
-
-    <!-- Page level plugins -->
-    <script src="vista/vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="vista/vendor/datatables/dataTables.bootstrap4.min.js"></script>
-
-    <!-- Page level custom scripts -->
-    <script src="vista/js/demo/datatables-demo.js"></script>
 </body>
 
 </html>

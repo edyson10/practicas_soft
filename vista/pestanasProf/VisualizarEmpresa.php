@@ -154,7 +154,7 @@ if (isset($_SESSION["usuario"])) {
                                                 <?php
                                                 try {
                                                     require_once '../../controlador/conexion.php';
-                                                    $sql = "SELECT persona.nombre, persona.cedulanit, persona.correo, empresa.nit from persona inner join empresa on persona.cedulanit = empresa.nit";
+                                                    $sql = "SELECT persona.nombre, persona.cedulanit, persona.correo, empresa.representante_legal from persona inner join empresa on persona.cedulanit = empresa.nit";
                                                     $resultado = $conexion->query($sql);
                                                 } catch (Exception $e) {
                                                     $error = $e->getMessage()();
@@ -165,8 +165,8 @@ if (isset($_SESSION["usuario"])) {
                                                     <tr>
                                                         <td><?php echo $empresa['nombre'] ?></td>
                                                         <td><?php echo $empresa['cedulanit'] ?></td>
+                                                        <td><?php echo $empresa['representante_legal'] ?></td>
                                                         <td><?php echo $empresa['correo'] ?></td>
-                                                        <td><?php echo $empresa['nit'] ?></td>
                                                         <td>
                                                             <a id="informacion" onclick="verInformacionEmpresa('<?php echo $empresa['cedulanit'] ?>')" class="btn btn-info btn-icon-split" data-toggle="modal" data-target="#myModal">
                                                                 <span class="icon text-white-50">

@@ -31,7 +31,9 @@ $(document).ready(function() {
                             'Correcto!',
                             'Se ha subido correctamente la evidencia',
                             'success'
-                        )
+                        ), setTimeout(function() {
+                            window.location.href = "vista/pestanasEst/Practicas_evaluacion.php";
+                        }, 2000);
                         document.getElementById("evidencia-empresa").reset();
                     } else if (dataa == 'error') {
                         Swal.fire({
@@ -79,7 +81,9 @@ $(document).ready(function() {
                             'Correcto!',
                             'Se ha subido correctamente el radicado',
                             'success'
-                        )
+                        ), setTimeout(function() {
+                            window.location.href = "vista/pestanasEst/Practicas_evaluacion.php";
+                        }, 2000);
                         document.getElementById("fromRadicadoEmpresa").reset();
                     } else if (dataa == 'error') {
                         Swal.fire({
@@ -95,7 +99,7 @@ $(document).ready(function() {
 });
 
 /*
-Método para subir el convenio a la base de datos de radicado en el panel de empresa
+Método para subir el convenio a la base de datos en el panel de empresa
 */
 $(document).ready(function() {
     $("#fromConvenioEmpresa").on('submit', function(e) {
@@ -143,7 +147,7 @@ $(document).ready(function() {
 });
 
 /*
-Método para subir el ARL a la base de datos de radicado en el panel de estudiante
+Método para subir el ARL a la base de datos en el panel de estudiante
 */
 $(document).ready(function() {
     $("#formArlEstudiante").on('submit', function(e) {
@@ -175,7 +179,9 @@ $(document).ready(function() {
                             'Correcto!',
                             'Se ha subido correctamente el ARL',
                             'success'
-                        )
+                        ), setTimeout(function() {
+                            window.location.href = "vista/pestanasEst/Practicas_evaluacion.php";
+                        }, 2000);
                         document.getElementById("formArlEstudiante").reset();
                     } else if (data == 'error') {
                         Swal.fire({
@@ -192,7 +198,7 @@ $(document).ready(function() {
 
 /*
  Método para subir el Plan de trabajo del estudiante 
- a la base de datos de radicado en el panel de estudiante
+ a la base de datos en el panel de estudiante
  */
 $(document).ready(function() {
     $("#formPlanEstudiante").on('submit', function(e) {
@@ -224,7 +230,9 @@ $(document).ready(function() {
                             'Correcto!',
                             'Se ha subido correctamente el plan de trabajo',
                             'success'
-                        )
+                        ), setTimeout(function() {
+                            window.location.href = "vista/pestanasEst/Practicas_evaluacion.php";
+                        }, 2000);
                         document.getElementById("formPlanEstudiante").reset();
                     } else if (data == 'error') {
                         Swal.fire({
@@ -240,8 +248,8 @@ $(document).ready(function() {
 });
 
 /*
- Método para subir el Plan de trabajo del estudiante 
- a la base de datos de radicado en el panel de estudiante
+ Método para subir la evidencia del estudiante 
+ en el panel de estudiante.
  */
 $(document).ready(function() {
     $("#fromEvidenciaEstudiante").on('submit', function(e) {
@@ -272,7 +280,9 @@ $(document).ready(function() {
                             'Correcto!',
                             'Se ha subido correctamente la evidencia',
                             'success'
-                        )
+                        ), setTimeout(function() {
+                            window.location.href = "vista/pestanasEst/Practicas_evaluacion.php";
+                        }, 2000);
                         document.getElementById("fromEvidenciaEstudiante").reset();
                     } else if (data == 'error') {
                         Swal.fire({

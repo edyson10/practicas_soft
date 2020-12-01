@@ -16,7 +16,7 @@ if ($ingresarTipo == 'Seleccione') {
     if ($ingresarTipo == 'Administrador') {
         $sql = "SELECT persona.nombre, administrador.codigo, persona.cedulanit, persona.telefono, persona.direccion, persona.correo, administrador.fechaNacimiento 
         from persona inner join administrador on persona.cedulanit = administrador.cedula where persona.correo = '$ingresarUsuario' 
-        and administrador.contrasena = '$ingresarContrasena' or administrador.codigo = '$ingresarUsuario'";
+        and persona.contrasena = '$ingresarContrasena' or administrador.codigo = '$ingresarUsuario'";
 
         $ejecutar = mysqli_query($conexion, $sql);
         $rowcount = mysqli_num_rows($ejecutar);
@@ -42,7 +42,7 @@ if ($ingresarTipo == 'Seleccione') {
     } else if ($ingresarTipo == 'Empresa') {
         $sql = "SELECT persona.nombre, empresa.nit, persona.cedulanit, empresa.representante_legal, persona.telefono, persona.direccion, persona.correo 
         from persona inner join empresa on persona.cedulanit = empresa.nit where persona.correo = '$ingresarUsuario' 
-        and empresa.contrasena = '$ingresarContrasena'";
+        and persona.contrasena = '$ingresarContrasena'";
 
         $ejecutar = mysqli_query($conexion, $sql);
         $rowcount = mysqli_num_rows($ejecutar);
@@ -67,7 +67,7 @@ if ($ingresarTipo == 'Seleccione') {
     } else if ($ingresarTipo == 'Estudiante') {
         $sql = "SELECT persona.nombre, estudiante.codigo, persona.cedulanit, persona.telefono, persona.direccion, persona.correo, estudiante.fechaNacimiento 
         from persona inner join estudiante on persona.cedulanit = estudiante.cedula where persona.correo = '$ingresarUsuario' 
-        and estudiante.contrasena = '$ingresarContrasena' or estudiante.codigo = '$ingresarUsuario'";
+        and persona.contrasena = '$ingresarContrasena' or estudiante.codigo = '$ingresarUsuario'";
 
         $ejecutar = mysqli_query($conexion, $sql);
         $rowcount = mysqli_num_rows($ejecutar);
@@ -93,7 +93,7 @@ if ($ingresarTipo == 'Seleccione') {
     } else if ($ingresarTipo == 'Profesor') {
         $sql = "SELECT persona.nombre, profesor.codigo, persona.cedulanit, persona.telefono, persona.direccion, persona.correo, profesor.fechaNacimiento 
         from persona inner join profesor on persona.cedulanit = profesor.cedula where persona.correo = '$ingresarUsuario' 
-        and profesor.contrasena = '$ingresarContrasena' or profesor.codigo = '$ingresarUsuario'";
+        and persona.contrasena = '$ingresarContrasena' or profesor.codigo = '$ingresarUsuario'";
 
         $ejecutar = mysqli_query($conexion, $sql);
         $rowcount = mysqli_num_rows($ejecutar);

@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.1
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 21-06-2020 a las 18:13:40
--- Versión del servidor: 10.4.8-MariaDB
--- Versión de PHP: 7.3.11
+-- Tiempo de generación: 01-12-2020 a las 01:33:07
+-- Versión del servidor: 10.1.35-MariaDB
+-- Versión de PHP: 7.2.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -31,17 +31,16 @@ SET time_zone = "+00:00";
 CREATE TABLE `administrador` (
   `codigo` int(11) NOT NULL,
   `cedula` int(11) DEFAULT NULL,
-  `fechaNacimiento` date DEFAULT NULL,
-  `contraseña` varchar(50) COLLATE utf8_spanish2_ci DEFAULT NULL
+  `fechaNacimiento` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 --
 -- Volcado de datos para la tabla `administrador`
 --
 
-INSERT INTO `administrador` (`codigo`, `cedula`, `fechaNacimiento`, `contraseña`) VALUES
-(98765, 98765, '2020-06-01', 'ayd2020'),
-(1151387, 1090, '2020-05-17', '1234');
+INSERT INTO `administrador` (`codigo`, `cedula`, `fechaNacimiento`) VALUES
+(98765, 98765, '2020-06-01'),
+(1151387, 1090, '2020-05-17');
 
 -- --------------------------------------------------------
 
@@ -76,8 +75,10 @@ CREATE TABLE `calificar_estudiante` (
 --
 
 CREATE TABLE `cargar_arl` (
+  `id_arl` int(11) NOT NULL,
   `estudiante` int(11) DEFAULT NULL,
-  `ruta_archivo` varchar(200) COLLATE utf8_spanish2_ci DEFAULT NULL
+  `ruta_archivo` varchar(200) COLLATE utf8_spanish2_ci DEFAULT NULL,
+  `fecha_subida` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 -- --------------------------------------------------------
@@ -87,20 +88,10 @@ CREATE TABLE `cargar_arl` (
 --
 
 CREATE TABLE `cargar_convenio` (
+  `id_cargar_convenio` int(11) NOT NULL,
   `empresa` int(11) NOT NULL,
   `ruta_archivo` varchar(50) COLLATE utf8_spanish2_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
-
---
--- Volcado de datos para la tabla `cargar_convenio`
---
-
-INSERT INTO `cargar_convenio` (`empresa`, `ruta_archivo`) VALUES
-(123456789, 'c2f8fb51cc02e41facbcae080519f6c3.pdf'),
-(123456789, 'practicas.sql'),
-(123456789, 'madeufps.sql'),
-(123456789, 'c2f8fb51cc02e41facbcae080519f6c3.pdf'),
-(123456789, 'img20200523_11531400.pdf');
 
 -- --------------------------------------------------------
 
@@ -115,25 +106,6 @@ CREATE TABLE `crear_convenio` (
   `fechaConvenio` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
---
--- Volcado de datos para la tabla `crear_convenio`
---
-
-INSERT INTO `crear_convenio` (`id_convenio`, `estudiante`, `empresa`, `fechaConvenio`) VALUES
-(6, 1, 123456789, '2020-06-10'),
-(7, 1151464, 1234, '2020-06-10'),
-(8, 1151464, 1234, '2020-06-10'),
-(10, 23, 321, '2020-06-10'),
-(11, 1151464, 123456789, '2020-08-07'),
-(12, 23, 1234, '2020-08-21'),
-(13, 23, 1234, '2020-08-21'),
-(14, 1151464, 1234, '2020-08-21'),
-(15, 1, 1234, '2020-08-21'),
-(16, 23, 321, '2020-08-21'),
-(17, 1, 1234, '2020-08-21'),
-(18, 1, 1234, '2020-08-21'),
-(23, 23, 1234, '2020-06-21');
-
 -- --------------------------------------------------------
 
 --
@@ -144,18 +116,15 @@ CREATE TABLE `empresa` (
   `nit` int(11) NOT NULL,
   `representante_legal` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
   `ruta_radicado` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,
-  `cantidad_practicantes` int(11) DEFAULT NULL,
-  `contraseña` varchar(50) COLLATE utf8_spanish2_ci NOT NULL
+  `cantidad_practicantes` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 --
 -- Volcado de datos para la tabla `empresa`
 --
 
-INSERT INTO `empresa` (`nit`, `representante_legal`, `ruta_radicado`, `cantidad_practicantes`, `contraseña`) VALUES
-(321, 'asdas', 'practicas.sql', 0, '1'),
-(1234, 'asdas', 'practicas.sql', 0, '1'),
-(123456789, 'edyson leal', 'madeufps.sql', NULL, '12345');
+INSERT INTO `empresa` (`nit`, `representante_legal`, `ruta_radicado`, `cantidad_practicantes`) VALUES
+(123456789, 'edyson leal', 'madeufps.sql', NULL);
 
 -- --------------------------------------------------------
 
@@ -166,18 +135,15 @@ INSERT INTO `empresa` (`nit`, `representante_legal`, `ruta_radicado`, `cantidad_
 CREATE TABLE `estudiante` (
   `codigo` int(11) NOT NULL,
   `cedula` int(11) NOT NULL,
-  `fechaNacimiento` date NOT NULL,
-  `contraseña` varchar(100) COLLATE utf8_spanish2_ci NOT NULL
+  `fechaNacimiento` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 --
 -- Volcado de datos para la tabla `estudiante`
 --
 
-INSERT INTO `estudiante` (`codigo`, `cedula`, `fechaNacimiento`, `contraseña`) VALUES
-(1, 897, '2020-06-18', '1'),
-(23, 777, '2020-06-23', '1'),
-(1151464, 1000, '2020-05-17', '1234');
+INSERT INTO `estudiante` (`codigo`, `cedula`, `fechaNacimiento`) VALUES
+(1151464, 1000, '2020-05-17');
 
 -- --------------------------------------------------------
 
@@ -230,26 +196,21 @@ CREATE TABLE `persona` (
   `rol` int(11) NOT NULL,
   `telefono` varchar(20) COLLATE utf8_spanish2_ci NOT NULL,
   `direccion` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
-  `correo` varchar(100) COLLATE utf8_spanish2_ci NOT NULL
+  `correo` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,
+  `contrasena` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,
+  `status_pass` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 --
 -- Volcado de datos para la tabla `persona`
 --
 
-INSERT INTO `persona` (`nombre`, `cedulanit`, `rol`, `telefono`, `direccion`, `correo`) VALUES
-('milton', 12, 2, '1', 'avenida', 'edysonleal@gmail.com'),
-('wposs', 321, 4, '1', 'asdasd', 'edysonleal@wposs.com'),
-('escanor', 777, 3, '7', 'avenida 18', 'edysonleal@wposs.com'),
-('matias', 897, 3, '1', 'avenida 18', 'edysonleal@wposs.com'),
-('shadia ochoa', 987, 2, '55555', 'labateca', 'shadiashirleyoc@ufps.edu.co'),
-('adriana quijano', 1000, 3, '555555', 'venezuela', 'adrianaelizabethqr@ufps.edu.co'),
-('edyson leal', 1090, 1, '3154871926', 'avenida 8', 'edysonfabianlm@ufps.edu.co'),
-('google', 1234, 4, '111', 'asdasd', 'edysonleal@wposs.com'),
-('nelson beltram', 12121, 2, '12', 'avenida', 'edysonleal@gmail.com'),
-('Judith del Pilar Rodriguez Tenjo', 98765, 1, '3154871926', 'cucuta', 'judithdelpilarrt@ufps.edu.co'),
-('gallardo', 777777, 2, '1', 'avenida', 'edysonleal@gmail.com'),
-('loyalsoft', 123456789, 4, '5844980', 'libertad', 'contacto@loyalsoft.co');
+INSERT INTO `persona` (`nombre`, `cedulanit`, `rol`, `telefono`, `direccion`, `correo`, `contrasena`, `status_pass`) VALUES
+('shadia ochoa', 987, 2, '55555', 'labateca', 'shadiashirleyoc@ufps.edu.co', '1234', 0),
+('adriana quijano', 1000, 3, '555555', 'venezuela', 'adrianaelizabethqr@ufps.edu.co', '1234', 0),
+('edyson leal', 1090, 1, '3154871926', 'avenida 8', 'edysonfabianlm@ufps.edu.co', '87681076b7', 1),
+('Judith del Pilar Rodriguez Tenjo', 98765, 1, '3154871926', 'cucuta', 'judithdelpilarrt@ufps.edu.co', '1234', 0),
+('loyalsoft', 123456789, 4, '5844980', 'libertad', 'contacto@loyalsoft.co', '1234', 0);
 
 -- --------------------------------------------------------
 
@@ -260,7 +221,8 @@ INSERT INTO `persona` (`nombre`, `cedulanit`, `rol`, `telefono`, `direccion`, `c
 CREATE TABLE `plan_trabajo` (
   `id_plantrabajo` int(11) NOT NULL,
   `estudiante` int(11) DEFAULT NULL,
-  `ruta_archivo` varchar(200) COLLATE utf8_spanish2_ci DEFAULT NULL
+  `ruta_archivo` varchar(200) COLLATE utf8_spanish2_ci DEFAULT NULL,
+  `fecha_subida` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 -- --------------------------------------------------------
@@ -272,17 +234,15 @@ CREATE TABLE `plan_trabajo` (
 CREATE TABLE `profesor` (
   `codigo` int(11) NOT NULL,
   `cedula` int(11) DEFAULT NULL,
-  `fechaNacimiento` date DEFAULT NULL,
-  `contraseña` varchar(50) COLLATE utf8_spanish2_ci DEFAULT NULL
+  `fechaNacimiento` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 --
 -- Volcado de datos para la tabla `profesor`
 --
 
-INSERT INTO `profesor` (`codigo`, `cedula`, `fechaNacimiento`, `contraseña`) VALUES
-(1, 777777, '2020-06-18', '1'),
-(1000, 987, '2020-06-01', '1234');
+INSERT INTO `profesor` (`codigo`, `cedula`, `fechaNacimiento`) VALUES
+(1000, 987, '2020-06-01');
 
 -- --------------------------------------------------------
 
@@ -336,12 +296,14 @@ ALTER TABLE `calificar_estudiante`
 -- Indices de la tabla `cargar_arl`
 --
 ALTER TABLE `cargar_arl`
+  ADD PRIMARY KEY (`id_arl`),
   ADD KEY `estudiante` (`estudiante`);
 
 --
 -- Indices de la tabla `cargar_convenio`
 --
 ALTER TABLE `cargar_convenio`
+  ADD PRIMARY KEY (`id_cargar_convenio`),
   ADD KEY `empresa` (`empresa`);
 
 --
@@ -430,16 +392,28 @@ ALTER TABLE `calificar_estudiante`
   MODIFY `id_calificacion` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT de la tabla `cargar_arl`
+--
+ALTER TABLE `cargar_arl`
+  MODIFY `id_arl` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `cargar_convenio`
+--
+ALTER TABLE `cargar_convenio`
+  MODIFY `id_cargar_convenio` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `crear_convenio`
 --
 ALTER TABLE `crear_convenio`
-  MODIFY `id_convenio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id_convenio` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `evidencia_empresa`
 --
 ALTER TABLE `evidencia_empresa`
-  MODIFY `id_evidencia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id_evidencia` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `evidencia_estudiante`
