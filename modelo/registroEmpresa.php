@@ -2,6 +2,8 @@
 
 require_once '../controlador/conexion.php';
 
+//die(json_encode($_POST));
+
 $nombreEmpresa = $_POST['nombreEmpresa'];
 $nit = $_POST['nit'];
 $representante = $_POST['representante'];
@@ -26,10 +28,10 @@ if ($contraseñaEmpresa != $repContraseñaEmpresa) {
   if (move_uploaded_file($_FILES['carga-convenio']['tmp_name'], $directorio . $_FILES['carga-convenio']['name'])) {
     $archivo_url = $_FILES['carga-convenio']['name'];
     $archivo_resultado = "Se subio correctamente el archivo";
-    $sqlPer = "INSERT INTO persona (nombre, cedulanit, rol, telefono, direccion, correo) 
-          VALUES ('$nombreEmpresa', '$nit', '4', '$telefonoEmpresa', '$direccionEmpresa', '$emailEmpresa')";
-    $sqlAdm = "INSERT INTO empresa (nit, representante_legal, ruta_radicado, cantidad_practicantes, contrasena) 
-          VALUES ('$nit', '$representante', '$directorio', '0', '$contraseñaEmpresa')";
+    $sqlPer = "INSERT INTO persona (nombre, cedulanit, rol, telefono, direccion, correo, contrasena, status_pass) 
+            VALUES ('$nombreEmpresa', '$nit', '4', '$telefonoEmpresa', '$direccionEmpresa', '$emailEmpresa', '$contraseñaEmpresa', '0')";
+    $sqlAdm = "INSERT INTO empresa (nit, representante_legal, ruta_radicado, cantidad_practicantes) 
+            VALUES ('$nit', '$representante', '$archivo_url', '0')";
     $ejecutarPer = mysqli_query($conexion, $sqlPer);
     $ejecutarEmp = mysqli_query($conexion, $sqlAdm);
 

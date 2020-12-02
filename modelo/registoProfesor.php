@@ -21,10 +21,10 @@ if ($contrasenaProfesor != $repContrasenaProfesor) {
   echo json_encode($respuesta);
   return;
 } else {
-  $sqlPer = "INSERT INTO persona (nombre, cedulanit, rol, telefono, direccion, correo) 
-          VALUES ('$nombreProfesor', '$cedulaProfesor', '2', '$telefonoProfesor', '$direccionProfesor', '$emailProfesor')";
-  $sqlAdm = "INSERT INTO profesor (`codigo`, `cedula`, `fechaNacimiento`, `contrasena`) 
-          VALUES ('$codigoProfesor', '$cedulaProfesor', '$fechaProfesor', '$contrasenaProfesor')";
+  $sqlPer = "INSERT INTO persona (nombre, cedulanit, rol, telefono, direccion, correo, contrasena, status_pass) 
+          VALUES ('$nombreProfesor', '$cedulaProfesor', '2', '$telefonoProfesor', '$direccionProfesor', '$emailProfesor', '$contrasenaProfesor', '0')";
+  $sqlAdm = "INSERT INTO profesor (codigo, cedula, fechaNacimiento) 
+          VALUES ('$codigoProfesor', '$cedulaProfesor', '$fechaProfesor')";
   $ejecutarPer = mysqli_query($conexion, $sqlPer);
   $ejecutarProf = mysqli_query($conexion, $sqlAdm);
 

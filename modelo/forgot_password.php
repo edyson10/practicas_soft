@@ -6,7 +6,9 @@ try {
         $mail = $_POST['emailForgot'];
 
         //Conexion con la base
-        $conn = new mysqli("localhost", "root", "", "practicas");
+        //$conn = new mysqli("localhost", "root", "", "practicas");
+        //Conexion servidor UFPS
+        $conn = new mysqli("localhost","practic_admin","soft_2020","practic_bd");
 
         // Check connection
         if ($conn->connect_error) {

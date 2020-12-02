@@ -164,6 +164,13 @@ if (isset($_SESSION['rol'])) {
     <!-- Custom scripts for all pages-->
     <script src="vista/js/sb-admin-2.min.js"></script>
 
+    <!-- Page level plugins -->
+    <script src="vista/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="vista/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="vista/js/demo/datatables-demo.js"></script>
+    
     <!-- Javasript Sweetalert2 -->
     <script src="vista/js/sweetalert2.min.js"></script>
 
@@ -172,20 +179,6 @@ if (isset($_SESSION['rol'])) {
     <!-- <script src="vista/js/alertas.js"></script> -->
 
     <script src="vista/js/inicio.js"></script>
-
-    <!-- Page level plugins -->
-    <script src="vista/vendor/chart.js/Chart.min.js"></script>
-
-    <!-- Page level custom scripts -->
-    <script src="vista/js/demo/chart-area-demo.js"></script>
-    <script src="vista/js/demo/chart-pie-demo.js"></script>
-
-    <!-- Page level plugins -->
-    <script src="vista/vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="vista/vendor/datatables/dataTables.bootstrap4.min.js"></script>
-
-    <!-- Page level custom scripts -->
-    <script src="vista/js/demo/datatables-demo.js"></script>
 </body>
 
 </html>

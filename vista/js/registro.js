@@ -5,15 +5,15 @@ $(document).ready(function() {
     $("#FormRegistroProfesor").on('submit', function(e) {
         e.preventDefault();
         var datos = $(this).serializeArray();
-        console.log(datos);
+        //console.log(datos);
         $.ajax({
             url: $(this).attr("action"),
             data: datos,
             type: $(this).attr("method"),
             success: function(data) {
-                console.log(data);
+                //console.log(data);
                 var resultado = JSON.parse(data);
-                console.log('->' + resultado.respuesta);
+                //console.log('->' + resultado.respuesta);
                 if (resultado.respuesta == 'exito') {
                     Swal.fire(
                         'Correcto!',
@@ -46,15 +46,15 @@ $(document).ready(function() {
     $("#FormRegistroEstudiante").on('submit', function(e) {
         e.preventDefault();
         var datos = $(this).serializeArray();
-        console.log(datos);
+        //console.log(datos);
         $.ajax({
             url: $(this).attr("action"),
             data: datos,
             type: $(this).attr("method"),
             success: function(data) {
-                console.log(data);
+                //console.log(data);
                 var resultado = JSON.parse(data);
-                console.log('->' + resultado.respuesta);
+                //console.log('->' + resultado.respuesta);
                 if (resultado.respuesta == 'exito') {
                     Swal.fire(
                         'Correcto!',
@@ -88,41 +88,49 @@ $(document).ready(function() {
         e.preventDefault();
         var datos = $(this).serializeArray();
         console.log(datos);
-        $.ajax({
-            url: $(this).attr("action"),
-            data: datos,
-            type: $(this).attr("method"),
-            dataType: 'json',
-            contentType: false,
-            processData: false,
-            async: true,
-            cache: false,
-            success: function(data) {
-                console.log(data);
-                var resultado = JSON.parse(data);
-                console.log('->' + resultado.respuesta);
-                if (resultado.respuesta == 'exito') {
-                    Swal.fire(
-                        'Correcto!',
-                        'Se ha registrado correctamente la empresa',
-                        'success'
-                    )
-                    document.getElementById("FormRegistrompresa").reset();
-                } else if (resultado.respuesta == 'error') {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Error al registrar',
-                        text: 'Empresa ya existente!'
-                    })
-                } else if (resultado.respuesta == 'mal') {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Error',
-                        text: 'Las contraseñas no coinciden'
-                    })
+        if (document.getElementById("carga-convenio").files.length == 0) {
+            Swal.fire({
+                icon: 'error',
+                title: '¡Ups!',
+                text: 'No se ha cargado ningún archivo'
+            })
+        } else {
+            $.ajax({
+                url: $(this).attr("action"),
+                data: datos,
+                type: $(this).attr("method"),
+                dataType: 'json',
+                contentType: false,
+                processData: false,
+                async: true,
+                cache: false,
+                success: function(data) {
+                    console.log(data);
+                    var resultado = JSON.parse(data);
+                    console.log('->' + resultado.respuesta);
+                    if (resultado.respuesta == 'exito') {
+                        Swal.fire(
+                            'Correcto!',
+                            'Se ha registrado correctamente la empresa',
+                            'success'
+                        )
+                        document.getElementById("FormRegistrompresa").reset();
+                    } else if (resultado.respuesta == 'error') {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error al registrar',
+                            text: 'Empresa ya existente!'
+                        })
+                    } else if (resultado.respuesta == 'mal') {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error',
+                            text: 'Las contraseñas no coinciden'
+                        })
+                    }
                 }
-            }
-        });
+            });
+        }
     });
 });
 
