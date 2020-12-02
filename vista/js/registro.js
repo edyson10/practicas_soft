@@ -87,50 +87,42 @@ $(document).ready(function() {
     $("#FormRegistroEmpresa").on('submit', function(e) {
         e.preventDefault();
         var datos = $(this).serializeArray();
-        console.log(datos);
-        if (document.getElementById("carga-convenio").files.length == 0) {
-            Swal.fire({
-                icon: 'error',
-                title: '¡Ups!',
-                text: 'No se ha cargado ningún archivo'
-            })
-        } else {
-            $.ajax({
-                url: $(this).attr("action"),
-                data: datos,
-                type: $(this).attr("method"),
-                dataType: 'json',
-                contentType: false,
-                processData: false,
-                async: true,
-                cache: false,
-                success: function(data) {
-                    console.log(data);
-                    var resultado = JSON.parse(data);
-                    console.log('->' + resultado.respuesta);
-                    if (resultado.respuesta == 'exito') {
-                        Swal.fire(
-                            'Correcto!',
-                            'Se ha registrado correctamente la empresa',
-                            'success'
-                        )
-                        document.getElementById("FormRegistrompresa").reset();
-                    } else if (resultado.respuesta == 'error') {
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Error al registrar',
-                            text: 'Empresa ya existente!'
-                        })
-                    } else if (resultado.respuesta == 'mal') {
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Error',
-                            text: 'Las contraseñas no coinciden'
-                        })
-                    }
+        //console.log(datos);
+        $.ajax({
+            url: $(this).attr("action"),
+            data: datos,
+            type: $(this).attr("method"),
+            //dataType: 'json',
+            //contentType: false,
+            //processData: false,
+            //async: true,
+            //cache: false,
+            success: function(data) {
+                //console.log(data);
+                var resultado = JSON.parse(data);
+                //console.log('->' + resultado.respuesta);
+                if (resultado.respuesta == 'exito') {
+                    Swal.fire(
+                        'Correcto!',
+                        'Se ha registrado correctamente la empresa',
+                        'success'
+                    )
+                    document.getElementById("FormRegistroEmpresa").reset();
+                } else if (resultado.respuesta == 'error') {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error al registrar',
+                        text: 'Empresa ya existente!'
+                    })
+                } else if (resultado.respuesta == 'mal') {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: 'Las contraseñas no coinciden'
+                    })
                 }
-            });
-        }
+            }
+        });
     });
 });
 

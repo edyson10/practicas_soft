@@ -6,7 +6,7 @@ require_once '../../controlador/conexion.php';
 
 if (isset($_SESSION["usuario"])) {
     $nombre = $_SESSION['usuario'];
-    if(isset($_SESSION['rol']) != 'Administrador'){
+    if (isset($_SESSION['rol']) != 'Administrador') {
         header('Location: ../../index.php');
     }
 }
@@ -85,7 +85,7 @@ if (isset($_SESSION["usuario"])) {
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Hola <?php echo $nombre;?></span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Hola <?php echo $nombre; ?></span>
                                 <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
                             </a>
                             <!-- Dropdown - User Information -->
@@ -125,8 +125,8 @@ if (isset($_SESSION["usuario"])) {
                                     <h6 class="m-0 font-weight-bold text-danger">Registrar empresa</h6>
                                 </div>
                                 <div class="card-body">
-                                    <form class="user" role="form" id="FormRegistroEmpresa" name="FormRegistroEmpresa" method="POST" action="../../modelo/registroEmpresa.php" enctype="multipart/form-data">
-                                    <div class="form-group">
+                                    <form class="user" role="form" id="FormRegistroEmpresa" name="FormRegistroEmpresa" method="POST" action="../../modelo/registroEmpresa.php">
+                                        <div class="form-group">
                                             <input type="text" class="form-control form-control-user" name="nombreEmpresa" id="nombreEmpresa" placeholder="Nombre de la empresa" required>
                                         </div>
                                         <div class="form-group row">
@@ -150,16 +150,17 @@ if (isset($_SESSION["usuario"])) {
                                         </div>
                                         <div class="form-group row">
                                             <div class="col-sm-6 mb-3 mb-sm-0 ">
-                                                <input type="password" class="form-control form-control-user" name="contraseñaEmpresa" id="contraseñaEmpresa" placeholder="Contraseña" required>
+                                                <input type="password" class="form-control form-control-user" name="contrasenaEmpresa" id="contrasenaEmpresa" placeholder="Contraseña" required>
                                             </div>
                                             <div class="col-sm-6">
-                                                <input type="password" class="form-control form-control-user" name="repContraseñaEmpresa" id="repContraseñaEmpresa" placeholder="Repita la contraseña" required>
+                                                <input type="password" class="form-control form-control-user" name="repContrasenaEmpresa" id="repContrasenaEmpresa" placeholder="Repita la contraseña" required>
                                             </div>
                                         </div>
+                                        <!--
                                         <div>Cargar convenio</div>
                                         <div class="form-group row">
                                             <input type="file" id="carga-convenio" name="carga-convenio" class="btn btn-primary btn-user btn-block"></input>
-                                        </div>
+                                        </div>-->
                                         <button type="submit" name="enviar" id="enviar" class="btn btn-primary btn-user btn-block">Registrar empresa</button>
                                     </form>
                                 </div>
