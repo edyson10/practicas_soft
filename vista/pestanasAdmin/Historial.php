@@ -23,8 +23,8 @@ if (isset($_SESSION["usuario"])) {
         $nombre = $_SESSION['usuario'];
         $codigo = $_SESSION['codigo'];
         $cedulanit = $_SESSION['cedulanit'];
-        $telefono = $_SESSION['telefono'];
-        $direccion = $_SESSION['direccion'];
+        //$telefono = $_SESSION['telefono'];
+        //$direccion = $_SESSION['direccion'];
         $correo = $_SESSION['correo'];
     }
 }

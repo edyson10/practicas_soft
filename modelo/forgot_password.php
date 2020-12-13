@@ -1,5 +1,7 @@
 <?php
 
+require_once '../controlador/conexion.php';
+
 try {
     if (isset($_POST['emailForgot']) && !empty($_POST['emailForgot'])) {
         $pass = substr(md5(microtime()), 1, 10);
@@ -8,16 +10,16 @@ try {
         //Conexion con la base
         //$conn = new mysqli("localhost", "root", "", "practicas");
         //Conexion servidor UFPS
-        $conn = new mysqli("localhost","practic_admin","soft_2020","practic_bd");
+        //$conn = new mysqli("localhost","practic_admin","soft_2020","practic_bd");
 
         // Check connection
-        if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
+        if ($conexion->connect_error) {
+            die("Connection failed: " . $conexion->connect_error);
         }
 
         $sql = "UPDATE persona SET contrasena = '$pass', status_pass = 1 WHERE correo = '$mail'";
 
-        if ($conn->query($sql) === TRUE) {
+        if ($conexion->query($sql) === TRUE) {
             //echo "usuario modificado correctamente ";
             $to = $_POST['emailForgot'];
             $subject = "Restablecimiento de clave personal - Portal web Practic";

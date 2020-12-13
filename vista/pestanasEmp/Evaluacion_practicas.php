@@ -105,7 +105,7 @@ $nit = $_SESSION['nit'];
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="Perfil_empresa">
+                                <a class="dropdown-item" href="Perfil_empresa.php">
                                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i> Configuraci&oacute;n
                                 </a>
                                 <!-- <a class="dropdown-item" href="#">
@@ -157,7 +157,7 @@ $nit = $_SESSION['nit'];
                                                     $error = $e->getMessage()();
                                                     echo $error;
                                                 }
-                                                
+
                                                 while ($empresa = $resultado->fetch_assoc()) { ?>
                                                     <tr>
                                                         <td><?php echo $empresa['nombre'] ?></td>
@@ -185,31 +185,74 @@ $nit = $_SESSION['nit'];
                                     <p>En los siguientes recuadros subir en formato PDF el Convenio y el radicado.</p>
                                     <!-- Cargar documentacion de ARL -->
                                     <h6 class="m-0 font-weight-bold text-danger">Cargar Radicado</h6><br>
-                                    <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-12 my-12 my-md-0 mw-100 navbar-search" style="width: 90%;"
-                                    name="fromRadicadoEmpresa" id="fromRadicadoEmpresa" method="POST" action="../../modelo/radicado_empresa.php" enctype="multipart/form-data">
-                                        <div class="input-group">
-                                            <input type="file" class="form-control bg-light border-0 small" id="radicado-empresa" name="radicado-empresa" aria-describedby="basic-addon2" readonly>
-                                            <div class="input-group-append">
-                                                <button class="btn btn-primary" type="submit">
-                                                    <i class="fas fa-sm">Guardar</i>
-                                                </button>
+                                    <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-12 my-12 my-md-0 mw-100 navbar-search" style="width: 90%;" name="fromRadicadoEmpresa" id="fromRadicadoEmpresa" method="POST" action="../../modelo/radicado_empresa.php" enctype="multipart/form-data">
+                                        <?php
+                                        try {
+                                            require_once '../../controlador/conexion.php';
+                                            $sql = "SELECT ruta_radicado FROM empresa WHERE nit = '$nit'";
+                                            $resultado = $conexion->query($sql);
+                                        } catch (Exception $e) {
+                                            $error = $e->getMessage()();
+                                            echo $error;
+                                        }
+
+                                        $fila = mysqli_num_rows($resultado);
+                                        if ($fila > 0) { ?>
+                                            <div class="input-group">
+                                                <input type="file" class="form-control bg-light border-0 small" id="radicado-empresa" name="radicado-empresa" aria-describedby="basic-addon2" disabled>
+                                                <div class="input-group-append">
+                                                    <button class="btn btn-primary" type="submit" disabled>
+                                                        <i class="fas fa-sm">Guardar</i>
+                                                    </button>
+                                                </div>
                                             </div>
-                                        </div>
+                                        <?php
+                                        } else { ?>
+                                            <div class="input-group">
+                                                <input type="file" class="form-control bg-light border-0 small" id="radicado-empresa" name="radicado-empresa" aria-describedby="basic-addon2">
+                                                <div class="input-group-append">
+                                                    <button class="btn btn-primary" type="submit">
+                                                        <i class="fas fa-sm">Guardar</i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        <?php } ?>
                                     </form>
                                     <br><br>
                                     <br>
                                     <!-- Cargar plan de trabajo -->
                                     <h6 class="m-0 font-weight-bold text-danger">Cargar convenio</h6><br>
-                                    <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-12 my-12 my-md-0 mw-100 navbar-search" style="width: 90%;" 
-                                    name="fromConvenioEmpresa" id="fromConvenioEmpresa" method="POST" action="../../modelo/convenio_empresa.php" enctype="multipart/form-data">
-                                        <div class="input-group">
-                                            <input type="file" class="form-control bg-light border-0 small" id="convenio-empresa" name="convenio-empresa" aria-describedby="basic-addon2" readonly>
-                                            <div class="input-group-append">
-                                                <button class="btn btn-primary" type="submit">
-                                                    <i class="fas fa-sm">Guardar</i>
-                                                </button>
+                                    <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-12 my-12 my-md-0 mw-100 navbar-search" style="width: 90%;" name="fromConvenioEmpresa" id="fromConvenioEmpresa" method="POST" action="../../modelo/cargarConvenioEmpresa.php" enctype="multipart/form-data">
+                                        <?php
+                                        try {
+                                            require_once '../../controlador/conexion.php';
+                                            $sql = "SELECT ruta_convenio FROM cargar_convenio WHERE empresa = '$nit'";
+                                            $resultado = $conexion->query($sql);
+                                        } catch (Exception $e) {
+                                            $error = $e->getMessage()();
+                                            echo $error;
+                                        }
+
+                                        $fila = mysqli_num_rows($resultado);
+                                        if ($fila == 0) { ?>
+                                            <div class="input-group">
+                                                <input type="file" class="form-control bg-light border-0 small" id="convenio-empresa" name="convenio-empresa" aria-describedby="basic-addon2" disabled>
+                                                <div class="input-group-append">
+                                                    <button class="btn btn-primary" type="submit" disabled>
+                                                        <i class="fas fa-sm">Guardar</i>
+                                                    </button>
+                                                </div>
                                             </div>
-                                        </div>
+                                        <?php } else { ?>
+                                            <div class="input-group">
+                                                <input type="file" class="form-control bg-light border-0 small" id="convenio-empresa" name="convenio-empresa" aria-describedby="basic-addon2" readonly>
+                                                <div class="input-group-append">
+                                                    <button class="btn btn-primary" type="submit">
+                                                        <i class="fas fa-sm">Guardar</i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        <?php } ?>
                                     </form>
                                     <br><br>
                                     <br>

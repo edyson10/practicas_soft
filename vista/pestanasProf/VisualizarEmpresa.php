@@ -140,7 +140,7 @@ if (isset($_SESSION["usuario"])) {
                                 </div>
                                 <div class="card-body">
                                     <div class="table-responsive">
-                                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                        <table class="table table-bordered" id="dataTable1" width="100%" cellspacing="0">
                                             <thead class="p-3 bg-gray-700 text-white">
                                                 <tr>
                                                     <th>Nombre empresa</th>
@@ -197,14 +197,14 @@ if (isset($_SESSION["usuario"])) {
                                                     <input type="text" class="form-control form-control-user" id="nombreEmpresa" name="nombreEmpresa" placeholder="Nombre completo" readonly>
                                                 </div>
                                                 <div class="form-group">
-                                                    <input type="number" class="form-control form-control-user" id="nitEmpresa" name="nitEmpresa" placeholder="Cedula" readonly>
+                                                    <input type="text" class="form-control form-control-user" id="nitEmpresa" name="nitEmpresa" placeholder="Cedula" readonly>
                                                 </div>
                                                 <div class="form-group row">
                                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                                         <input type="text" class="form-control form-control-user" id="direccionEmpresa" name="direccionEmpresa" placeholder="Direccion" readonly>
                                                     </div>
                                                     <div class="col-sm-6">
-                                                        <input type="number" class="form-control form-control-user" id="telefonoEmpresa" name="telefonoEmpresa" placeholder="Telefono" readonly>
+                                                        <input type="text" class="form-control form-control-user" id="telefonoEmpresa" name="telefonoEmpresa" placeholder="Telefono" readonly>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">

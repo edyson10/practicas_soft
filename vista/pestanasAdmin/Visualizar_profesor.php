@@ -181,14 +181,14 @@ if (isset($_SESSION["usuario"])) {
                                             <input type="text" class="form-control form-control-user" id="nombreProfesor" name="nombreProfesor" placeholder="Nombre completo" readonly>
                                         </div>
                                         <div class="form-group">
-                                            <input type="number" class="form-control form-control-user" id="cedulaProf" name="cedulaProf" placeholder="Cedula" readonly>
+                                            <input type="text" class="form-control form-control-user" id="cedulaProf" name="cedulaProf" placeholder="Cedula" readonly>
                                         </div>
                                         <div class="form-group row">
                                             <div class="col-sm-6 mb-3 mb-sm-0">
                                                 <input type="text" class="form-control form-control-user" id="direccionProfesor" name="direccionProfesor" placeholder="Direccion" readonly>
                                             </div>
                                             <div class="col-sm-6">
-                                                <input type="number" class="form-control form-control-user" id="telefonoProfesor" name="telefonoProfesor" placeholder="Telefono" readonly>
+                                                <input type="text" class="form-control form-control-user" id="telefonoProfesor" name="telefonoProfesor" placeholder="Telefono" readonly>
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -198,7 +198,7 @@ if (isset($_SESSION["usuario"])) {
                                             <input type="email" class="form-control form-control-user" id="correoProfesor" name="correoProfesor" placeholder="Correo insitucional" readonly>
                                         </div>
                                         <div class="form-group">
-                                            <input type="number" class="form-control form-control-user" id="codigoProfesor" name="codigoProfesor" placeholder="Código" readonly>
+                                            <input type="text" class="form-control form-control-user" id="codigoProfesor" name="codigoProfesor" placeholder="Código" readonly>
                                         </div>
                                     </form>
                                 </div>

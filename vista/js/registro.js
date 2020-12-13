@@ -149,6 +149,9 @@ $(document).ready(function() {
                         'success'
                     )
                     document.getElementById("FormCrearConvenio").reset();
+                    setTimeout(function() {
+                        location.reload();
+                    }, 1000);
                 } else if (resultado.respuesta == 'error') {
                     Swal.fire({
                         icon: 'error',

@@ -184,21 +184,21 @@ if (isset($_SESSION["usuario"])) {
                                                     <input type="text" class="form-control form-control-user" id="nombreEmpresa" name="nombreEmpresa" placeholder="Nombre completo" readonly>
                                                 </div>
                                                 <div class="form-group">
-                                                    <input type="number" class="form-control form-control-user" id="nitEmpresa" name="nitEmpresa" placeholder="Cedula" readonly>
+                                                    <input type="text" class="form-control form-control-user" id="nitEmpresa" name="nitEmpresa" placeholder="Cedula" readonly>
                                                 </div>
                                                 <div class="form-group row">
                                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                                         <input type="text" class="form-control form-control-user" id="direccionEmpresa" name="direccionEmpresa" placeholder="Direccion" readonly>
                                                     </div>
                                                     <div class="col-sm-6">
-                                                        <input type="number" class="form-control form-control-user" id="telefonoEmpresa" name="telefonoEmpresa" placeholder="Telefono" readonly>
+                                                        <input type="text" class="form-control form-control-user" id="telefonoEmpresa" name="telefonoEmpresa" placeholder="Telefono" readonly>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <input type="email" class="form-control form-control-user" id="correoEmpresa" name="correoEmpresa" placeholder="Correo corporativo" readonly>
                                                 </div>
                                                 <div class="form-group">
-                                                    <input type="number" class="form-control form-control-user" id="representante_legal" name="representante_legal" placeholder="Representante legal" readonly>
+                                                    <input type="text" class="form-control form-control-user" id="representante_legal" name="representante_legal" placeholder="Representante legal" readonly>
                                                 </div>
                                             </form>
                                         </div>

@@ -164,7 +164,7 @@ function eliminarEmpresa(empresa) {
                             'success'
                         )
                         setTimeout(function() {
-                            window.location.href = "../pestanasAdmin/Visualizar_estudiante.php";
+                            window.location.href = "../pestanasAdmin/Visualizar_empresa.php";
                         }, 700);
                     } else {
                         Swal.fire({

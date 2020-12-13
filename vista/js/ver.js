@@ -72,7 +72,7 @@ function verInformacionEmpresa(cedula) {
                 document.getElementById('direccionEmpresa').value = resultado.direccion;
                 document.getElementById('telefonoEmpresa').value = resultado.telefono;
                 document.getElementById('correoEmpresa').value = resultado.correo;
-                document.getElementById('representante').value = resultado.representante;
+                document.getElementById('representante_legal').value = resultado.representante;
             }
         }
     })

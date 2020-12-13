@@ -139,35 +139,34 @@ if (isset($_SESSION['rol']) == 'Profesor') {
                                 <div class="card-body">
                                     <p>En el siguiente recuadro subir en formato PDF el Convenio de la empresa.</p>
                                     <!-- Basic Card Example -->
-                                    <select class="browser-default custom-select" id="empresaConvenio" name="empresaConvenio">
-                                        <option>Seleccione la empresa</option>
-                                        <?php
-                                        try {
-                                            require_once '../../controlador/conexion.php';
-                                            $sql = "SELECT persona.nombre, empresa.nit FROM persona INNER JOIN empresa ON persona.cedulanit = empresa.nit order by persona.nombre asc";
-                                            $resultado = $conexion->query($sql);
-                                        } catch (Exception $e) {
-                                            $error = $e->getMessage()();
-                                            echo $error;
-                                        }
+                                    <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-12 my-12 my-md-0 mw-100 navbar-search" method="POST" action="../../modelo/convenio_empresa.php" enctype="multipart/form-data">
+                                        <select class="browser-default custom-select" id="empresaConvenio" name="empresaConvenio" style="width: 100%;">
+                                            <option value="Seleccione">Seleccione la empresa</option>
+                                            <?php
+                                            try {
+                                                require_once '../../controlador/conexion.php';
+                                                $sql = "SELECT persona.nombre, empresa.nit FROM persona INNER JOIN empresa ON persona.cedulanit = empresa.nit order by persona.nombre asc";
+                                                $resultado = $conexion->query($sql);
+                                            } catch (Exception $e) {
+                                                $error = $e->getMessage()();
+                                                echo $error;
+                                            }
 
-                                        while ($estudiante = mysqli_fetch_array($resultado)) { ?>
-                                            <option value="<?php echo $estudiante['nit'] ?>"><?php echo $estudiante['nit'] . ' - ' . $estudiante['nombre']; ?></option>
-                                        <?php } ?>
-                                    </select>
-                                    <br><br>
-                                    <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-12 my-12 my-md-0 mw-100 navbar-search" style="width: 100%;" name="froConvenioEmpresa" id="froConvenioEmpresa" method="POST" action="../../modelo/convenio_empresa.php" enctype="multipart/form-data">
+                                            while ($estudiante = mysqli_fetch_array($resultado)) { ?>
+                                                <option value="<?php echo $estudiante['nit'] ?>"><?php echo $estudiante['nit'] . ' - ' . $estudiante['nombre']; ?></option>
+                                            <?php } ?>
+                                        </select>
+                                        <br><br>
                                         <div class="input-group">
                                             <input type="file" class="form-control bg-light border-0 small" id="convenio-empresa" name="convenio-empresa" aria-describedby="basic-addon2">
                                             <div class="input-group-append">
-                                                <button class="btn btn-primary" type="submit">
+                                                <button class="btn btn-primary" type="button" id="btnEnviar">
                                                     <i class="fas fa-sm">Guardar</i>
                                                 </button>
                                             </div>
                                         </div>
                                     </form>
                                     <br><br>
-                                    
                                 </div>
                             </div>
                         </div>

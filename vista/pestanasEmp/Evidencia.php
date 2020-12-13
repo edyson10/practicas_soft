@@ -104,7 +104,7 @@ $nombre = $_SESSION['usuario'];
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="Perfil_empresa">
+                                <a class="dropdown-item" href="Perfil_empresa.php">
                                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i> Configuraci&oacute;n
                                 </a>
                                 <!-- <a class="dropdown-item" href="#">
