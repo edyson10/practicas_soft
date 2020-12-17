@@ -115,7 +115,7 @@ if (isset($_SESSION["usuario"])) {
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <table class="table table-bordered" id="dataTable1" width="100%" cellspacing="0">
                                     <thead class="p-3 bg-gray-700 text-white">
                                         <tr>
                                             <th>Nombre</th>
